@@ -1,1 +1,9 @@
 # REV_party
+Projet S3 Algo
+
+REV party
+(République Expérimentale Virtuelle)
+
+Condorcet et les procédures de vote
+
+Sujet proposé par Vincent Dugat - Octobre 2021
