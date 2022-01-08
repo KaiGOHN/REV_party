@@ -3,18 +3,18 @@ CC = gcc
 CFLAGS = -Wall -std=c99
 #LDFLAGS = -lm -lgmp
 TARGET = scrutin # nom de l'exécutable
-OBJFILES = main.o lecture_csv.o
+OBJFILES = build/main.o build/lecture_csv.o
 
 all: $(TARGET)
 
 $(TARGET): $(OBJFILES)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJFILES) $(LDFLAGS)
 
-main.o : main.c
-    $(CC) $(CFLAGS) -c main.c -o lecture_csv.o $(LDFLAGS)
+build/main.o: src/main.c
+	$(CC) $(CFLAGS) -c src/main.c -o build/main.o $(LDFLAGS)
 
-lecture_csv.o : lecture_csv.c
-    $(CC) $(CFLAGS) -c lecture_csv.c -o lecture_csv.o $(LDFLAGS)
+build/lecture_csv.o : src/lecture_csv.c
+	$(CC) $(CFLAGS) -c src/lecture_csv.c -o build/lecture_csv.o $(LDFLAGS)
 
 clean:
 	rm -f $(OBJFILES) $(TARGET) *~
