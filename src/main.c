@@ -124,6 +124,11 @@ int main(int argc, char **argv)
     int nb_col=0;
     int nb_ligne=0;
     char delimiteur=',';
-    lecture_csv(nom_fichier_csv, &delimiteur, type_csv, &nb_col, &nb_ligne);
+    char *** matrice= malloc(1*sizeof(char **));
+    if (matrice == NULL) {
+        fprintf(stderr, "erreur d'allocation\n");
+        exit(1);
+    }
+    lecture_csv(nom_fichier_csv, &delimiteur, &nb_col, &nb_ligne, matrice);
     return 0;
 }

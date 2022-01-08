@@ -8,6 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-void lecture_csv(char* filename, char * delimiteur, int type_csv, int * nb_col, int * nb_ligne);
+void lecture_csv(char* filename, char * delimiteur, int * nb_col, int * nb_ligne,  char *** matrice);
 
 #endif //REV_PARTY_LECTURE_CSV_H
