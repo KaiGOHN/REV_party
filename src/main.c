@@ -9,7 +9,9 @@
 #include <getopt.h>
 #include <string.h>
 #include "lecture_csv.h"
-
+#include "matrice_duel.h"
+#include "global.h"
+#include "utils_sd.h"
 
 /// \fn getargs
 /// \param[in] argc le nombre de parmamètres passés au programme
@@ -124,11 +126,8 @@ int main(int argc, char **argv)
     int nb_col=0;
     int nb_ligne=0;
     char delimiteur=',';
-    char *** matrice= malloc(1*sizeof(char **));
-    if (matrice == NULL) {
-        fprintf(stderr, "erreur d'allocation\n");
-        exit(1);
-    }
-    lecture_csv(nom_fichier_csv, &delimiteur, &nb_col, &nb_ligne, matrice);
+    t_mat_char_star_dyn matrice_csv;
+    creer_matrice_char(&matrice_csv, &nb_ligne, &nb_col);
+    lecture_csv(nom_fichier_csv, &delimiteur, &nb_ligne, &nb_col, &matrice_csv);
     return 0;
 }
