@@ -4,6 +4,40 @@
 
 #include "matrice_duel.h"
 
-void creer_matrice_duel(char *** matrice, int * nb_ligne, int* nb_col) {
+void remplir_matrice_duel(t_mat_char_star_dyn * matrice_csv, t_mat_int_dyn * matrice_duel, int * type_csv) {
+    if (!*type_csv) {
+        for (int i=0; i< matrice_duel->nbRows; i++) {
+            for (int j=0; j<matrice_duel->nbCol; j++) {
+               matrice_duel->tab[i][j]=atoi(matrice_csv->tab[i+1][j]);
+            }
+        }
+    }
+    else {
+        for (int i=0; i<matrice_duel->nbRows; i++) {
+            for (int j = 0; j < matrice_duel->nbCol; j++) {
+                if (i==j) {
+                    matrice_duel->tab[i][i]=0;
+                }
+                else {
+                    int win=0;
+                    for (int k=1; k<matrice_csv->nbRows; k++) {
 
+                        if (matrice_csv->tab[k][i+4][0]!= '\0' && matrice_csv->tab[k][j+4][0] != '\0' && atoi(matrice_csv->tab[k][i+4])>0 && atoi(matrice_csv->tab[k][j+4])>0 && atoi(matrice_csv->tab[k][i+4])<11 && atoi(matrice_csv->tab[k][j+4])<11 && atoi(matrice_csv->tab[k][i+4])<atoi(matrice_csv->tab[k][j+4])) {
+                            win++;
+                        }
+                    }
+                    matrice_duel->tab[i][j] = win;
+                }
+
+            }
+        }
+
+
+    }
+    for (int i=0; i<matrice_duel->nbRows; i++) {
+        for (int j=0; j<matrice_duel->nbCol; j++) {
+            printf("%d ", matrice_duel->tab[i][j]);
+        }
+        printf("\n");
+    }
 }

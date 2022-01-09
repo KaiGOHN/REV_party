@@ -7,7 +7,10 @@
 #include "global.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void creer_matrice_char(t_mat_char_star_dyn * matrice_csv, int * nb_ligne, int * nb_col);
+void creer_matrice_char(t_mat_char_star_dyn * matrice_csv);
+void creer_matrice_int(t_mat_int_dyn * matrice_duel, int nbLigne, int nbCol);
+void copy_matrice_char(t_mat_char_star_dyn * matrice_in, t_mat_char_star_dyn * matrice_out);
 
 #endif //REV_PARTY_UTILS_SD_H

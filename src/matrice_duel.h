@@ -4,5 +4,9 @@
 
 #ifndef REV_PARTY_MATRICE_DUEL_H
 #define REV_PARTY_MATRICE_DUEL_H
-void creer_matrice_duel(char *** matrice, int * nb_ligne, int* nb_col);
+#include "global.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+void remplir_matrice_duel(t_mat_char_star_dyn * matrice_csv, t_mat_int_dyn * matrice_duel, int * type_csv);
 #endif //REV_PARTY_MATRICE_DUEL_H

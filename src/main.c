@@ -123,11 +123,28 @@ int main(int argc, char **argv)
         exit(EXIT_FAILURE);
     }
     printf("nom_fichier_csv = %s, nom_fichier_log = %s, methode = %s, type_csv = %d, type_log = %d \n", nom_fichier_csv,  nom_fichier_log, methode, type_csv, type_log);
-    int nb_col=0;
-    int nb_ligne=0;
     char delimiteur=',';
     t_mat_char_star_dyn matrice_csv;
-    creer_matrice_char(&matrice_csv, &nb_ligne, &nb_col);
-    lecture_csv(nom_fichier_csv, &delimiteur, &nb_ligne, &nb_col, &matrice_csv);
+    creer_matrice_char(&matrice_csv);
+    lecture_csv(nom_fichier_csv, &delimiteur, &matrice_csv);
+
+    t_mat_int_dyn matrice_duel;
+    if (!type_csv) {
+        creer_matrice_int(&matrice_duel, matrice_csv.nbRows-1, matrice_csv.nbCol);
+        remplir_matrice_duel(&matrice_csv, &matrice_duel, &type_csv);
+    }
+    else {
+        creer_matrice_int(&matrice_duel, matrice_csv.nbCol-4, matrice_csv.nbCol-4);
+        remplir_matrice_duel(&matrice_csv, &matrice_duel, &type_csv);
+    }
+
+/*    for (int i=0; i<matrice_duel.nbRows; i++) {
+        for (int j=0; j<matrice_duel.nbCol; j++) {
+            printf("%d ", matrice_duel.tab[i][j]);
+        }
+        printf("\n");
+    }*/
+
+
     return 0;
 }

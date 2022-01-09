@@ -10,6 +10,6 @@
 #include "global.h"
 #include "utils_sd.h"
 
-void lecture_csv(char* filename, char * delimiteur, int * nb_ligne, int * nb_col,  t_mat_char_star_dyn * matrice);
+void lecture_csv(char* filename, char * delimiteur, t_mat_char_star_dyn * matrice);
 
 #endif //REV_PARTY_LECTURE_CSV_H
