@@ -3,6 +3,9 @@
 //
 
 #include "utils_sd.h"
+
+/// \fn creer_matrice_char
+/// \param[in,out] matrice_csv pointeur vers la structure de type t_mat_char_star_dyn contenant la matrice à initialiser
 void creer_matrice_char(t_mat_char_star_dyn * matrice_csv) {
     matrice_csv->tab = malloc(1*sizeof(char **));
     if (matrice_csv->tab  == NULL) {
@@ -18,6 +21,10 @@ void creer_matrice_char(t_mat_char_star_dyn * matrice_csv) {
     matrice_csv->nbCol = 1;
 }
 
+/// \fn creer_matrice_int
+/// \param[in,out] matrice_duels pointeur vers la structure de type t_mat_int_dyn contenant la matrice à initialiser
+/// \param[in] nbLigne entier spécifiant le nombre de lignes de la matrice à initialiser
+/// \param[in] nbCol nbLigne entier spécifiant le nombre de colonnes de la matrice à initialiser
 void creer_matrice_int(t_mat_int_dyn * matrice_duels, int nbLigne, int nbCol) {
     matrice_duels->tab = malloc(nbLigne*sizeof(int *));
     if (matrice_duels->tab  == NULL) {
@@ -34,7 +41,9 @@ void creer_matrice_int(t_mat_int_dyn * matrice_duels, int nbLigne, int nbCol) {
     matrice_duels->nbRows = nbLigne;
     matrice_duels->nbCol = nbCol;
 }
-
+/*///
+/// \param matrice_in
+/// \param matrice_out
 void copy_matrice_char(t_mat_char_star_dyn * matrice_in, t_mat_char_star_dyn * matrice_out) {
     matrice_out->tab = malloc(matrice_in->nbRows*sizeof(char **));
     if (matrice_out->tab  == NULL) {
@@ -55,4 +64,4 @@ void copy_matrice_char(t_mat_char_star_dyn * matrice_in, t_mat_char_star_dyn * m
     }
     matrice_out->nbCol = matrice_in->nbCol;
 
-}
+}*/

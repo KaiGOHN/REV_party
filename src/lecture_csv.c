@@ -4,7 +4,10 @@
 
 #include "lecture_csv.h"
 
-
+/// \fn lecture_csv
+/// \param filename pointeur vers une chaine de caractères désignant le nom du fichier csv
+/// \param delimiteur pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv
+/// \param matrice pointeur vers la structure de type t_mat_char_star_dyn contenant la matrice à remplir
 void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice) {
     FILE *fptr;
     if ((fptr = fopen(filename,"r")) == NULL){
