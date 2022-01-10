@@ -76,7 +76,7 @@ int getargs(int argc, char **argv, char **nom_fichier_csv,  char **nom_fichier_l
                     }
                 }
                 break;
-            case '?':
+            default:
                 fprintf(stderr, "Argument inconnu.\n");
                 err_arg=1;
                 break;
@@ -163,10 +163,11 @@ int main(int argc, char **argv)
     afficher_matrice_arc(&matrice_arc, logfp);
     fprintf(logfp, "\nLISTE DES ARCS");
     dumpList(liste_arcs,logfp);
+    t_tab_int_dyn tableau;
     if (type_csv) {
         int nb_votants=matrice_csv.nbRows - 1;
         if (strcmp(methode, "all")==0) {
-            t_tab_int_dyn tableau;
+
             creer_tab_int(&tableau, matrice_csv.nbCol - 4);
             trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
             trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
@@ -191,7 +192,7 @@ int main(int argc, char **argv)
             }
         }
         else if (strcmp(methode, "cm")==0) {
-            t_tab_int_dyn tableau;
+
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
 
@@ -204,7 +205,7 @@ int main(int argc, char **argv)
 
             }
         } else if (strcmp(methode, "cs")==0) {
-            t_tab_int_dyn tableau;
+
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
 
@@ -217,14 +218,17 @@ int main(int argc, char **argv)
                                   nb_votants, 0, logfp);
             }
         } else if (strcmp(methode, "uni1")==0) {
-            t_tab_int_dyn tableau;
+
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
         } else {
-            t_tab_int_dyn tableau;
+
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
         }
+
+        liberer_tab_int(&tableau);
+
         }
     else {
         //int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
@@ -271,6 +275,9 @@ int main(int argc, char **argv)
         }
 
         }
+    liberer_matrice_char(&matrice_csv);
+    liberer_matrice_int(&matrice_duel);
+    liberer_matrice_int(&matrice_arc);
 
 
     return 0;

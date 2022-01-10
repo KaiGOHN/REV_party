@@ -21,6 +21,13 @@ void creer_matrice_char(t_mat_char_star_dyn * matrice_csv) {
     matrice_csv->nbCol = 1;
 }
 
+void liberer_matrice_char(t_mat_char_star_dyn * matrice_csv) {
+    for (int i=0; i<matrice_csv->nbRows; i++) {
+            free(matrice_csv->tab[i]);
+    }
+    free(matrice_csv->tab);
+}
+
 /// \fn creer_matrice_int
 /// \param[in,out] matrice_duel pointeur vers la structure de type t_mat_int_dyn contenant la matrice à initialiser
 /// \param[in] nbLigne entier spécifiant le nombre de lignes de la matrice à initialiser
@@ -42,6 +49,14 @@ void creer_matrice_int(t_mat_int_dyn * matrice_duel, int nbLigne, int nbCol) {
     matrice_duel->nbCol = nbCol;
 }
 
+void liberer_matrice_int(t_mat_int_dyn * matrice_duel) {
+    for (int i=0; i<matrice_duel->nbRows; i++) {
+        free(matrice_duel->tab[i]);
+    }
+    free(matrice_duel->tab);
+}
+
+
 void creer_tab_int(t_tab_int_dyn * tableau, int nbCol) {
     tableau->tab = malloc(nbCol*sizeof(int));
     if (tableau->tab  == NULL) {
@@ -50,6 +65,11 @@ void creer_tab_int(t_tab_int_dyn * tableau, int nbCol) {
     }
     tableau->dim = nbCol;
 }
+
+void liberer_tab_int(t_tab_int_dyn * tableau) {
+    free(tableau->tab);
+}
+
 /*///
 /// \param matrice_in
 /// \param matrice_out
