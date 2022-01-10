@@ -4,7 +4,7 @@
 
 #include "lecture_csv.h"
 
-/// \fn lecture_csv
+///  lecture_csv
 /// \param filename pointeur vers une chaine de caractères désignant le nom du fichier csv
 /// \param delimiteur pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv
 /// \param matrice pointeur vers la structure de type t_mat_char_star_dyn contenant la matrice à remplir
@@ -27,6 +27,7 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
                 exit(EXIT_FAILURE);
             }
             matrice->tab[0][matrice->nbCol-1] = malloc(sizeof(char) * 256 );
+            matrice->tab[0][matrice->nbCol-1][0]='\0';
             if (matrice->tab[0][matrice->nbCol-1] == NULL) {
                 fprintf(stderr, "erreur d'allocation\n");
                 exit(EXIT_FAILURE);
@@ -42,6 +43,7 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
             exit(EXIT_FAILURE);
         }
         matrice->tab[0][matrice->nbCol-1] = malloc(sizeof(char) * 256 );
+        matrice->tab[0][matrice->nbCol-1][0]='\0';
         if (matrice->tab[0][matrice->nbCol-1] == NULL) {
             fprintf(stderr, "erreur d'allocation\n");
             exit(EXIT_FAILURE);
@@ -66,6 +68,7 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
             while ((pointeur_delim = strpbrk(debut, delimiteur)) != NULL) {
                 *pointeur_delim = 0;
                 matrice->tab[matrice->nbRows-1][champ] = malloc(sizeof(char) * 256 );
+                matrice->tab[matrice->nbRows-1][champ][0]='\0';
                 if (matrice->tab[matrice->nbRows-1][champ] == NULL) {
                     fprintf(stderr, "erreur d'allocation\n");
                     exit(EXIT_FAILURE);
@@ -92,6 +95,7 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
 
             }
             matrice->tab[matrice->nbRows-1][champ] = malloc(sizeof(char) * 256 );
+            matrice->tab[matrice->nbRows-1][champ][0]='\0';
             if (matrice->tab[matrice->nbRows-1][champ] == NULL) {
                 fprintf(stderr, "erreur d'allocation\n");
                 exit(EXIT_FAILURE);

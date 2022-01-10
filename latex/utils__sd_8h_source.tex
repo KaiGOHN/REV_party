@@ -1,0 +1,40 @@
+\hypertarget{utils__sd_8h_source}{}\doxysection{utils\+\_\+sd.\+h}
+\label{utils__sd_8h_source}\index{src/utils\_sd.h@{src/utils\_sd.h}}
+\mbox{\hyperlink{utils__sd_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00001}00001 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00002}00002 \textcolor{comment}{// Created by loic on 08/01/2022.}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00003}00003 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00005}00005 \textcolor{preprocessor}{\#ifndef REV\_PARTY\_UTILS\_SD\_H}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00006}00006 \textcolor{preprocessor}{\#define REV\_PARTY\_UTILS\_SD\_H}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{global_8h}{global.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00008}00008 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00009}00009 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00010}00010 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00014}00014 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_a56b1a5ca6aaa5b5d2fe031afb61fb885}{creer\_matrice\_char}}(\mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} * matrice\_csv);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00018}00018 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_abae07c010199f6cc8a0e6c2609fb41a8}{liberer\_matrice\_char}}(\mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} * matrice\_csv);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00024}00024 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} * matrice\_duel, \textcolor{keywordtype}{int} nbLigne, \textcolor{keywordtype}{int} nbCol);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00028}00028 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\_matrice\_int}}(\mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} * matrice\_duel);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00033}00033 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_ae69aa4e7f236852ec0930346e1371ca3}{creer\_tab\_int}}(\mbox{\hyperlink{structs__tab__dyn}{t\_tab\_int\_dyn}} * tableau, \textcolor{keywordtype}{int} nbCol);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00037}00037 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_aff10f11ecc2a1821ab3de4237cb5e984}{liberer\_tab\_int}}(\mbox{\hyperlink{structs__tab__dyn}{t\_tab\_int\_dyn}} * tableau);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00042}00042 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_ac0a62e49f7b05cfb57f288a3a81b2efb}{afficher\_matrice\_csv}}(\mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} * matrice\_csv, FILE *outfp);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00047}00047 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_af596492c13607f2d71a000299569116a}{afficher\_matrice\_duel}}(\mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} * t\_tab, FILE *outfp);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00052}00052 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_aea11ddea1b6d969f7bae740a2b2415b4}{afficher\_matrice\_arc}}(\mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} * t\_tab, FILE *outfp);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00058}00058 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_a5e82d3fd4cb5b9b6bc05194bf595b71e}{afficher\_infos\_csv}}(\mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} * matrice\_csv, \textcolor{keywordtype}{int} * type\_csv, FILE *outfp);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00067}00067 \textcolor{keywordtype}{void} \mbox{\hyperlink{utils__sd_8h_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{keywordtype}{char} * mode\_scrutin, \textcolor{keywordtype}{char} * gagnant, \textcolor{keywordtype}{int} nb\_candidats, \textcolor{keywordtype}{int} nb\_votants, \textcolor{keywordtype}{float} score, FILE * logfp);}
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{utils__sd_8h_source_l00069}00069 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//REV\_PARTY\_UTILS\_SD\_H}}
+
+\end{DoxyCode}

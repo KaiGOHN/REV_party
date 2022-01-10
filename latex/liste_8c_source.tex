@@ -1,0 +1,141 @@
+\hypertarget{liste_8c_source}{}\doxysection{liste.\+c}
+\label{liste_8c_source}\index{src/liste.c@{src/liste.c}}
+\mbox{\hyperlink{liste_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00001}00001 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00007}00007 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00008}00008 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00009}00009 \textcolor{preprocessor}{\#include <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{global_8h}{global.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{elementliste_8h}{elementliste.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{liste_8h}{liste.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00015}00015 \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}{createList}}(\mbox{\hyperlink{structliste}{liste}} *p)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00017}\mbox{\hyperlink{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}{00017}}     p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}= 0; }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00018}00018     p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}} = 0; }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00019}00019 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00021}\mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{00021}} \textcolor{keywordtype}{int} \mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(\mbox{\hyperlink{structliste}{liste}} lst)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00023}00023     \textcolor{keywordflow}{return} lst.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00024}00024 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00026}\mbox{\hyperlink{liste_8c_ab362f8b1c683c374542de1c37d5a3748}{00026}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_ab362f8b1c683c374542de1c37d5a3748}{addFrontList}}(\mbox{\hyperlink{structliste}{liste}} *p, \mbox{\hyperlink{structs__arc__p}{Elementliste}} e)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00028}00028   \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{fullList}}(*p)) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00029}00029       fprintf(stderr,\textcolor{stringliteral}{"{}addFront : liste pleine !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00030}00030       exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00031}00031   \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00032}00032   p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} = (p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}-\/1) \%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00033}00033   \textcolor{keywordflow}{if} (p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}<0)}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00034}00034       p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} = \mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}+p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} ;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00035}00035   \mbox{\hyperlink{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}{copie\_element}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}]),e);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00036}00036   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}++;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00037}00037 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00039}\mbox{\hyperlink{liste_8c_ae44fac1e392193e620781404f18d119e}{00039}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_ae44fac1e392193e620781404f18d119e}{addTailList}}(\mbox{\hyperlink{structliste}{liste}} *p, \mbox{\hyperlink{structs__arc__p}{Elementliste}} e)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00041}00041   \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{fullList}}(*p)) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00042}00042       fprintf(stderr,\textcolor{stringliteral}{"{}addTailList : liste pleine !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00043}00043       exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00044}00044   \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00045}00045   \mbox{\hyperlink{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}{copie\_element}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[(p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}})\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}]),e);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00046}00046   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}++;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00047}00047 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00049}00049 \textcolor{comment}{/* Delister */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00050}\mbox{\hyperlink{liste_8c_aedd2f92afd4787bee1b7898be436c0f7}{00050}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_aedd2f92afd4787bee1b7898be436c0f7}{delTailList}}(\mbox{\hyperlink{structliste}{liste}} *p)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00051}00051     \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*p)) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00052}00052         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00053}00053         fprintf(stderr,\textcolor{stringliteral}{"{}delTail : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00054}00054         exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00055}00055     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00056}00056         \textcolor{comment}{/* la liste n'est pas vide */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00057}00057     p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}=p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+1 \% \mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}; \textcolor{comment}{// modulo pour circulaire}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00058}00058   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00059}00059    \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00060}00060 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00062}\mbox{\hyperlink{liste_8c_a36245e8afb6334fcbbc3fc0254356a5f}{00062}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_a36245e8afb6334fcbbc3fc0254356a5f}{delFrontList}}(\mbox{\hyperlink{structliste}{liste}} *p)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00063}00063     \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*p)) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00064}00064         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00065}00065         fprintf(stderr,\textcolor{stringliteral}{"{}depiler : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00066}00066         exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00067}00067     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00068}00068         \textcolor{comment}{/* la liste n'est pas vide */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00069}00069   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}-\/-\/;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00070}00070    \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00071}00071 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00073}\mbox{\hyperlink{liste_8c_a654f9e13ded641af8eabeca39fe88513}{00073}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_a654f9e13ded641af8eabeca39fe88513}{headList}}(\mbox{\hyperlink{structliste}{liste}} p, \mbox{\hyperlink{structs__arc__p}{Elementliste}} *e)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00075}00075     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(p))}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00076}00076         *e= p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}];}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00077}00077     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00078}00078         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00079}00079         fprintf(stderr,\textcolor{stringliteral}{"{}sommet : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00080}00080         exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00081}00081     \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00082}00082 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00084}\mbox{\hyperlink{liste_8c_a952b7b53e6a0bf83ed77b30f56039cd3}{00084}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_a952b7b53e6a0bf83ed77b30f56039cd3}{tailList}}(\mbox{\hyperlink{structliste}{liste}} p, \mbox{\hyperlink{structs__arc__p}{Elementliste}} *e)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00086}00086     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(p))}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00087}00087         *e= p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}];}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00088}00088     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00089}00089         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00090}00090         fprintf(stderr,\textcolor{stringliteral}{"{}sommet : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00091}00091         exit(1);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00092}00092     \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00093}00093 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00095}\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{00095}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(\mbox{\hyperlink{structliste}{liste}} p) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00098}00098   \textcolor{keywordflow}{return} (p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}==0);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00099}00099  \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00101}\mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{00101}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{fullList}}(\mbox{\hyperlink{structliste}{liste}} p) \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00104}00104     \textcolor{keywordflow}{return} (p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}==\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00105}00105 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00108}00108 \textcolor{comment}{/* Affichage de la liste */}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00109}\mbox{\hyperlink{liste_8c_a1efa21bcdfc9f7008f5055d45660ec0a}{00109}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_a1efa21bcdfc9f7008f5055d45660ec0a}{dumpList}}(\mbox{\hyperlink{structliste}{liste}} p,FILE *fp)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00110}00110   fprintf(fp,\textcolor{stringliteral}{"{}\(\backslash\)n(orig, dest, pds)\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00111}00111     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} ind=p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};ind<p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};ind++)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00112}00112     fprintf(fp,\textcolor{stringliteral}{"{}elt \%d="{}},ind\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00113}00113     \mbox{\hyperlink{elementliste_8c_af863bb116d9bad450f6fe9118bd443c9}{afficher\_element}}(p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[ind\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}],fp);}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00114}00114     \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00115}00115 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00117}\mbox{\hyperlink{liste_8c_aab2683342bb0aca5e45f6990a33301ac}{00117}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_aab2683342bb0aca5e45f6990a33301ac}{swapEltList}}(\mbox{\hyperlink{structs__arc__p}{Elementliste}} *a,\mbox{\hyperlink{structs__arc__p}{Elementliste}} *b)}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00119}00119 \{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00120}00120     \mbox{\hyperlink{structs__arc__p}{Elementliste}} aux;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00121}00121     aux=*a;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00122}00122     *a=*b;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00123}00123     *b=aux;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00124}00124 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00126}\mbox{\hyperlink{liste_8c_a24de5e6ed5544ca17f1c9036852dad5a}{00126}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_a24de5e6ed5544ca17f1c9036852dad5a}{bubbleSortList}}(\mbox{\hyperlink{structliste}{liste}} *p)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00130}00130     \textcolor{keywordtype}{int} i,j;}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00131}00131     \textcolor{keywordflow}{for} (i=p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};i<p-\/>Tete+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};i++)}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00132}00132         \textcolor{keywordflow}{for}(j=i+1;j<p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};j++)}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00133}00133             \textcolor{keywordflow}{if} ((p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[i]).poids<(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[j]).poids)}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00134}00134             \mbox{\hyperlink{liste_8c_aab2683342bb0aca5e45f6990a33301ac}{swapEltList}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[i]),\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[j]));}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00135}00135 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00137}\mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{00137}} \textcolor{keywordtype}{void} \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(\mbox{\hyperlink{structliste}{liste}} l,\mbox{\hyperlink{structs__arc__p}{Elementliste}} *e,\textcolor{keywordtype}{int} index)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00140}00140     \textcolor{keywordtype}{int} nbElt = l.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00141}00141     \textcolor{keywordtype}{int} indice = l.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+index\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00142}00142     \textcolor{keywordflow}{if} (index<0 || index >nbElt)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00143}00143         printf(\textcolor{stringliteral}{"{}erreur d'indice dans la liste\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00144}00144         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00145}00145     \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00146}00146     *e = l.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[indice];}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00147}00147 \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00149}\mbox{\hyperlink{liste_8c_a2d730599f1058e59d270c4acb0a90e43}{00149}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{liste_8c_a2d730599f1058e59d270c4acb0a90e43}{belongEltList}}(\mbox{\hyperlink{structliste}{liste}} p,\mbox{\hyperlink{structs__arc__p}{Elementliste}} e)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00152}00152     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} ind=p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};ind<p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};ind++)\{}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00153}00153         \textcolor{keywordflow}{if} (\mbox{\hyperlink{elementliste_8c_a6f7f28a6f0f78e390083aa53555dc0a5}{cmp\_elements}}(p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[ind],e))}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00154}00154             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00156}00156     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{liste_8c_source_l00157}00157 \}}
+
+\end{DoxyCode}

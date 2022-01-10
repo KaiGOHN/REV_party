@@ -1,0 +1,345 @@
+\hypertarget{main_8c}{}\doxysection{src/main.c File Reference}
+\label{main_8c}\index{src/main.c@{src/main.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lecture\+\_\+csv.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}matrice\+\_\+duel\+\_\+arc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils\+\_\+sd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}uninominales.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}condorcet\+\_\+minimax.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}condorcet\+\_\+schulze.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8c_a070097588076043751cbfe7f51c83df1}{getargs}} (int argc, char $\ast$$\ast$argv, char $\ast$$\ast$nom\+\_\+fichier\+\_\+csv, char $\ast$$\ast$nom\+\_\+fichier\+\_\+log, char $\ast$$\ast$methode, int $\ast$type\+\_\+csv, int $\ast$type\+\_\+log)
+\item 
+int \mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+loic 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2022 
+\end{DoxyDate}
+
+
+Definition in file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a070097588076043751cbfe7f51c83df1}\label{main_8c_a070097588076043751cbfe7f51c83df1}} 
+\index{main.c@{main.c}!getargs@{getargs}}
+\index{getargs@{getargs}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{getargs()}{getargs()}}
+{\footnotesize\ttfamily int getargs (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{char $\ast$$\ast$}]{nom\+\_\+fichier\+\_\+csv,  }\item[{char $\ast$$\ast$}]{nom\+\_\+fichier\+\_\+log,  }\item[{char $\ast$$\ast$}]{methode,  }\item[{int $\ast$}]{type\+\_\+csv,  }\item[{int $\ast$}]{type\+\_\+log }\end{DoxyParamCaption})}
+
+récupération des arguments de la ligne de commande 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em argc} & le nombre de parmamètres passés au programme \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & la liste des paramètresp passés au programme \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em nom\+\_\+fichier\+\_\+csv} & pointeur de pointeur de char pour récuperer le nom du fichier csv \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em nom\+\_\+fichier\+\_\+log} & pointeur de pointeur pour de char récuperer le nom du fichier de log \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em methode} & pointeur de pointeur de char pour récuperer le nom de la méthode \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em type\+\_\+csv} & pointeur d\textquotesingle{}entier pour récuperer le type de fichier csv (0 duels, 1 ballots) \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em type\+\_\+log} & pointeur d\textquotesingle{}entier pour récuperer le type de log (0 stdout, 1 fichier) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+err\+\_\+arg un entier=1 si une erreur s\textquotesingle{}est produite pendant la lecture des arguments, 0 sinon 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00029}{29}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                                                                                                                     \{}
+\DoxyCodeLine{00030     \textcolor{keywordtype}{char} c;}
+\DoxyCodeLine{00031     \textcolor{keywordtype}{int} ballots=0;}
+\DoxyCodeLine{00032     \textcolor{keywordtype}{int} duels=0;}
+\DoxyCodeLine{00033     \textcolor{keywordtype}{int} err\_arg=0;}
+\DoxyCodeLine{00034     \textcolor{keywordtype}{int} methode\_valide=0;}
+\DoxyCodeLine{00035     \textcolor{keywordflow}{while} ((c = getopt(argc, argv, \textcolor{stringliteral}{"{}i:d:o:m:"{}})) != -\/1 ) \{}
+\DoxyCodeLine{00036         \textcolor{keywordflow}{switch} (c) \{}
+\DoxyCodeLine{00037             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:}
+\DoxyCodeLine{00038                 ballots=1;}
+\DoxyCodeLine{00039                 strcpy(*nom\_fichier\_csv, optarg);}
+\DoxyCodeLine{00040                 \textcolor{keywordflow}{if} (strcmp(*nom\_fichier\_csv, \textcolor{stringliteral}{"{}-\/d"{}}) == 0) \{}
+\DoxyCodeLine{00041                     duels=1;}
+\DoxyCodeLine{00042                 \}}
+\DoxyCodeLine{00043                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00044             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{00045                 duels=1;}
+\DoxyCodeLine{00046                 strcpy(*nom\_fichier\_csv, optarg);}
+\DoxyCodeLine{00047                 \textcolor{keywordflow}{if} (strcmp(*nom\_fichier\_csv, \textcolor{stringliteral}{"{}-\/i"{}}) == 0) \{}
+\DoxyCodeLine{00048                     ballots=1;}
+\DoxyCodeLine{00049                 \}}
+\DoxyCodeLine{00050                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00051             \textcolor{keywordflow}{case} \textcolor{charliteral}{'o'}:}
+\DoxyCodeLine{00052                 *type\_log=1;}
+\DoxyCodeLine{00053                 strcpy(*nom\_fichier\_log, optarg);}
+\DoxyCodeLine{00054                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00055             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:}
+\DoxyCodeLine{00056                 strcpy(*methode, optarg);}
+\DoxyCodeLine{00057                 \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni1"{}}) == 0) \{}
+\DoxyCodeLine{00058                     methode\_valide=1;}
+\DoxyCodeLine{00059                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00060                     \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni2"{}}) == 0) \{}
+\DoxyCodeLine{00061                         methode\_valide=1;}
+\DoxyCodeLine{00062                     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00063                         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}cm"{}}) == 0) \{}
+\DoxyCodeLine{00064                             methode\_valide=1;}
+\DoxyCodeLine{00065                         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00066                             \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}cs"{}}) == 0) \{}
+\DoxyCodeLine{00067                                 methode\_valide=1;}
+\DoxyCodeLine{00068                             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00069                                 \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}all"{}}) == 0) \{}
+\DoxyCodeLine{00070                                     methode\_valide=1;}
+\DoxyCodeLine{00071                                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00072                                     methode\_valide=0;}
+\DoxyCodeLine{00073                                 \}}
+\DoxyCodeLine{00074                             \}}
+\DoxyCodeLine{00075                         \}}
+\DoxyCodeLine{00076                     \}}
+\DoxyCodeLine{00077                 \}}
+\DoxyCodeLine{00078                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00079             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00080                 fprintf(stderr, \textcolor{stringliteral}{"{}Argument inconnu.\(\backslash\)n"{}});}
+\DoxyCodeLine{00081                 err\_arg=1;}
+\DoxyCodeLine{00082                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00083         \}}
+\DoxyCodeLine{00084     \}}
+\DoxyCodeLine{00085     \textcolor{keywordflow}{if} (duels \&\& ballots) \{}
+\DoxyCodeLine{00086         fprintf(stderr, \textcolor{stringliteral}{"{}Les options -\/i et -\/d sont incompatibles.\(\backslash\)n"{}});}
+\DoxyCodeLine{00087         err\_arg=1;}
+\DoxyCodeLine{00088     \}}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{if} (duels) \{}
+\DoxyCodeLine{00090         *type\_csv=0;}
+\DoxyCodeLine{00091     \}}
+\DoxyCodeLine{00092     \textcolor{keywordflow}{if} (ballots) \{}
+\DoxyCodeLine{00093         *type\_csv=1;}
+\DoxyCodeLine{00094     \}}
+\DoxyCodeLine{00095     \textcolor{keywordflow}{if} (!duels \&\& !ballots) \{}
+\DoxyCodeLine{00096         fprintf(stderr, \textcolor{stringliteral}{"{}Une des options -\/i ou -\/d doit être spécifiée.\(\backslash\)n"{}});}
+\DoxyCodeLine{00097         err\_arg=1;}
+\DoxyCodeLine{00098     \}}
+\DoxyCodeLine{00099     \textcolor{keywordflow}{if} (!methode\_valide) \{}
+\DoxyCodeLine{00100         fprintf(stderr, \textcolor{stringliteral}{"{}Vous devez spécifier une méthode valide, avec -\/m méthode ∈ \{uni1, uni2, cm, cs, all\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00101         err\_arg=1;}
+\DoxyCodeLine{00102     \}}
+\DoxyCodeLine{00103     \textcolor{keywordflow}{if} (duels \&\& *methode != NULL) \{}
+\DoxyCodeLine{00104         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni1"{}}) == 0) \{}
+\DoxyCodeLine{00105             fprintf(stderr, \textcolor{stringliteral}{"{}Méthode uni1 incompatible avec les duels .\(\backslash\)n"{}});}
+\DoxyCodeLine{00106             err\_arg=1;}
+\DoxyCodeLine{00107         \}}
+\DoxyCodeLine{00108         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni2"{}}) == 0) \{}
+\DoxyCodeLine{00109             fprintf(stderr, \textcolor{stringliteral}{"{}Méthode uni2 incompatible avec les duels .\(\backslash\)n"{}});}
+\DoxyCodeLine{00110             err\_arg=1;}
+\DoxyCodeLine{00111         \}}
+\DoxyCodeLine{00112     \}}
+\DoxyCodeLine{00113     \textcolor{keywordflow}{return} err\_arg;}
+\DoxyCodeLine{00114 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00117}{117}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118 \{}
+\DoxyCodeLine{00119     \textcolor{keywordtype}{char} * nom\_fichier\_csv = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00120     \textcolor{keywordtype}{char}  * nom\_fichier\_log = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00121     \textcolor{keywordtype}{char} * methode = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00122     nom\_fichier\_log[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00123     nom\_fichier\_csv[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00124     methode[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00125     \textcolor{keywordtype}{int} type\_csv = 0;}
+\DoxyCodeLine{00126     \textcolor{keywordtype}{int} type\_log = 0;}
+\DoxyCodeLine{00127     FILE *logfp;}
+\DoxyCodeLine{00128     \textcolor{keywordtype}{int} err\_arg = \mbox{\hyperlink{main_8c_a070097588076043751cbfe7f51c83df1}{getargs}}(argc, argv, \&nom\_fichier\_csv,  \&nom\_fichier\_log, \&methode, \&type\_csv, \&type\_log);}
+\DoxyCodeLine{00129     \textcolor{keywordflow}{if} (err\_arg) \{}
+\DoxyCodeLine{00130         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00131     \}}
+\DoxyCodeLine{00132     \textcolor{keywordflow}{if} (type\_log) \{}
+\DoxyCodeLine{00133         FILE *fptr;}
+\DoxyCodeLine{00134         \textcolor{keywordflow}{if} ((fptr = fopen(nom\_fichier\_log,\textcolor{stringliteral}{"{}w"{}})) == NULL)\{}
+\DoxyCodeLine{00135             fprintf(stderr, \textcolor{stringliteral}{"{}Erreur! lors de l'ouverture du fichier de log\(\backslash\)n"{}});}
+\DoxyCodeLine{00136             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00137         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00138             logfp=fptr;}
+\DoxyCodeLine{00139             fprintf(stdout, \textcolor{stringliteral}{"{}Fichier de sortie : \%s\(\backslash\)n"{}}, nom\_fichier\_log);}
+\DoxyCodeLine{00140         \}}
+\DoxyCodeLine{00141     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00142         logfp=stdout;}
+\DoxyCodeLine{00143     \}}
+\DoxyCodeLine{00144     fprintf(logfp, \textcolor{stringliteral}{"{}INFOS LIGNE COMMANDE : \(\backslash\)nnom\_fichier\_csv = \%s, nom\_fichier\_log = \%s, methode = \%s, type\_csv = \%d, type\_log = \%d \(\backslash\)n"{}}, nom\_fichier\_csv,  nom\_fichier\_log, methode, type\_csv, type\_log);}
+\DoxyCodeLine{00145     \textcolor{keywordtype}{char} delimiteur=\textcolor{charliteral}{','};}
+\DoxyCodeLine{00146     \mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} matrice\_csv;}
+\DoxyCodeLine{00147     \mbox{\hyperlink{utils__sd_8c_a56b1a5ca6aaa5b5d2fe031afb61fb885}{creer\_matrice\_char}}(\&matrice\_csv);}
+\DoxyCodeLine{00148     \mbox{\hyperlink{lecture__csv_8c_ae277326ecbe62e58fb2cd67318c5ccba}{lecture\_csv}}(nom\_fichier\_csv, \&delimiteur, \&matrice\_csv, \&type\_csv);}
+\DoxyCodeLine{00149     \mbox{\hyperlink{utils__sd_8c_a5e82d3fd4cb5b9b6bc05194bf595b71e}{afficher\_infos\_csv}}(\&matrice\_csv, \&type\_csv, logfp);}
+\DoxyCodeLine{00150     \mbox{\hyperlink{utils__sd_8c_ac0a62e49f7b05cfb57f288a3a81b2efb}{afficher\_matrice\_csv}}(\&matrice\_csv, logfp);}
+\DoxyCodeLine{00151     \mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} matrice\_duel;}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{if} (!type\_csv) \{}
+\DoxyCodeLine{00153         \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_duel, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}});}
+\DoxyCodeLine{00154         \mbox{\hyperlink{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}{remplir\_matrice\_duel}}(\&matrice\_csv, \&matrice\_duel, \&type\_csv);}
+\DoxyCodeLine{00155     \}}
+\DoxyCodeLine{00156     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00157         \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_duel, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4);}
+\DoxyCodeLine{00158         \mbox{\hyperlink{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}{remplir\_matrice\_duel}}(\&matrice\_csv, \&matrice\_duel, \&type\_csv);}
+\DoxyCodeLine{00159     \}}
+\DoxyCodeLine{00160     \mbox{\hyperlink{utils__sd_8c_afa471c3597649b60ca2a11c61b56acd7}{afficher\_matrice\_duel}}(\&matrice\_duel, logfp);}
+\DoxyCodeLine{00161     \mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} matrice\_arc;}
+\DoxyCodeLine{00162     \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_arc, matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}, matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}});}
+\DoxyCodeLine{00163     \mbox{\hyperlink{structliste}{liste}} liste\_arcs;}
+\DoxyCodeLine{00164     \mbox{\hyperlink{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}{createList}}(\&liste\_arcs);}
+\DoxyCodeLine{00165     \mbox{\hyperlink{matrice__duel__arc_8c_a5175997e7f4948a7706c88e64c0c9bb7}{remplir\_matrice\_arc}}(\&matrice\_duel, \&matrice\_arc, \&liste\_arcs);}
+\DoxyCodeLine{00166     \mbox{\hyperlink{utils__sd_8c_af7e05e7c1aa51ff37f534293a9765411}{afficher\_matrice\_arc}}(\&matrice\_arc, logfp);}
+\DoxyCodeLine{00167     fprintf(logfp, \textcolor{stringliteral}{"{}\(\backslash\)nLISTE DES ARCS"{}});}
+\DoxyCodeLine{00168     \mbox{\hyperlink{liste_8c_a1efa21bcdfc9f7008f5055d45660ec0a}{dumpList}}(liste\_arcs,logfp);}
+\DoxyCodeLine{00169 }
+\DoxyCodeLine{00170     \textcolor{keywordflow}{if} (type\_csv) \{}
+\DoxyCodeLine{00171         \mbox{\hyperlink{structs__tab__dyn}{t\_tab\_int\_dyn}} tableau;}
+\DoxyCodeLine{00172         \mbox{\hyperlink{utils__sd_8c_ae69aa4e7f236852ec0930346e1371ca3}{creer\_tab\_int}}(\&tableau, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4);}
+\DoxyCodeLine{00173         \textcolor{keywordtype}{int} nb\_votants=matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1;}
+\DoxyCodeLine{00174         \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}all"{}})==0) \{}
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177             \mbox{\hyperlink{uninominales_8c_a4972aedc0d0c0e77adf5b5e67dcc66fb}{trouver\_gagnant\_un\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{00178             \mbox{\hyperlink{uninominales_8c_a41ef6ccad81cdccb324a3b0f30c3abea}{trouver\_gagnant\_deux\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{00179             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00182                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00183                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00184             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00185                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00186                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00187             \}}
+\DoxyCodeLine{00188 }
+\DoxyCodeLine{00189             \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{00190             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00191                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00192                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00193             \}}
+\DoxyCodeLine{00194             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00195                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00196                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00197             \}}
+\DoxyCodeLine{00198         \}}
+\DoxyCodeLine{00199         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cm"{}})==0) \{}
+\DoxyCodeLine{00200 }
+\DoxyCodeLine{00201 }
+\DoxyCodeLine{00202             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00205                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00206                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00207             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00208                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00209                                   nb\_votants , 0, logfp);}
+\DoxyCodeLine{00210 }
+\DoxyCodeLine{00211             \}}
+\DoxyCodeLine{00212         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cs"{}})==0) \{}
+\DoxyCodeLine{00213 }
+\DoxyCodeLine{00214 }
+\DoxyCodeLine{00215             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{00216 }
+\DoxyCodeLine{00217             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00218                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00219                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00220             \}}
+\DoxyCodeLine{00221             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00222                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{00223                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{00224             \}}
+\DoxyCodeLine{00225         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}uni1"{}})==0) \{}
+\DoxyCodeLine{00226 }
+\DoxyCodeLine{00227 }
+\DoxyCodeLine{00228             \mbox{\hyperlink{uninominales_8c_a4972aedc0d0c0e77adf5b5e67dcc66fb}{trouver\_gagnant\_un\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{00229         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00230 }
+\DoxyCodeLine{00231 }
+\DoxyCodeLine{00232             \mbox{\hyperlink{uninominales_8c_a41ef6ccad81cdccb324a3b0f30c3abea}{trouver\_gagnant\_deux\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{00233         \}}
+\DoxyCodeLine{00234 }
+\DoxyCodeLine{00235         \mbox{\hyperlink{utils__sd_8c_aff10f11ecc2a1821ab3de4237cb5e984}{liberer\_tab\_int}}(\&tableau);}
+\DoxyCodeLine{00236 }
+\DoxyCodeLine{00237         \}}
+\DoxyCodeLine{00238     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00239         \textcolor{keywordtype}{int} nb = matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[0][matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}} -\/ 1] + matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}} -\/ 1][0];}
+\DoxyCodeLine{00240         \textcolor{comment}{// int nb = matrice\_duel.nbCol ;}}
+\DoxyCodeLine{00241         \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}all"{}})==0) \{}
+\DoxyCodeLine{00242 }
+\DoxyCodeLine{00243             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{00244             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00245                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00246             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00247                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00248             \}}
+\DoxyCodeLine{00249 }
+\DoxyCodeLine{00250             \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{00251             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00252                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00253 }
+\DoxyCodeLine{00254             \}}
+\DoxyCodeLine{00255             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00256                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00257 }
+\DoxyCodeLine{00258             \}}
+\DoxyCodeLine{00259             \}}
+\DoxyCodeLine{00260         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cm"{}})==0) \{}
+\DoxyCodeLine{00261 }
+\DoxyCodeLine{00262             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{00263             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00264                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00265             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00266                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00267             \}}
+\DoxyCodeLine{00268 }
+\DoxyCodeLine{00269                     \}}
+\DoxyCodeLine{00270         \textcolor{keywordflow}{else}  \{}
+\DoxyCodeLine{00271 }
+\DoxyCodeLine{00272             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{00273             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{00274                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00275             \}}
+\DoxyCodeLine{00276             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00277                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{00278 }
+\DoxyCodeLine{00279             \}}
+\DoxyCodeLine{00280         \}}
+\DoxyCodeLine{00281 }
+\DoxyCodeLine{00282         \}}
+\DoxyCodeLine{00283     \mbox{\hyperlink{utils__sd_8c_abae07c010199f6cc8a0e6c2609fb41a8}{liberer\_matrice\_char}}(\&matrice\_csv);}
+\DoxyCodeLine{00284     \mbox{\hyperlink{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\_matrice\_int}}(\&matrice\_duel);}
+\DoxyCodeLine{00285     \mbox{\hyperlink{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\_matrice\_int}}(\&matrice\_arc);}
+\DoxyCodeLine{00286     \textcolor{keywordflow}{if} (type\_log) fclose(logfp);}
+\DoxyCodeLine{00287     free(nom\_fichier\_log);}
+\DoxyCodeLine{00288     free(nom\_fichier\_csv);}
+\DoxyCodeLine{00289     free(methode);}
+\DoxyCodeLine{00290 }
+\DoxyCodeLine{00291     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{00292 \}}
+
+\end{DoxyCode}

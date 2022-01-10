@@ -1,0 +1,51 @@
+\hypertarget{sha256__utils_8c_source}{}\doxysection{sha256\+\_\+utils.\+c}
+\label{sha256__utils_8c_source}\index{src/sha256\_utils.c@{src/sha256\_utils.c}}
+\mbox{\hyperlink{sha256__utils_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00001}00001 \textcolor{comment}{/*********************************************************************}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00002}00002 \textcolor{comment}{* Filename:   sha256.c}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00003}00003 \textcolor{comment}{* Author:     Brad Conte (brad AT bradconte.com)}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00004}00004 \textcolor{comment}{* Copyright:}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00005}00005 \textcolor{comment}{* Disclaimer: This code is presented "{}as is"{} without any guarantees.}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00006}00006 \textcolor{comment}{* Details:    Performs known-\/answer tests on the corresponding SHA1}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00007}00007 \textcolor{comment}{              implementation. These tests do not encompass the full}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00008}00008 \textcolor{comment}{              range of available test vectors, however, if the tests}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00009}00009 \textcolor{comment}{              pass it is very, very likely that the code is correct}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00010}00010 \textcolor{comment}{              and was compiled properly. This code also serves as}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00011}00011 \textcolor{comment}{              example usage of the functions.}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00012}00012 \textcolor{comment}{* Update by VD:}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00013}00013 \textcolor{comment}{              Merci Brad. Je modifie le code pour l'adapter au besoins du projet S4}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00014}00014 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00015}00015 \textcolor{comment}{              J'ajoute les lignes qui transforment le hash en hex car elles manquent}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00016}00016 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00017}00017 \textcolor{comment}{*********************************************************************/}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00019}00019 \textcolor{comment}{/*************************** HEADER FILES ***************************/}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00020}00020 \textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00021}00021 \textcolor{preprocessor}{\#include <memory.h>}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00022}00022 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00023}00023 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00024}00024 \textcolor{comment}{//\#include "{}sha256.h"{}}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00025}00025 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{sha256__utils_8h}{sha256\_utils.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00027}00027 \textcolor{comment}{/*********************** FUNCTION DEFINITIONS ***********************/}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00029}\mbox{\hyperlink{sha256__utils_8c_a33dd112a873be1b42a9310f3cc42ba6f}{00029}} \textcolor{keywordtype}{void} \mbox{\hyperlink{sha256__utils_8c_a33dd112a873be1b42a9310f3cc42ba6f}{sha256ofString}}(\mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} * str,\textcolor{keywordtype}{char} hashRes[\mbox{\hyperlink{sha256_8h_a9c1fe69ad43d4ca74b84303a0ed64f2f}{SHA256\_BLOCK\_SIZE}}*2 + 1])}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00030}00030 \textcolor{comment}{// attention tous vos hash doivent avoir ce format. Char * ne convient pas.}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00031}00031 \textcolor{comment}{// J'ai perdu deux jours avec cette subtilité}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00032}00032 \{}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00033}00033     \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} buf[\mbox{\hyperlink{sha256_8h_a9c1fe69ad43d4ca74b84303a0ed64f2f}{SHA256\_BLOCK\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00034}00034     \mbox{\hyperlink{structSHA256__CTX}{SHA256\_CTX}} ctx;}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00035}00035     \textcolor{keywordtype}{int} bufferSize = \mbox{\hyperlink{sha256_8h_a9c1fe69ad43d4ca74b84303a0ed64f2f}{SHA256\_BLOCK\_SIZE}};}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00036}00036     \textcolor{comment}{//char hashRes[bufferSize*2 + 1];}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00038}00038     \mbox{\hyperlink{sha256_8c_ade6fde6ef9ea137449d72891931c77ef}{sha256\_init}}(\&ctx);}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00039}00039     \mbox{\hyperlink{sha256_8c_ac98a25de627f4cded12b7312dee1ffa0}{sha256\_update}}(\&ctx, str, strlen((\textcolor{keywordtype}{char} *)str));}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00040}00040     \mbox{\hyperlink{sha256_8c_a8f4b55bd1e49af6e4620bc9ba9549397}{sha256\_final}}(\&ctx, buf); \textcolor{comment}{// buf contient le hash de str}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00041}00041     \textcolor{keywordtype}{int} charCount =0;}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00042}00042     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} i=0;i<bufferSize;i++) \{}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00043}00043         charCount+=sprintf(\&hashRes[i*2], \textcolor{stringliteral}{"{}\%02x"{}}, buf[i]);}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00044}00044     \}}
+\DoxyCodeLine{\Hypertarget{sha256__utils_8c_source_l00045}00045 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,74 @@
+\hypertarget{condorcet__minimax_8h}{}\doxysection{src/condorcet\+\_\+minimax.h File Reference}
+\label{condorcet__minimax_8h}\index{src/condorcet\_minimax.h@{src/condorcet\_minimax.h}}
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}liste.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elementliste.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{condorcet__minimax_8h_a5bbf60ec71a12ca375640def23f4baad}{trouver\+\_\+gagnant\+\_\+condorcet\+\_\+minmax}} (\mbox{\hyperlink{structliste}{liste}} $\ast$liste\+\_\+arcs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{condorcet__minimax_8h_a5bbf60ec71a12ca375640def23f4baad}\label{condorcet__minimax_8h_a5bbf60ec71a12ca375640def23f4baad}} 
+\index{condorcet\_minimax.h@{condorcet\_minimax.h}!trouver\_gagnant\_condorcet\_minmax@{trouver\_gagnant\_condorcet\_minmax}}
+\index{trouver\_gagnant\_condorcet\_minmax@{trouver\_gagnant\_condorcet\_minmax}!condorcet\_minimax.h@{condorcet\_minimax.h}}
+\doxysubsubsection{\texorpdfstring{trouver\_gagnant\_condorcet\_minmax()}{trouver\_gagnant\_condorcet\_minmax()}}
+{\footnotesize\ttfamily int trouver\+\_\+gagnant\+\_\+condorcet\+\_\+minmax (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{liste\+\_\+arc }\end{DoxyParamCaption})}
+
+application de la méthode condorcet + minmax pour trouver un vainqueur 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em liste\+\_\+arc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}id du gagnant (colonne) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{condorcet__minimax_8c_source_l00009}{9}} of file \mbox{\hyperlink{condorcet__minimax_8c_source}{condorcet\+\_\+minimax.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009                                                         \{}
+\DoxyCodeLine{00010 }
+\DoxyCodeLine{00011     \textcolor{keywordtype}{int} nb\_el= \mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(*liste\_arc);}
+\DoxyCodeLine{00012     \mbox{\hyperlink{structs__arc__p}{Elementliste}} element;}
+\DoxyCodeLine{00013     \mbox{\hyperlink{structs__arc__p}{Elementliste}} element2;}
+\DoxyCodeLine{00014     \textcolor{keywordtype}{int} i=1;}
+\DoxyCodeLine{00015     \textcolor{keywordtype}{int} origine;}
+\DoxyCodeLine{00016     \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,0);}
+\DoxyCodeLine{00017     origine = element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00018     \textcolor{keywordtype}{int} candidats=1;}
+\DoxyCodeLine{00019     \textcolor{keywordflow}{while} (i<nb\_el \&\& candidats<=nb\_el) \{}
+\DoxyCodeLine{00020         \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,i);}
+\DoxyCodeLine{00021         \textcolor{keywordflow}{if} (element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}==origine) \{}
+\DoxyCodeLine{00022             i=0;}
+\DoxyCodeLine{00023             origine=element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00024             candidats++;}
+\DoxyCodeLine{00025         \}}
+\DoxyCodeLine{00026         i++;}
+\DoxyCodeLine{00027     \}}
+\DoxyCodeLine{00028     \textcolor{keywordflow}{if} (candidats<=nb\_el) \{}
+\DoxyCodeLine{00029         \textcolor{keywordflow}{return} -\/origine-\/1;}
+\DoxyCodeLine{00030     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00031         \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,nb\_el-\/1);}
+\DoxyCodeLine{00032         \textcolor{keywordtype}{int} destination=element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}};}
+\DoxyCodeLine{00033         \textcolor{keywordtype}{int} i=nb\_el-\/2;}
+\DoxyCodeLine{00034         \textcolor{keywordtype}{int} candidats=1;}
+\DoxyCodeLine{00035         \textcolor{keywordflow}{while} (i>=0 \&\& candidats<=\mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(*liste\_arc)) \{}
+\DoxyCodeLine{00036             \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element2,i);}
+\DoxyCodeLine{00037             \textcolor{keywordflow}{if}(element2.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}==destination) \{}
+\DoxyCodeLine{00038                 \mbox{\hyperlink{liste_8c_a36245e8afb6334fcbbc3fc0254356a5f}{delFrontList}}(liste\_arc);}
+\DoxyCodeLine{00039                 \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,\mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(*liste\_arc)-\/1);}
+\DoxyCodeLine{00040                 destination=element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}};}
+\DoxyCodeLine{00041                 candidats++;}
+\DoxyCodeLine{00042             \}}
+\DoxyCodeLine{00043             i-\/-\/;}
+\DoxyCodeLine{00044         \}}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{return} element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}};}
+\DoxyCodeLine{00046     \}}
+\DoxyCodeLine{00047 \}}
+
+\end{DoxyCode}

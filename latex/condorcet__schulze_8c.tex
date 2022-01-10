@@ -1,0 +1,77 @@
+\hypertarget{condorcet__schulze_8c}{}\doxysection{src/condorcet\+\_\+schulze.c File Reference}
+\label{condorcet__schulze_8c}\index{src/condorcet\_schulze.c@{src/condorcet\_schulze.c}}
+{\ttfamily \#include \char`\"{}condorcet\+\_\+schulze.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\+\_\+gagnant\+\_\+condorcet\+\_\+schulze}} (\mbox{\hyperlink{structliste}{liste}} $\ast$liste\+\_\+arc)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}\label{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}} 
+\index{condorcet\_schulze.c@{condorcet\_schulze.c}!trouver\_gagnant\_condorcet\_schulze@{trouver\_gagnant\_condorcet\_schulze}}
+\index{trouver\_gagnant\_condorcet\_schulze@{trouver\_gagnant\_condorcet\_schulze}!condorcet\_schulze.c@{condorcet\_schulze.c}}
+\doxysubsubsection{\texorpdfstring{trouver\_gagnant\_condorcet\_schulze()}{trouver\_gagnant\_condorcet\_schulze()}}
+{\footnotesize\ttfamily int trouver\+\_\+gagnant\+\_\+condorcet\+\_\+schulze (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{liste\+\_\+arc }\end{DoxyParamCaption})}
+
+application de la méthode condorcet + schulze pour trouver un vainqueur 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em liste\+\_\+arc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}id du gagnant (colonne) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{condorcet__schulze_8c_source_l00010}{10}} of file \mbox{\hyperlink{condorcet__schulze_8c_source}{condorcet\+\_\+schulze.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                                          \{}
+\DoxyCodeLine{00011     \textcolor{keywordtype}{int} nb\_el= \mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(*liste\_arc);}
+\DoxyCodeLine{00012     \mbox{\hyperlink{structs__arc__p}{Elementliste}} element;}
+\DoxyCodeLine{00013     \textcolor{keywordtype}{int} i=1;}
+\DoxyCodeLine{00014     \textcolor{keywordtype}{int} origine;}
+\DoxyCodeLine{00015     \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,0);}
+\DoxyCodeLine{00016     origine = element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00017     \textcolor{keywordtype}{int} candidats=1;}
+\DoxyCodeLine{00018     \textcolor{keywordflow}{while} (i<nb\_el \&\& candidats<=nb\_el) \{}
+\DoxyCodeLine{00019         \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,i);}
+\DoxyCodeLine{00020         \textcolor{keywordflow}{if} (element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}==origine) \{}
+\DoxyCodeLine{00021             i=0;}
+\DoxyCodeLine{00022             origine=element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00023             candidats++;}
+\DoxyCodeLine{00024         \}}
+\DoxyCodeLine{00025         i++;}
+\DoxyCodeLine{00026     \}}
+\DoxyCodeLine{00027     \textcolor{keywordflow}{if} (candidats<=nb\_el) \{}
+\DoxyCodeLine{00028         \textcolor{keywordflow}{return} -\/origine-\/1;}
+\DoxyCodeLine{00029     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00030         \textcolor{keywordtype}{int} trouve=0;}
+\DoxyCodeLine{00031         \textcolor{keywordflow}{while} (!trouve \&\& !\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*liste\_arc)) \{}
+\DoxyCodeLine{00032             \mbox{\hyperlink{liste_8c_a36245e8afb6334fcbbc3fc0254356a5f}{delFrontList}}(liste\_arc);}
+\DoxyCodeLine{00033             nb\_el= \mbox{\hyperlink{liste_8c_aa06cfcafd95438aeebfd731dbbffd9a0}{nbEltList}}(*liste\_arc);}
+\DoxyCodeLine{00034             i=1;}
+\DoxyCodeLine{00035             \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,0);}
+\DoxyCodeLine{00036             origine = element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00037             candidats=1;}
+\DoxyCodeLine{00038             \textcolor{keywordflow}{while} (i<nb\_el \&\& candidats<=nb\_el) \{}
+\DoxyCodeLine{00039                 \mbox{\hyperlink{liste_8c_ab925256fc1775b71a5986418101f09f3}{pickEltList}}(*liste\_arc,\&element,i);}
+\DoxyCodeLine{00040                 \textcolor{keywordflow}{if} (element.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}==origine) \{}
+\DoxyCodeLine{00041                     i=0;}
+\DoxyCodeLine{00042                     origine=element.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00043                     candidats++;}
+\DoxyCodeLine{00044                 \}}
+\DoxyCodeLine{00045                 i++;}
+\DoxyCodeLine{00046             \}}
+\DoxyCodeLine{00047             \textcolor{keywordflow}{if} (candidats<=nb\_el) \{}
+\DoxyCodeLine{00048                 trouve=1;}
+\DoxyCodeLine{00049             \}}
+\DoxyCodeLine{00050         \}}
+\DoxyCodeLine{00051         \textcolor{keywordflow}{return} origine;}
+\DoxyCodeLine{00052     \}}
+\DoxyCodeLine{00053 \}}
+
+\end{DoxyCode}

@@ -4,6 +4,9 @@
 
 #include "condorcet_schulze.h"
 
+///  application de la méthode condorcet + schulze pour trouver un vainqueur
+/// \param[in] liste_arc
+/// \return l'id du gagnant (colonne)
 int trouver_gagnant_condorcet_schulze(liste * liste_arc) {
     int nb_el= nbEltList(*liste_arc);
     Elementliste element;

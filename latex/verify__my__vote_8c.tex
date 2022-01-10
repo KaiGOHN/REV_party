@@ -1,0 +1,277 @@
+\hypertarget{verify__my__vote_8c}{}\doxysection{src/verify\+\_\+my\+\_\+vote.c File Reference}
+\label{verify__my__vote_8c}\index{src/verify\_my\_vote.c@{src/verify\_my\_vote.c}}
+{\ttfamily \#include \char`\"{}verify\+\_\+my\+\_\+vote.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{verify__my__vote_8c_aede308204703be915dc246c963914dbe}{STRLONG}}~30
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{verify__my__vote_8c_a692be08ed173bc594459ca19413cb6a6}{recherche\+\_\+csv}} (char $\ast$filename, char $\ast$delimiteur, char $\ast$chaine)
+\item 
+int \mbox{\hyperlink{verify__my__vote_8c_a6e12acacd858c8accb16f878950d9807}{getargs}} (int argc, char $\ast$$\ast$argv, char $\ast$$\ast$nom\+\_\+electeur, char $\ast$$\ast$nom\+\_\+fichier\+\_\+ballot, char $\ast$$\ast$char\+\_\+cle)
+\item 
+int \mbox{\hyperlink{verify__my__vote_8c_a44b9e3796aae22f85f0bf8a8da575933}{int\+\_\+pow}} (int x, int n)
+\item 
+int \mbox{\hyperlink{verify__my__vote_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{verify__my__vote_8c_aede308204703be915dc246c963914dbe}\label{verify__my__vote_8c_aede308204703be915dc246c963914dbe}} 
+\index{verify\_my\_vote.c@{verify\_my\_vote.c}!STRLONG@{STRLONG}}
+\index{STRLONG@{STRLONG}!verify\_my\_vote.c@{verify\_my\_vote.c}}
+\doxysubsubsection{\texorpdfstring{STRLONG}{STRLONG}}
+{\footnotesize\ttfamily \#define STRLONG~30}
+
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00006}{6}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{verify__my__vote_8c_a6e12acacd858c8accb16f878950d9807}\label{verify__my__vote_8c_a6e12acacd858c8accb16f878950d9807}} 
+\index{verify\_my\_vote.c@{verify\_my\_vote.c}!getargs@{getargs}}
+\index{getargs@{getargs}!verify\_my\_vote.c@{verify\_my\_vote.c}}
+\doxysubsubsection{\texorpdfstring{getargs()}{getargs()}}
+{\footnotesize\ttfamily int getargs (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv,  }\item[{char $\ast$$\ast$}]{nom\+\_\+electeur,  }\item[{char $\ast$$\ast$}]{nom\+\_\+fichier\+\_\+ballot,  }\item[{char $\ast$$\ast$}]{char\+\_\+cle }\end{DoxyParamCaption})}
+
+récupération des arguments de la ligne de commande 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em argc} & le nombre de parmamètres passés au programme \\
+\hline
+\mbox{\texttt{ in}}  & {\em argv} & la liste des paramètresp passés au programme \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em nom\+\_\+electeur} & de type char $\ast$$\ast$ pointant vers la chaine qui recevra le nom de l\textquotesingle{}electeur \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em nom\+\_\+fichier\+\_\+ballot} & de type char $\ast$$\ast$ pointant vers la chaine qui recevra le nom du fichier de ballot \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em char\+\_\+cle} & de type char $\ast$$\ast$ pointant vers la chaine qui recevra la cle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si tous les arguments sont présents 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00114}{114}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114                                                                                                      \{}
+\DoxyCodeLine{00115     \textcolor{keywordtype}{char} c;}
+\DoxyCodeLine{00116     \textcolor{keywordtype}{int} ballots=0;}
+\DoxyCodeLine{00117     \textcolor{keywordtype}{int} nom=0;}
+\DoxyCodeLine{00118     \textcolor{keywordtype}{int} cle=0;}
+\DoxyCodeLine{00119     \textcolor{keywordtype}{int} err\_arg=0;}
+\DoxyCodeLine{00120     \textcolor{keywordflow}{while} ((c = getopt(argc, argv, \textcolor{stringliteral}{"{}i:n:c:"{}})) != -\/1 ) \{}
+\DoxyCodeLine{00121         \textcolor{keywordflow}{switch} (c) \{}
+\DoxyCodeLine{00122             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:}
+\DoxyCodeLine{00123                 ballots=1;}
+\DoxyCodeLine{00124                 strcpy(*nom\_fichier\_ballot, optarg);}
+\DoxyCodeLine{00125                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00126             \textcolor{keywordflow}{case} \textcolor{charliteral}{'n'}:}
+\DoxyCodeLine{00127                 nom=1;}
+\DoxyCodeLine{00128                 strcpy(*nom\_electeur, optarg);}
+\DoxyCodeLine{00129                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00130             \textcolor{keywordflow}{case} \textcolor{charliteral}{'c'}:}
+\DoxyCodeLine{00131                 cle=1;}
+\DoxyCodeLine{00132                 strcpy(*char\_cle, optarg);}
+\DoxyCodeLine{00133                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00134             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00135                 fprintf(stderr, \textcolor{stringliteral}{"{}Argument inconnu.\(\backslash\)n"{}});}
+\DoxyCodeLine{00136                 err\_arg=1;}
+\DoxyCodeLine{00137                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00138         \}}
+\DoxyCodeLine{00139     \}}
+\DoxyCodeLine{00140     \textcolor{keywordflow}{if} (!(nom \&\& ballots \&\& cle)) \{}
+\DoxyCodeLine{00141         fprintf(stderr, \textcolor{stringliteral}{"{}Vous devez fournir un nom avec -\/n, un fichier avec -\/i et une cle avec -\/c.\(\backslash\)n"{}});}
+\DoxyCodeLine{00142         err\_arg=1;}
+\DoxyCodeLine{00143     \}}
+\DoxyCodeLine{00144 }
+\DoxyCodeLine{00145     \textcolor{keywordflow}{return} err\_arg;}
+\DoxyCodeLine{00146 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{verify__my__vote_8c_a44b9e3796aae22f85f0bf8a8da575933}\label{verify__my__vote_8c_a44b9e3796aae22f85f0bf8a8da575933}} 
+\index{verify\_my\_vote.c@{verify\_my\_vote.c}!int\_pow@{int\_pow}}
+\index{int\_pow@{int\_pow}!verify\_my\_vote.c@{verify\_my\_vote.c}}
+\doxysubsubsection{\texorpdfstring{int\_pow()}{int\_pow()}}
+{\footnotesize\ttfamily int int\+\_\+pow (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00148}{148}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149 \{}
+\DoxyCodeLine{00150     \textcolor{keywordflow}{if} (n==1) \{}
+\DoxyCodeLine{00151         \textcolor{keywordflow}{return} x;}
+\DoxyCodeLine{00152     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (n\%2==0) \{}
+\DoxyCodeLine{00153         \textcolor{keywordflow}{return} \mbox{\hyperlink{verify__my__vote_8c_a44b9e3796aae22f85f0bf8a8da575933}{int\_pow}}(x*x, n/2);}
+\DoxyCodeLine{00154     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00155         \textcolor{keywordflow}{return} x* \mbox{\hyperlink{verify__my__vote_8c_a44b9e3796aae22f85f0bf8a8da575933}{int\_pow}}(x*2, (n-\/1)/2);}
+\DoxyCodeLine{00156     \}}
+\DoxyCodeLine{00157 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{verify__my__vote_8c_a3c04138a5bfe5d72780bb7e82a18e627}\label{verify__my__vote_8c_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{verify\_my\_vote.c@{verify\_my\_vote.c}!main@{main}}
+\index{main@{main}!verify\_my\_vote.c@{verify\_my\_vote.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00159}{159}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00159                                 \{}
+\DoxyCodeLine{00160     \textcolor{keywordtype}{char} * nom\_electeur = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00161     \textcolor{keywordtype}{char}  * nom\_fichier\_ballot = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00162     \textcolor{keywordtype}{char} * cle = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00163     nom\_electeur[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00164     nom\_fichier\_ballot[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00165     cle[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00166     \textcolor{keywordtype}{int} err\_arg = \mbox{\hyperlink{verify__my__vote_8c_a6e12acacd858c8accb16f878950d9807}{getargs}}(argc, argv, \&nom\_electeur,  \&nom\_fichier\_ballot, \&cle);}
+\DoxyCodeLine{00167     \textcolor{keywordflow}{if} (err\_arg) \{}
+\DoxyCodeLine{00168         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00169     \}}
+\DoxyCodeLine{00170     \textcolor{keywordtype}{char} delimiteur = \textcolor{charliteral}{','};}
+\DoxyCodeLine{00171     strcat(nom\_electeur, cle);}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173     \textcolor{keywordtype}{int} bufferSize = \mbox{\hyperlink{sha256_8h_a9c1fe69ad43d4ca74b84303a0ed64f2f}{SHA256\_BLOCK\_SIZE}};}
+\DoxyCodeLine{00174     \textcolor{keywordtype}{char} hashRes[bufferSize*2 + 1]; \textcolor{comment}{// contiendra le hash en hexadécimal}}
+\DoxyCodeLine{00175     \mbox{\hyperlink{sha256__utils_8c_a33dd112a873be1b42a9310f3cc42ba6f}{sha256ofString}}((\mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} *)nom\_electeur,hashRes); \textcolor{comment}{// hashRes contient maintenant le hash de l'item}}
+\DoxyCodeLine{00176     \mbox{\hyperlink{verify__my__vote_8c_a692be08ed173bc594459ca19413cb6a6}{recherche\_csv}}(nom\_fichier\_ballot , \&delimiteur, hashRes);}
+\DoxyCodeLine{00177     free(nom\_electeur);}
+\DoxyCodeLine{00178     free(nom\_fichier\_ballot);}
+\DoxyCodeLine{00179     free(cle);}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182 }
+\DoxyCodeLine{00183     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{00184 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{verify__my__vote_8c_a692be08ed173bc594459ca19413cb6a6}\label{verify__my__vote_8c_a692be08ed173bc594459ca19413cb6a6}} 
+\index{verify\_my\_vote.c@{verify\_my\_vote.c}!recherche\_csv@{recherche\_csv}}
+\index{recherche\_csv@{recherche\_csv}!verify\_my\_vote.c@{verify\_my\_vote.c}}
+\doxysubsubsection{\texorpdfstring{recherche\_csv()}{recherche\_csv()}}
+{\footnotesize\ttfamily void recherche\+\_\+csv (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{delimiteur,  }\item[{char $\ast$}]{chaine }\end{DoxyParamCaption})}
+
+recherche\+\_\+csv 
+\begin{DoxyParams}{Parameters}
+{\em filename} & pointeur vers une chaine de caractères désignant le nom du fichier csv \\
+\hline
+{\em delimiteur} & pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv \\
+\hline
+{\em matrice} & pointeur vers la structure de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant la matrice à remplir \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00013}{13}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013                                                                     \{}
+\DoxyCodeLine{00014     FILE *fptr;}
+\DoxyCodeLine{00015     \textcolor{keywordflow}{if} ((fptr = fopen(filename,\textcolor{stringliteral}{"{}r"{}})) == NULL)\{}
+\DoxyCodeLine{00016         fprintf(stderr, \textcolor{stringliteral}{"{}Erreur! lors de l'ouverture du fichier csv\(\backslash\)n"{}});}
+\DoxyCodeLine{00017         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00018     \}}
+\DoxyCodeLine{00019     \textcolor{keywordtype}{char} ligne[1024];}
+\DoxyCodeLine{00020     \textcolor{keywordtype}{char} *  pointeur\_delim;}
+\DoxyCodeLine{00021     \textcolor{keywordtype}{char} * debut;}
+\DoxyCodeLine{00022     \textcolor{keywordtype}{int} nb\_champs=0;}
+\DoxyCodeLine{00023     \textcolor{keywordtype}{int} nb\_champs\_1=0;}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     \textcolor{keywordflow}{if} (fgets(ligne, 1024, fptr)) \{}
+\DoxyCodeLine{00026         \textcolor{keywordtype}{char} ** tableau\_0 = malloc(1* \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} * ));}
+\DoxyCodeLine{00027         \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00028             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00029             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00030         \}}
+\DoxyCodeLine{00031         debut = ligne;}
+\DoxyCodeLine{00032         \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00033             *pointeur\_delim = 0;}
+\DoxyCodeLine{00034             tableau\_0 = realloc(tableau\_0, (nb\_champs+1)*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*));}
+\DoxyCodeLine{00035             \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00036                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00037                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00038             \}}
+\DoxyCodeLine{00039             tableau\_0[nb\_champs] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00040             \textcolor{keywordflow}{if} (tableau\_0[nb\_champs] == NULL) \{}
+\DoxyCodeLine{00041                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00042                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00043             \}}
+\DoxyCodeLine{00044             strcpy(tableau\_0[nb\_champs], debut);}
+\DoxyCodeLine{00045             tableau\_0[nb\_champs][strcspn(tableau\_0[nb\_champs], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00046             nb\_champs++;}
+\DoxyCodeLine{00047             debut = pointeur\_delim+1;}
+\DoxyCodeLine{00048         \}}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050         tableau\_0 = realloc(tableau\_0, (nb\_champs+1)*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{00051         \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00052             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00053             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00054         \}}
+\DoxyCodeLine{00055         tableau\_0[nb\_champs] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00056         \textcolor{keywordflow}{if} (tableau\_0[nb\_champs] == NULL) \{}
+\DoxyCodeLine{00057             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00058             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00059         \}}
+\DoxyCodeLine{00060         strcpy(tableau\_0[nb\_champs], debut);}
+\DoxyCodeLine{00061         tableau\_0[nb\_champs][strcspn(tableau\_0[nb\_champs], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00062         nb\_champs++;}
+\DoxyCodeLine{00063         \textcolor{keywordtype}{char} ** tableau\_1 = malloc(nb\_champs* \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} * ));}
+\DoxyCodeLine{00064         \textcolor{keywordtype}{int} trouve=0;}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{while} (fgets(ligne, 1024, fptr) \&\& !trouve) \{}
+\DoxyCodeLine{00066             nb\_champs\_1=0;}
+\DoxyCodeLine{00067             debut = ligne;}
+\DoxyCodeLine{00068             \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00069                 *pointeur\_delim = 0;}
+\DoxyCodeLine{00070                 tableau\_1[nb\_champs\_1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00071                 \textcolor{keywordflow}{if} (tableau\_1[nb\_champs\_1] == NULL) \{}
+\DoxyCodeLine{00072                     fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00073                     exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00074                 \}}
+\DoxyCodeLine{00075                 \textcolor{keywordflow}{if} (nb\_champs\_1 == 3 \&\& strcmp(debut, chaine)==0) \{}
+\DoxyCodeLine{00076                     trouve=1;}
+\DoxyCodeLine{00077                 \}}
+\DoxyCodeLine{00078                 strcpy(tableau\_1[nb\_champs\_1], debut);}
+\DoxyCodeLine{00079                 tableau\_1[nb\_champs\_1][strcspn(tableau\_1[nb\_champs\_1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00080                 nb\_champs\_1++;}
+\DoxyCodeLine{00081                 debut = pointeur\_delim+1;}
+\DoxyCodeLine{00082             \}}
+\DoxyCodeLine{00083             tableau\_1[nb\_champs\_1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00084             \textcolor{keywordflow}{if} (tableau\_1[nb\_champs\_1] == NULL) \{}
+\DoxyCodeLine{00085                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00086                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00087             \}}
+\DoxyCodeLine{00088             strcpy(tableau\_1[nb\_champs\_1], debut);}
+\DoxyCodeLine{00089             tableau\_1[nb\_champs\_1][strcspn(tableau\_0[nb\_champs\_1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00090             nb\_champs\_1++;}
+\DoxyCodeLine{00091         \}}
+\DoxyCodeLine{00092         fclose(fptr);}
+\DoxyCodeLine{00093         \textcolor{keywordflow}{if} (trouve) \{}
+\DoxyCodeLine{00094             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<nb\_champs;i++) \{}
+\DoxyCodeLine{00095                 printf(\textcolor{stringliteral}{"{}\%s=\%s\(\backslash\)n"{}}, tableau\_0[i], tableau\_1[i]);}
+\DoxyCodeLine{00096             \}}
+\DoxyCodeLine{00097         \}}
+\DoxyCodeLine{00098         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<nb\_champs;i++) \{}
+\DoxyCodeLine{00099             free(tableau\_0[i]);}
+\DoxyCodeLine{00100             free(tableau\_1[i]);}
+\DoxyCodeLine{00101         \}}
+\DoxyCodeLine{00102         free(tableau\_0);}
+\DoxyCodeLine{00103         free(tableau\_1);}
+\DoxyCodeLine{00104     \}}
+\DoxyCodeLine{00105 \}}
+
+\end{DoxyCode}

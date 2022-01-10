@@ -1,0 +1,286 @@
+\hypertarget{main_8c_source}{}\doxysection{main.\+c}
+\label{main_8c_source}\index{src/main.c@{src/main.c}}
+\mbox{\hyperlink{main_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00002}00002 \textcolor{comment}{// Created by loic on 08/01/2022.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007 \textcolor{comment}{}\textcolor{preprocessor}{\#include <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008 \textcolor{preprocessor}{\#include <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009 \textcolor{preprocessor}{\#include <getopt.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010 \textcolor{preprocessor}{\#include <string.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{lecture__csv_8h}{lecture\_csv.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{matrice__duel__arc_8h}{matrice\_duel\_arc.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{global_8h}{global.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00014}00014 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{utils__sd_8h}{utils\_sd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00015}00015 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{uninominales_8h}{uninominales.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00016}00016 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{condorcet__minimax_8h}{condorcet\_minimax.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00017}00017 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{condorcet__schulze_8h}{condorcet\_schulze.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}\mbox{\hyperlink{main_8c_a070097588076043751cbfe7f51c83df1}{00029}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a070097588076043751cbfe7f51c83df1}{getargs}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv, \textcolor{keywordtype}{char} **nom\_fichier\_csv,  \textcolor{keywordtype}{char} **nom\_fichier\_log, \textcolor{keywordtype}{char} **methode, \textcolor{keywordtype}{int} * type\_csv, \textcolor{keywordtype}{int} * type\_log) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}00030     \textcolor{keywordtype}{char} c;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}00031     \textcolor{keywordtype}{int} ballots=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}00032     \textcolor{keywordtype}{int} duels=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}00033     \textcolor{keywordtype}{int} err\_arg=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}00034     \textcolor{keywordtype}{int} methode\_valide=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00035}00035     \textcolor{keywordflow}{while} ((c = getopt(argc, argv, \textcolor{stringliteral}{"{}i:d:o:m:"{}})) != -\/1 ) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00036}00036         \textcolor{keywordflow}{switch} (c) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00037}00037             \textcolor{keywordflow}{case} \textcolor{charliteral}{'i'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}00038                 ballots=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039                 strcpy(*nom\_fichier\_csv, optarg);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040                 \textcolor{keywordflow}{if} (strcmp(*nom\_fichier\_csv, \textcolor{stringliteral}{"{}-\/d"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041                     duels=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042                 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00044}00044             \textcolor{keywordflow}{case} \textcolor{charliteral}{'d'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00045}00045                 duels=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}00046                 strcpy(*nom\_fichier\_csv, optarg);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047                 \textcolor{keywordflow}{if} (strcmp(*nom\_fichier\_csv, \textcolor{stringliteral}{"{}-\/i"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00048}00048                     ballots=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00049}00049                 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00050}00050                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00051}00051             \textcolor{keywordflow}{case} \textcolor{charliteral}{'o'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00052}00052                 *type\_log=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00053}00053                 strcpy(*nom\_fichier\_log, optarg);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00054}00054                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00055}00055             \textcolor{keywordflow}{case} \textcolor{charliteral}{'m'}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}00056                 strcpy(*methode, optarg);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057                 \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni1"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}00058                     methode\_valide=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060                     \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni2"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}00061                         methode\_valide=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}00062                     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}00063                         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}cm"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064                             methode\_valide=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065                         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066                             \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}cs"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}00067                                 methode\_valide=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00068}00068                             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00069}00069                                 \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}all"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070                                     methode\_valide=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071                                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072                                     methode\_valide=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073                                 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074                             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075                         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076                     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077                 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00080}00080                 fprintf(stderr, \textcolor{stringliteral}{"{}Argument inconnu.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00081}00081                 err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00082}00082                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00083}00083         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00085}00085     \textcolor{keywordflow}{if} (duels \&\& ballots) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00086}00086         fprintf(stderr, \textcolor{stringliteral}{"{}Les options -\/i et -\/d sont incompatibles.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00087}00087         err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00088}00088     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00089}00089     \textcolor{keywordflow}{if} (duels) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00090}00090         *type\_csv=0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00091}00091     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00092}00092     \textcolor{keywordflow}{if} (ballots) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00093}00093         *type\_csv=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00094}00094     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00095}00095     \textcolor{keywordflow}{if} (!duels \&\& !ballots) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00096}00096         fprintf(stderr, \textcolor{stringliteral}{"{}Une des options -\/i ou -\/d doit être spécifiée.\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00097}00097         err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00098}00098     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00099}00099     \textcolor{keywordflow}{if} (!methode\_valide) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00100}00100         fprintf(stderr, \textcolor{stringliteral}{"{}Vous devez spécifier une méthode valide, avec -\/m méthode ∈ \{uni1, uni2, cm, cs, all\}\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00101}00101         err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00102}00102     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00103}00103     \textcolor{keywordflow}{if} (duels \&\& *methode != NULL) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00104}00104         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni1"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00105}00105             fprintf(stderr, \textcolor{stringliteral}{"{}Méthode uni1 incompatible avec les duels .\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00106}00106             err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00107}00107         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00108}00108         \textcolor{keywordflow}{if} (strcmp(*methode, \textcolor{stringliteral}{"{}uni2"{}}) == 0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00109}00109             fprintf(stderr, \textcolor{stringliteral}{"{}Méthode uni2 incompatible avec les duels .\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00110}00110             err\_arg=1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00111}00111         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00112}00112     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00113}00113     \textcolor{keywordflow}{return} err\_arg;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00114}00114 \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00117}\mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{00117}} \textcolor{keywordtype}{int} \mbox{\hyperlink{main_8c_a3c04138a5bfe5d72780bb7e82a18e627}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char} **argv)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118 \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00119}00119     \textcolor{keywordtype}{char} * nom\_fichier\_csv = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120     \textcolor{keywordtype}{char}  * nom\_fichier\_log = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121     \textcolor{keywordtype}{char} * methode = malloc(256*\textcolor{keyword}{sizeof} (\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122     nom\_fichier\_log[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123     nom\_fichier\_csv[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124     methode[0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00125}00125     \textcolor{keywordtype}{int} type\_csv = 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00126}00126     \textcolor{keywordtype}{int} type\_log = 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00127}00127     FILE *logfp;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00128}00128     \textcolor{keywordtype}{int} err\_arg = \mbox{\hyperlink{main_8c_a070097588076043751cbfe7f51c83df1}{getargs}}(argc, argv, \&nom\_fichier\_csv,  \&nom\_fichier\_log, \&methode, \&type\_csv, \&type\_log);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129     \textcolor{keywordflow}{if} (err\_arg) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00131}00131     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00132}00132     \textcolor{keywordflow}{if} (type\_log) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00133}00133         FILE *fptr;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00134}00134         \textcolor{keywordflow}{if} ((fptr = fopen(nom\_fichier\_log,\textcolor{stringliteral}{"{}w"{}})) == NULL)\{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00135}00135             fprintf(stderr, \textcolor{stringliteral}{"{}Erreur! lors de l'ouverture du fichier de log\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00136}00136             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00137}00137         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00138}00138             logfp=fptr;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00139}00139             fprintf(stdout, \textcolor{stringliteral}{"{}Fichier de sortie : \%s\(\backslash\)n"{}}, nom\_fichier\_log);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00140}00140         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00141}00141     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00142}00142         logfp=stdout;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00143}00143     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00144}00144     fprintf(logfp, \textcolor{stringliteral}{"{}INFOS LIGNE COMMANDE : \(\backslash\)nnom\_fichier\_csv = \%s, nom\_fichier\_log = \%s, methode = \%s, type\_csv = \%d, type\_log = \%d \(\backslash\)n"{}}, nom\_fichier\_csv,  nom\_fichier\_log, methode, type\_csv, type\_log);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00145}00145     \textcolor{keywordtype}{char} delimiteur=\textcolor{charliteral}{','};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00146}00146     \mbox{\hyperlink{structs__mat__char__dyn}{t\_mat\_char\_star\_dyn}} matrice\_csv;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00147}00147     \mbox{\hyperlink{utils__sd_8c_a56b1a5ca6aaa5b5d2fe031afb61fb885}{creer\_matrice\_char}}(\&matrice\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00148}00148     \mbox{\hyperlink{lecture__csv_8c_ae277326ecbe62e58fb2cd67318c5ccba}{lecture\_csv}}(nom\_fichier\_csv, \&delimiteur, \&matrice\_csv, \&type\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00149}00149     \mbox{\hyperlink{utils__sd_8c_a5e82d3fd4cb5b9b6bc05194bf595b71e}{afficher\_infos\_csv}}(\&matrice\_csv, \&type\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00150}00150     \mbox{\hyperlink{utils__sd_8c_ac0a62e49f7b05cfb57f288a3a81b2efb}{afficher\_matrice\_csv}}(\&matrice\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00151}00151     \mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} matrice\_duel;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00152}00152     \textcolor{keywordflow}{if} (!type\_csv) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00153}00153         \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_duel, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00154}00154         \mbox{\hyperlink{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}{remplir\_matrice\_duel}}(\&matrice\_csv, \&matrice\_duel, \&type\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00155}00155     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00156}00156     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00157}00157         \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_duel, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00158}00158         \mbox{\hyperlink{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}{remplir\_matrice\_duel}}(\&matrice\_csv, \&matrice\_duel, \&type\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00159}00159     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00160}00160     \mbox{\hyperlink{utils__sd_8c_afa471c3597649b60ca2a11c61b56acd7}{afficher\_matrice\_duel}}(\&matrice\_duel, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00161}00161     \mbox{\hyperlink{structs__mat__dyn}{t\_mat\_int\_dyn}} matrice\_arc;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00162}00162     \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\_matrice\_int}}(\&matrice\_arc, matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}, matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00163}00163     \mbox{\hyperlink{structliste}{liste}} liste\_arcs;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00164}00164     \mbox{\hyperlink{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}{createList}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00165}00165     \mbox{\hyperlink{matrice__duel__arc_8c_a5175997e7f4948a7706c88e64c0c9bb7}{remplir\_matrice\_arc}}(\&matrice\_duel, \&matrice\_arc, \&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00166}00166     \mbox{\hyperlink{utils__sd_8c_af7e05e7c1aa51ff37f534293a9765411}{afficher\_matrice\_arc}}(\&matrice\_arc, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00167}00167     fprintf(logfp, \textcolor{stringliteral}{"{}\(\backslash\)nLISTE DES ARCS"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00168}00168     \mbox{\hyperlink{liste_8c_a1efa21bcdfc9f7008f5055d45660ec0a}{dumpList}}(liste\_arcs,logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00170}00170     \textcolor{keywordflow}{if} (type\_csv) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00171}00171         \mbox{\hyperlink{structs__tab__dyn}{t\_tab\_int\_dyn}} tableau;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00172}00172         \mbox{\hyperlink{utils__sd_8c_ae69aa4e7f236852ec0930346e1371ca3}{creer\_tab\_int}}(\&tableau, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00173}00173         \textcolor{keywordtype}{int} nb\_votants=matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00174}00174         \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}all"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00177}00177             \mbox{\hyperlink{uninominales_8c_a4972aedc0d0c0e77adf5b5e67dcc66fb}{trouver\_gagnant\_un\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00178}00178             \mbox{\hyperlink{uninominales_8c_a41ef6ccad81cdccb324a3b0f30c3abea}{trouver\_gagnant\_deux\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00179}00179             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00180}00180 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00181}00181             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00182}00182                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00183}00183                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00184}00184             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00185}00185                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00186}00186                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00187}00187             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00188}00188 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00189}00189             \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00190}00190             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00191}00191                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00192}00192                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00193}00193             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00194}00194             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00195}00195                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00196}00196                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00197}00197             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00198}00198         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00199}00199         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cm"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00200}00200 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00201}00201 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00202}00202             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00203}00203 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00204}00204             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00205}00205                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00206}00206                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00207}00207             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00208}00208                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00209}00209                                   nb\_votants , 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00211}00211             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00212}00212         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cs"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00214}00214 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00215}00215             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00216}00216 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00217}00217             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00218}00218                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1) + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00219}00219                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00220}00220             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00221}00221             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00222}00222                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id} + 4], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4,}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00223}00223                                   nb\_votants, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00224}00224             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00225}00225         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}uni1"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00228}00228             \mbox{\hyperlink{uninominales_8c_a4972aedc0d0c0e77adf5b5e67dcc66fb}{trouver\_gagnant\_un\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00230}00230 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00232}00232             \mbox{\hyperlink{uninominales_8c_a41ef6ccad81cdccb324a3b0f30c3abea}{trouver\_gagnant\_deux\_tour}}(\&tableau, \&matrice\_csv, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00234}00234 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00235}00235         \mbox{\hyperlink{utils__sd_8c_aff10f11ecc2a1821ab3de4237cb5e984}{liberer\_tab\_int}}(\&tableau);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00237}00237         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00238}00238     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00239}00239         \textcolor{keywordtype}{int} nb = matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[0][matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}} -\/ 1] + matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[matrice\_duel.\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}} -\/ 1][0];}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00240}00240         \textcolor{comment}{// int nb = matrice\_duel.nbCol ;}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00241}00241         \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}all"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00242}00242 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00243}00243             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00244}00244             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00245}00245                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00246}00246             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00247}00247                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00248}00248             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00249}00249 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00250}00250             \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00251}00251             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00252}00252                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00253}00253 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00254}00254             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00255}00255             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00256}00256                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00257}00257 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00258}00258             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00259}00259             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00260}00260         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(methode, \textcolor{stringliteral}{"{}cm"{}})==0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00261}00261 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00262}00262             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__minimax_8c_ac55b5525087bbe3008afad84e9bbe1e4}{trouver\_gagnant\_condorcet\_minmax}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00263}00263             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00264}00264                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00265}00265             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00266}00266                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet minimax"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00267}00267             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00269}00269                     \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00270}00270         \textcolor{keywordflow}{else}  \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00272}00272             \textcolor{keywordtype}{int} \textcolor{keywordtype}{id} = \mbox{\hyperlink{condorcet__schulze_8c_a8ae57d76e7c75724495ebe3a775a01f6}{trouver\_gagnant\_condorcet\_schulze}}(\&liste\_arcs);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00273}00273             \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id}<0) \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00274}00274                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Vainqueur de Condorcet"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][-\/(\textcolor{keywordtype}{id}+1)], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00275}00275             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00276}00276             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00277}00277                 \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}Condorcet Schulze"{}}, matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][\textcolor{keywordtype}{id}], matrice\_csv.\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}, nb, 0, logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00278}00278 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00279}00279             \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00280}00280         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00281}00281 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00282}00282         \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00283}00283     \mbox{\hyperlink{utils__sd_8c_abae07c010199f6cc8a0e6c2609fb41a8}{liberer\_matrice\_char}}(\&matrice\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00284}00284     \mbox{\hyperlink{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\_matrice\_int}}(\&matrice\_duel);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00285}00285     \mbox{\hyperlink{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\_matrice\_int}}(\&matrice\_arc);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00286}00286     \textcolor{keywordflow}{if} (type\_log) fclose(logfp);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00287}00287     free(nom\_fichier\_log);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00288}00288     free(nom\_fichier\_csv);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00289}00289     free(methode);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00290}00290 }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00291}00291     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00292}00292 \}}
+
+\end{DoxyCode}

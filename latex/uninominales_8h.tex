@@ -1,0 +1,205 @@
+\hypertarget{uninominales_8h}{}\doxysection{src/uninominales.h File Reference}
+\label{uninominales_8h}\index{src/uninominales.h@{src/uninominales.h}}
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}liste.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elementliste.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils\+\_\+sd.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uninominales_8h_a4972aedc0d0c0e77adf5b5e67dcc66fb}{trouver\+\_\+gagnant\+\_\+un\+\_\+tour}} (\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$tableau, \mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv, FILE $\ast$logfp)
+\item 
+void \mbox{\hyperlink{uninominales_8h_a41ef6ccad81cdccb324a3b0f30c3abea}{trouver\+\_\+gagnant\+\_\+deux\+\_\+tour}} (\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$tableau, \mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv, FILE $\ast$logfp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{uninominales_8h_a41ef6ccad81cdccb324a3b0f30c3abea}\label{uninominales_8h_a41ef6ccad81cdccb324a3b0f30c3abea}} 
+\index{uninominales.h@{uninominales.h}!trouver\_gagnant\_deux\_tour@{trouver\_gagnant\_deux\_tour}}
+\index{trouver\_gagnant\_deux\_tour@{trouver\_gagnant\_deux\_tour}!uninominales.h@{uninominales.h}}
+\doxysubsubsection{\texorpdfstring{trouver\_gagnant\_deux\_tour()}{trouver\_gagnant\_deux\_tour()}}
+{\footnotesize\ttfamily void trouver\+\_\+gagnant\+\_\+deux\+\_\+tour (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$}]{tableau,  }\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv,  }\item[{FILE $\ast$}]{logfp }\end{DoxyParamCaption})}
+
+fonction trouvant un gagnant en 2 tours et appelant la procédure \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\+\_\+resultat()}} pour l\textquotesingle{}afficher 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em tableau} & de type t\+\_\+tab\+\_\+int\+\_\+dyn contenant les scores des candidats \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em matrice\+\_\+csv} & matrice de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant les informations du csv \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em logfp} & flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{uninominales_8c_source_l00056}{56}} of file \mbox{\hyperlink{uninominales_8c_source}{uninominales.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056                                                                                                         \{}
+\DoxyCodeLine{00057     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}}; i++) \{}
+\DoxyCodeLine{00058         tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i]=0;}
+\DoxyCodeLine{00059     \}}
+\DoxyCodeLine{00060     \textcolor{keywordtype}{int} min\_id;}
+\DoxyCodeLine{00061     \textcolor{keywordtype}{int} min\_val;}
+\DoxyCodeLine{00062     \textcolor{keywordtype}{int} nul;}
+\DoxyCodeLine{00063     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=1; i<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; i++) \{}
+\DoxyCodeLine{00064         min\_id=4;}
+\DoxyCodeLine{00065         min\_val=11;}
+\DoxyCodeLine{00066         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=4; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++) \{}
+\DoxyCodeLine{00067             \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j])<min\_val) \{}
+\DoxyCodeLine{00068                 min\_id=j;}
+\DoxyCodeLine{00069                 min\_val=atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j]);}
+\DoxyCodeLine{00070             \}}
+\DoxyCodeLine{00071         \}}
+\DoxyCodeLine{00072         nul=0;}
+\DoxyCodeLine{00073         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=4; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++) \{}
+\DoxyCodeLine{00074             \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j])==min\_val \&\& min\_id!=j) \{}
+\DoxyCodeLine{00075                 nul=1;}
+\DoxyCodeLine{00076             \}}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078         \}}
+\DoxyCodeLine{00079         \textcolor{keywordflow}{if} (!nul) \{}
+\DoxyCodeLine{00080             tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[min\_id-\/4]=tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[min\_id-\/4]+1;}
+\DoxyCodeLine{00081         \}}
+\DoxyCodeLine{00082     \}}
+\DoxyCodeLine{00083     \textcolor{keywordtype}{int} max\_id=0;}
+\DoxyCodeLine{00084     \textcolor{keywordtype}{int} max\_val=0;}
+\DoxyCodeLine{00085     \textcolor{keywordtype}{int} somme\_val=0;}
+\DoxyCodeLine{00086     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}}; i++) \{}
+\DoxyCodeLine{00087         \textcolor{keywordflow}{if} (tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i]>max\_val) \{}
+\DoxyCodeLine{00088             max\_id=i;}
+\DoxyCodeLine{00089             max\_val=tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i];}
+\DoxyCodeLine{00090         \}}
+\DoxyCodeLine{00091         somme\_val=somme\_val+tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i];}
+\DoxyCodeLine{00092     \}}
+\DoxyCodeLine{00093     \textcolor{keywordtype}{int} nb\_votes\_nuls\_t1=matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1-\/somme\_val;}
+\DoxyCodeLine{00094     \textcolor{keywordflow}{if} (2*max\_val>somme\_val) \{}
+\DoxyCodeLine{00095         \textcolor{comment}{//printf("{}gagnant = \%s\(\backslash\)n"{}, matrice\_csv-\/>tab[0][max\_id+4]);}}
+\DoxyCodeLine{00096         \textcolor{keywordtype}{float} score = 100.0*max\_val/somme\_val;}
+\DoxyCodeLine{00097         \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal deux un tour, tour 1"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][max\_id+4], matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score, logfp);}
+\DoxyCodeLine{00098 }
+\DoxyCodeLine{00099     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00100         \textcolor{keywordtype}{int} gagnant\_1= max\_id;}
+\DoxyCodeLine{00101         \textcolor{keywordtype}{int} gagnant\_1\_score=max\_val;}
+\DoxyCodeLine{00102         tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[max\_id]=0;}
+\DoxyCodeLine{00103         max\_id=0;}
+\DoxyCodeLine{00104         max\_val=0;}
+\DoxyCodeLine{00105         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}}; i++) \{}
+\DoxyCodeLine{00106             \textcolor{keywordflow}{if} (tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i]>max\_val) \{}
+\DoxyCodeLine{00107                 max\_id=i;}
+\DoxyCodeLine{00108                 max\_val=tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i];}
+\DoxyCodeLine{00109             \}}
+\DoxyCodeLine{00110         \}}
+\DoxyCodeLine{00111         \textcolor{keywordtype}{int} gagnant\_2= max\_id;}
+\DoxyCodeLine{00112         \textcolor{keywordtype}{int} gagnant\_2\_score=max\_val;}
+\DoxyCodeLine{00113         \textcolor{keywordtype}{float} score1=100.0*gagnant\_1\_score/somme\_val;}
+\DoxyCodeLine{00114         \textcolor{keywordtype}{float} score2=100.0*gagnant\_2\_score/somme\_val;}
+\DoxyCodeLine{00115         \textcolor{comment}{//printf("{}gagnant 1 = \%s avec \%d\%c, gagnant 2= \%s avec \%d\%c pour un total de \%d voix \(\backslash\)n"{}, matrice\_csv-\/>tab[0][gagnant\_1+4], 100*gagnant\_1\_score/somme\_val, 37, matrice\_csv-\/>tab[0][gagnant\_2+4], 100*gagnant\_2\_score/somme\_val, 37, somme\_val);}}
+\DoxyCodeLine{00116         \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à deux tours, tour 1"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_1+4], matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score1, logfp);}
+\DoxyCodeLine{00117         \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à deux tours, tour 1"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_2+4], matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score2, logfp);}
+\DoxyCodeLine{00118         fprintf(logfp, \textcolor{stringliteral}{"{}Nb votes nuls au tour 1 : \%d\(\backslash\)n"{}}, nb\_votes\_nuls\_t1);}
+\DoxyCodeLine{00119         \textcolor{keywordtype}{int} tab\_second\_tour[2];}
+\DoxyCodeLine{00120         tab\_second\_tour[0]=0;}
+\DoxyCodeLine{00121         tab\_second\_tour[1]=0;}
+\DoxyCodeLine{00122         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=1; i<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; i++) \{}
+\DoxyCodeLine{00123             \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][gagnant\_1+4])<atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][gagnant\_2+4])) \{}
+\DoxyCodeLine{00124                 tab\_second\_tour[0]=tab\_second\_tour[0]+1;}
+\DoxyCodeLine{00125             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][gagnant\_1+4])>atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][gagnant\_2+4])) \{}
+\DoxyCodeLine{00126                 tab\_second\_tour[1]=tab\_second\_tour[1]+1;}
+\DoxyCodeLine{00127             \}}
+\DoxyCodeLine{00128         \}}
+\DoxyCodeLine{00129         \textcolor{keywordtype}{int} nb\_votes\_nuls\_t2=matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1-\/(tab\_second\_tour[0]+tab\_second\_tour[1]);}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if} (tab\_second\_tour[0]>tab\_second\_tour[1]) \{}
+\DoxyCodeLine{00132             \textcolor{comment}{//printf("{}gagnant = \%s\(\backslash\)n"{}, matrice\_csv-\/>tab[0][gagnant\_1+4]);}}
+\DoxyCodeLine{00133             \textcolor{keywordtype}{float} score=100.0*tab\_second\_tour[0]/(tab\_second\_tour[0]+tab\_second\_tour[1]);}
+\DoxyCodeLine{00134             \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à deux tours, tour 2"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_1+4], 2, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score, logfp);}
+\DoxyCodeLine{00135 }
+\DoxyCodeLine{00136         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tab\_second\_tour[0]<tab\_second\_tour[1]) \{}
+\DoxyCodeLine{00137             \textcolor{comment}{//printf("{}gagnant = \%s\(\backslash\)n"{}, matrice\_csv-\/>tab[0][gagnant\_2+4]);}}
+\DoxyCodeLine{00138             \textcolor{keywordtype}{float} score=100.0*tab\_second\_tour[1]/(tab\_second\_tour[0]+tab\_second\_tour[1]);}
+\DoxyCodeLine{00139             \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à deux tours, tour 2"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_2+4], 2, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score, logfp);}
+\DoxyCodeLine{00140         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00141             \textcolor{comment}{//printf("{}egalité entre \%s et \%s \(\backslash\)n"{}, matrice\_csv-\/>tab[0][gagnant\_1+4], matrice\_csv-\/>tab[0][gagnant\_2+4]);}}
+\DoxyCodeLine{00142             \textcolor{keywordtype}{char} egalite[strlen(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_2+4])+ strlen(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_1+4])+5];}
+\DoxyCodeLine{00143             strcat(egalite, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_1+4]);}
+\DoxyCodeLine{00144             strcat(egalite, \textcolor{stringliteral}{"{} et "{}});}
+\DoxyCodeLine{00145             strcat(egalite, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][gagnant\_2+4]);}
+\DoxyCodeLine{00146             \textcolor{keywordtype}{float} score= 100.0*tab\_second\_tour[1]/(tab\_second\_tour[0]+tab\_second\_tour[1]);}
+\DoxyCodeLine{00147             \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à deux tours, tour 2"{}}, egalite, 2, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score, logfp);}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149         \}}
+\DoxyCodeLine{00150         fprintf(logfp, \textcolor{stringliteral}{"{}Nb votes nuls au tour 2 : \%d \(\backslash\)n"{}}, nb\_votes\_nuls\_t2);}
+\DoxyCodeLine{00151     \}}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{uninominales_8h_a4972aedc0d0c0e77adf5b5e67dcc66fb}\label{uninominales_8h_a4972aedc0d0c0e77adf5b5e67dcc66fb}} 
+\index{uninominales.h@{uninominales.h}!trouver\_gagnant\_un\_tour@{trouver\_gagnant\_un\_tour}}
+\index{trouver\_gagnant\_un\_tour@{trouver\_gagnant\_un\_tour}!uninominales.h@{uninominales.h}}
+\doxysubsubsection{\texorpdfstring{trouver\_gagnant\_un\_tour()}{trouver\_gagnant\_un\_tour()}}
+{\footnotesize\ttfamily void trouver\+\_\+gagnant\+\_\+un\+\_\+tour (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$}]{tableau,  }\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv,  }\item[{FILE $\ast$}]{logfp }\end{DoxyParamCaption})}
+
+fonction trouvant un gagnant en 1 tour et appelant la procédure \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\+\_\+resultat()}} pour l\textquotesingle{}afficher 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em tableau} & de type t\+\_\+tab\+\_\+int\+\_\+dyn contenant les scores des candidats \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em matrice\+\_\+csv} & matrice de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant les informations du csv \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em logfp} & flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{uninominales_8c_source_l00010}{10}} of file \mbox{\hyperlink{uninominales_8c_source}{uninominales.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                                                                                       \{}
+\DoxyCodeLine{00011 }
+\DoxyCodeLine{00012     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}}; i++) \{}
+\DoxyCodeLine{00013         tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i]=0;}
+\DoxyCodeLine{00014     \}}
+\DoxyCodeLine{00015     \textcolor{keywordtype}{int} min\_id=4;}
+\DoxyCodeLine{00016     \textcolor{keywordtype}{int} min\_val=10;}
+\DoxyCodeLine{00017     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=1; i<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; i++) \{}
+\DoxyCodeLine{00018         min\_id=4;}
+\DoxyCodeLine{00019         min\_val=11;}
+\DoxyCodeLine{00020         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=4; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++) \{}
+\DoxyCodeLine{00021             \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j])<min\_val) \{}
+\DoxyCodeLine{00022                 min\_id=j;}
+\DoxyCodeLine{00023                 min\_val=atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j]);}
+\DoxyCodeLine{00024             \}}
+\DoxyCodeLine{00025         \}}
+\DoxyCodeLine{00026         \textcolor{keywordtype}{int} nul=0;}
+\DoxyCodeLine{00027         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=4; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++) \{}
+\DoxyCodeLine{00028             \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j])==min\_val \&\& min\_id!=j) \{}
+\DoxyCodeLine{00029                 nul=1;}
+\DoxyCodeLine{00030             \}}
+\DoxyCodeLine{00031         \}}
+\DoxyCodeLine{00032         \textcolor{keywordflow}{if} (!nul) \{}
+\DoxyCodeLine{00033             tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[min\_id-\/4]=tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[min\_id-\/4]+1;}
+\DoxyCodeLine{00034         \}}
+\DoxyCodeLine{00035     \}}
+\DoxyCodeLine{00036     \textcolor{keywordtype}{int} max\_id=0;}
+\DoxyCodeLine{00037     \textcolor{keywordtype}{int} max\_val=0;}
+\DoxyCodeLine{00038     \textcolor{keywordtype}{int} somme\_val=0;}
+\DoxyCodeLine{00039     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}}; i++) \{}
+\DoxyCodeLine{00040         \textcolor{keywordflow}{if} (tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i]>max\_val) \{}
+\DoxyCodeLine{00041             max\_id=i;}
+\DoxyCodeLine{00042             max\_val=tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i];}
+\DoxyCodeLine{00043         \}}
+\DoxyCodeLine{00044         somme\_val=somme\_val+tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}[i];}
+\DoxyCodeLine{00045     \}}
+\DoxyCodeLine{00046     \textcolor{keywordtype}{int} nb\_votes\_nuls=matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1-\/somme\_val;}
+\DoxyCodeLine{00047     \textcolor{keywordtype}{float} score=100*max\_val/somme\_val;}
+\DoxyCodeLine{00048     \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\_resultat}}(\textcolor{stringliteral}{"{}uninominal à un tour"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][max\_id+4], matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1, score, logfp);}
+\DoxyCodeLine{00049     fprintf(logfp, \textcolor{stringliteral}{"{}Nb votes nuls : \%d\(\backslash\)n"{}}, nb\_votes\_nuls);}
+\DoxyCodeLine{00050     \textcolor{comment}{//printf("{}gagnant = \%s\(\backslash\)n"{}, matrice\_csv-\/>tab[0][max\_id+4]);}}
+\DoxyCodeLine{00051 \}}
+
+\end{DoxyCode}

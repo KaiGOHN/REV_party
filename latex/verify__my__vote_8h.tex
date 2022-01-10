@@ -1,0 +1,141 @@
+\hypertarget{verify__my__vote_8h}{}\doxysection{src/verify\+\_\+my\+\_\+vote.h File Reference}
+\label{verify__my__vote_8h}\index{src/verify\_my\_vote.h@{src/verify\_my\_vote.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sha256.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sha256\+\_\+utils.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char $\ast$ \mbox{\hyperlink{verify__my__vote_8h_a4c09b91ae29e9f3a1b0d8b30273480d3}{hexa\+\_\+char\+\_\+to\+\_\+binary}} (char $\ast$chaine)
+\item 
+void \mbox{\hyperlink{verify__my__vote_8h_a692be08ed173bc594459ca19413cb6a6}{recherche\+\_\+csv}} (char $\ast$filename, char $\ast$delimiteur, char $\ast$chaine)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{verify__my__vote_8h_a4c09b91ae29e9f3a1b0d8b30273480d3}\label{verify__my__vote_8h_a4c09b91ae29e9f3a1b0d8b30273480d3}} 
+\index{verify\_my\_vote.h@{verify\_my\_vote.h}!hexa\_char\_to\_binary@{hexa\_char\_to\_binary}}
+\index{hexa\_char\_to\_binary@{hexa\_char\_to\_binary}!verify\_my\_vote.h@{verify\_my\_vote.h}}
+\doxysubsubsection{\texorpdfstring{hexa\_char\_to\_binary()}{hexa\_char\_to\_binary()}}
+{\footnotesize\ttfamily unsigned char $\ast$ hexa\+\_\+char\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{char $\ast$}]{chaine }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{verify__my__vote_8h_a692be08ed173bc594459ca19413cb6a6}\label{verify__my__vote_8h_a692be08ed173bc594459ca19413cb6a6}} 
+\index{verify\_my\_vote.h@{verify\_my\_vote.h}!recherche\_csv@{recherche\_csv}}
+\index{recherche\_csv@{recherche\_csv}!verify\_my\_vote.h@{verify\_my\_vote.h}}
+\doxysubsubsection{\texorpdfstring{recherche\_csv()}{recherche\_csv()}}
+{\footnotesize\ttfamily void recherche\+\_\+csv (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{delimiteur,  }\item[{char $\ast$}]{chaine }\end{DoxyParamCaption})}
+
+recherche\+\_\+csv 
+\begin{DoxyParams}{Parameters}
+{\em filename} & pointeur vers une chaine de caractères désignant le nom du fichier csv \\
+\hline
+{\em delimiteur} & pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv \\
+\hline
+{\em matrice} & pointeur vers la structure de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant la matrice à remplir \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{verify__my__vote_8c_source_l00013}{13}} of file \mbox{\hyperlink{verify__my__vote_8c_source}{verify\+\_\+my\+\_\+vote.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013                                                                     \{}
+\DoxyCodeLine{00014     FILE *fptr;}
+\DoxyCodeLine{00015     \textcolor{keywordflow}{if} ((fptr = fopen(filename,\textcolor{stringliteral}{"{}r"{}})) == NULL)\{}
+\DoxyCodeLine{00016         fprintf(stderr, \textcolor{stringliteral}{"{}Erreur! lors de l'ouverture du fichier csv\(\backslash\)n"{}});}
+\DoxyCodeLine{00017         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00018     \}}
+\DoxyCodeLine{00019     \textcolor{keywordtype}{char} ligne[1024];}
+\DoxyCodeLine{00020     \textcolor{keywordtype}{char} *  pointeur\_delim;}
+\DoxyCodeLine{00021     \textcolor{keywordtype}{char} * debut;}
+\DoxyCodeLine{00022     \textcolor{keywordtype}{int} nb\_champs=0;}
+\DoxyCodeLine{00023     \textcolor{keywordtype}{int} nb\_champs\_1=0;}
+\DoxyCodeLine{00024 }
+\DoxyCodeLine{00025     \textcolor{keywordflow}{if} (fgets(ligne, 1024, fptr)) \{}
+\DoxyCodeLine{00026         \textcolor{keywordtype}{char} ** tableau\_0 = malloc(1* \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} * ));}
+\DoxyCodeLine{00027         \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00028             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00029             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00030         \}}
+\DoxyCodeLine{00031         debut = ligne;}
+\DoxyCodeLine{00032         \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00033             *pointeur\_delim = 0;}
+\DoxyCodeLine{00034             tableau\_0 = realloc(tableau\_0, (nb\_champs+1)*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*));}
+\DoxyCodeLine{00035             \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00036                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00037                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00038             \}}
+\DoxyCodeLine{00039             tableau\_0[nb\_champs] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00040             \textcolor{keywordflow}{if} (tableau\_0[nb\_champs] == NULL) \{}
+\DoxyCodeLine{00041                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00042                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00043             \}}
+\DoxyCodeLine{00044             strcpy(tableau\_0[nb\_champs], debut);}
+\DoxyCodeLine{00045             tableau\_0[nb\_champs][strcspn(tableau\_0[nb\_champs], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00046             nb\_champs++;}
+\DoxyCodeLine{00047             debut = pointeur\_delim+1;}
+\DoxyCodeLine{00048         \}}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050         tableau\_0 = realloc(tableau\_0, (nb\_champs+1)*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{00051         \textcolor{keywordflow}{if} (tableau\_0 == NULL) \{}
+\DoxyCodeLine{00052             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00053             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00054         \}}
+\DoxyCodeLine{00055         tableau\_0[nb\_champs] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00056         \textcolor{keywordflow}{if} (tableau\_0[nb\_champs] == NULL) \{}
+\DoxyCodeLine{00057             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00058             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00059         \}}
+\DoxyCodeLine{00060         strcpy(tableau\_0[nb\_champs], debut);}
+\DoxyCodeLine{00061         tableau\_0[nb\_champs][strcspn(tableau\_0[nb\_champs], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00062         nb\_champs++;}
+\DoxyCodeLine{00063         \textcolor{keywordtype}{char} ** tableau\_1 = malloc(nb\_champs* \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} * ));}
+\DoxyCodeLine{00064         \textcolor{keywordtype}{int} trouve=0;}
+\DoxyCodeLine{00065         \textcolor{keywordflow}{while} (fgets(ligne, 1024, fptr) \&\& !trouve) \{}
+\DoxyCodeLine{00066             nb\_champs\_1=0;}
+\DoxyCodeLine{00067             debut = ligne;}
+\DoxyCodeLine{00068             \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00069                 *pointeur\_delim = 0;}
+\DoxyCodeLine{00070                 tableau\_1[nb\_champs\_1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00071                 \textcolor{keywordflow}{if} (tableau\_1[nb\_champs\_1] == NULL) \{}
+\DoxyCodeLine{00072                     fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00073                     exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00074                 \}}
+\DoxyCodeLine{00075                 \textcolor{keywordflow}{if} (nb\_champs\_1 == 3 \&\& strcmp(debut, chaine)==0) \{}
+\DoxyCodeLine{00076                     trouve=1;}
+\DoxyCodeLine{00077                 \}}
+\DoxyCodeLine{00078                 strcpy(tableau\_1[nb\_champs\_1], debut);}
+\DoxyCodeLine{00079                 tableau\_1[nb\_champs\_1][strcspn(tableau\_1[nb\_champs\_1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00080                 nb\_champs\_1++;}
+\DoxyCodeLine{00081                 debut = pointeur\_delim+1;}
+\DoxyCodeLine{00082             \}}
+\DoxyCodeLine{00083             tableau\_1[nb\_champs\_1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00084             \textcolor{keywordflow}{if} (tableau\_1[nb\_champs\_1] == NULL) \{}
+\DoxyCodeLine{00085                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00086                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00087             \}}
+\DoxyCodeLine{00088             strcpy(tableau\_1[nb\_champs\_1], debut);}
+\DoxyCodeLine{00089             tableau\_1[nb\_champs\_1][strcspn(tableau\_0[nb\_champs\_1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00090             nb\_champs\_1++;}
+\DoxyCodeLine{00091         \}}
+\DoxyCodeLine{00092         fclose(fptr);}
+\DoxyCodeLine{00093         \textcolor{keywordflow}{if} (trouve) \{}
+\DoxyCodeLine{00094             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<nb\_champs;i++) \{}
+\DoxyCodeLine{00095                 printf(\textcolor{stringliteral}{"{}\%s=\%s\(\backslash\)n"{}}, tableau\_0[i], tableau\_1[i]);}
+\DoxyCodeLine{00096             \}}
+\DoxyCodeLine{00097         \}}
+\DoxyCodeLine{00098         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<nb\_champs;i++) \{}
+\DoxyCodeLine{00099             free(tableau\_0[i]);}
+\DoxyCodeLine{00100             free(tableau\_1[i]);}
+\DoxyCodeLine{00101         \}}
+\DoxyCodeLine{00102         free(tableau\_0);}
+\DoxyCodeLine{00103         free(tableau\_1);}
+\DoxyCodeLine{00104     \}}
+\DoxyCodeLine{00105 \}}
+
+\end{DoxyCode}

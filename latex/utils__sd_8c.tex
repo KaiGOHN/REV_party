@@ -1,0 +1,391 @@
+\hypertarget{utils__sd_8c}{}\doxysection{src/utils\+\_\+sd.c File Reference}
+\label{utils__sd_8c}\index{src/utils\_sd.c@{src/utils\_sd.c}}
+{\ttfamily \#include \char`\"{}utils\+\_\+sd.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{utils__sd_8c_a56b1a5ca6aaa5b5d2fe031afb61fb885}{creer\+\_\+matrice\+\_\+char}} (\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_abae07c010199f6cc8a0e6c2609fb41a8}{liberer\+\_\+matrice\+\_\+char}} (\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}{creer\+\_\+matrice\+\_\+int}} (\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+duel, int nb\+Ligne, int nb\+Col)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}{liberer\+\_\+matrice\+\_\+int}} (\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+duel)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_ae69aa4e7f236852ec0930346e1371ca3}{creer\+\_\+tab\+\_\+int}} (\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$tableau, int nb\+Col)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_aff10f11ecc2a1821ab3de4237cb5e984}{liberer\+\_\+tab\+\_\+int}} (\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$tableau)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_ac0a62e49f7b05cfb57f288a3a81b2efb}{afficher\+\_\+matrice\+\_\+csv}} (\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv, FILE $\ast$outfp)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_afa471c3597649b60ca2a11c61b56acd7}{afficher\+\_\+matrice\+\_\+duel}} (\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+duel, FILE $\ast$outfp)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_af7e05e7c1aa51ff37f534293a9765411}{afficher\+\_\+matrice\+\_\+arc}} (\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+arc, FILE $\ast$outfp)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_a5e82d3fd4cb5b9b6bc05194bf595b71e}{afficher\+\_\+infos\+\_\+csv}} (\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv, int $\ast$type\+\_\+csv, FILE $\ast$outfp)
+\item 
+void \mbox{\hyperlink{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}{afficher\+\_\+resultat}} (char $\ast$mode\+\_\+scrutin, char $\ast$gagnant, int nb\+\_\+candidats, int nb\+\_\+votants, float score, FILE $\ast$logfp)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{utils__sd_8c_a5e82d3fd4cb5b9b6bc05194bf595b71e}\label{utils__sd_8c_a5e82d3fd4cb5b9b6bc05194bf595b71e}} 
+\index{utils\_sd.c@{utils\_sd.c}!afficher\_infos\_csv@{afficher\_infos\_csv}}
+\index{afficher\_infos\_csv@{afficher\_infos\_csv}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_infos\_csv()}{afficher\_infos\_csv()}}
+{\footnotesize\ttfamily void afficher\+\_\+infos\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv,  }\item[{int $\ast$}]{type\+\_\+csv,  }\item[{FILE $\ast$}]{outfp }\end{DoxyParamCaption})}
+
+procédure d\textquotesingle{}affichage des infos pratiques sur le fichier csv 
+\begin{DoxyParams}{Parameters}
+{\em matrice\+\_\+csv} & la matrice t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant les infos à afficher \\
+\hline
+{\em type\+\_\+csv} & le type de csv (duel 0 ou ballot 1) \\
+\hline
+{\em outfp} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00157}{157}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00157                                                                                         \{}
+\DoxyCodeLine{00158     \textcolor{keywordflow}{if} (*type\_csv) \{}
+\DoxyCodeLine{00159         fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)nINFOS CSV : \(\backslash\)n"{}});}
+\DoxyCodeLine{00160         fprintf(outfp, \textcolor{stringliteral}{"{}LIGNES : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}});}
+\DoxyCodeLine{00161         fprintf(outfp, \textcolor{stringliteral}{"{}COLONNES : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}});}
+\DoxyCodeLine{00162         fprintf(outfp, \textcolor{stringliteral}{"{}NB CANDIDATS : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/4);}
+\DoxyCodeLine{00163         fprintf(outfp, \textcolor{stringliteral}{"{}NB VOTANTS : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1);}
+\DoxyCodeLine{00164     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00165     \{}
+\DoxyCodeLine{00166         fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)nINFOS CSV : \(\backslash\)n"{}});}
+\DoxyCodeLine{00167         fprintf(outfp, \textcolor{stringliteral}{"{}LIGNES : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}});}
+\DoxyCodeLine{00168         fprintf(outfp, \textcolor{stringliteral}{"{}COLONNES : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}});}
+\DoxyCodeLine{00169         fprintf(outfp, \textcolor{stringliteral}{"{}NB CANDIDATS : \%d\(\backslash\)n"{}}, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}});}
+\DoxyCodeLine{00170         fprintf(outfp, \textcolor{stringliteral}{"{}NB VOTANTS : \%d\(\backslash\)n"{}},atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][0]) + atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[1][matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1]));}
+\DoxyCodeLine{00171     \}}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_af7e05e7c1aa51ff37f534293a9765411}\label{utils__sd_8c_af7e05e7c1aa51ff37f534293a9765411}} 
+\index{utils\_sd.c@{utils\_sd.c}!afficher\_matrice\_arc@{afficher\_matrice\_arc}}
+\index{afficher\_matrice\_arc@{afficher\_matrice\_arc}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_matrice\_arc()}{afficher\_matrice\_arc()}}
+{\footnotesize\ttfamily void afficher\+\_\+matrice\+\_\+arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+arc,  }\item[{FILE $\ast$}]{outfp }\end{DoxyParamCaption})}
+
+procédure d\textquotesingle{}affichage des résultats de la construction de la matrice des arcs 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrice\+\_\+arc} & la matrice t\+\_\+mat\+\_\+int\+\_\+dyn à afficher \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em outfp} & le flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00143}{143}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143                                                                     \{}
+\DoxyCodeLine{00144     fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)nMATRICE DES ARCS\(\backslash\)n"{}});}
+\DoxyCodeLine{00145     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_arc-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00146         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_arc-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}}; j++)\{}
+\DoxyCodeLine{00147             fprintf(outfp, \textcolor{stringliteral}{"{}\%d "{}}, matrice\_arc-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j]);}
+\DoxyCodeLine{00148         \}}
+\DoxyCodeLine{00149         fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00150     \}}
+\DoxyCodeLine{00151 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_ac0a62e49f7b05cfb57f288a3a81b2efb}\label{utils__sd_8c_ac0a62e49f7b05cfb57f288a3a81b2efb}} 
+\index{utils\_sd.c@{utils\_sd.c}!afficher\_matrice\_csv@{afficher\_matrice\_csv}}
+\index{afficher\_matrice\_csv@{afficher\_matrice\_csv}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_matrice\_csv()}{afficher\_matrice\_csv()}}
+{\footnotesize\ttfamily void afficher\+\_\+matrice\+\_\+csv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv,  }\item[{FILE $\ast$}]{outfp }\end{DoxyParamCaption})}
+
+procédure d\textquotesingle{}affichage des résultats de la lecture du csv 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrice\+\_\+csv} & la matrice t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn à afficher \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em outfp} & le flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00117}{117}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117                                                                           \{}
+\DoxyCodeLine{00118     fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)nCONTENU CSV\(\backslash\)n"{}});}
+\DoxyCodeLine{00119     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; i++) \{}
+\DoxyCodeLine{00120         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++)\{}
+\DoxyCodeLine{00121             fprintf(outfp, \textcolor{stringliteral}{"{}matrice[\%d][\%d]=\%s\(\backslash\)n"{}}, i, j, matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j]);}
+\DoxyCodeLine{00122         \}}
+\DoxyCodeLine{00123         fprintf(outfp, \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}});}
+\DoxyCodeLine{00124     \}}
+\DoxyCodeLine{00125 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_afa471c3597649b60ca2a11c61b56acd7}\label{utils__sd_8c_afa471c3597649b60ca2a11c61b56acd7}} 
+\index{utils\_sd.c@{utils\_sd.c}!afficher\_matrice\_duel@{afficher\_matrice\_duel}}
+\index{afficher\_matrice\_duel@{afficher\_matrice\_duel}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_matrice\_duel()}{afficher\_matrice\_duel()}}
+{\footnotesize\ttfamily void afficher\+\_\+matrice\+\_\+duel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+duel,  }\item[{FILE $\ast$}]{outfp }\end{DoxyParamCaption})}
+
+procédure d\textquotesingle{}affichage des résultats de la construction de la matrice de duels 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrice\+\_\+duel} & la matrice t\+\_\+mat\+\_\+int\+\_\+dyn à afficher \\
+\hline
+\mbox{\texttt{ in,out}}  & {\em outfp} & le flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00130}{130}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130                                                                       \{}
+\DoxyCodeLine{00131     fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)nMATRICE DES DUELS\(\backslash\)n"{}});}
+\DoxyCodeLine{00132     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00133         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}}; j++)\{}
+\DoxyCodeLine{00134             fprintf(outfp, \textcolor{stringliteral}{"{}\%d "{}}, matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j]);}
+\DoxyCodeLine{00135         \}}
+\DoxyCodeLine{00136         fprintf(outfp, \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00137     \}}
+\DoxyCodeLine{00138 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}\label{utils__sd_8c_a300f9e674229f7e1e60802336fbf5d20}} 
+\index{utils\_sd.c@{utils\_sd.c}!afficher\_resultat@{afficher\_resultat}}
+\index{afficher\_resultat@{afficher\_resultat}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_resultat()}{afficher\_resultat()}}
+{\footnotesize\ttfamily void afficher\+\_\+resultat (\begin{DoxyParamCaption}\item[{char $\ast$}]{mode\+\_\+scrutin,  }\item[{char $\ast$}]{gagnant,  }\item[{int}]{nb\+\_\+candidats,  }\item[{int}]{nb\+\_\+votants,  }\item[{float}]{score,  }\item[{FILE $\ast$}]{logfp }\end{DoxyParamCaption})}
+
+procédure d\textquotesingle{}affichage des résultat 
+\begin{DoxyParams}{Parameters}
+{\em mode\+\_\+scrutin} & chaine de caractère définissant le mode de scrutin \\
+\hline
+{\em gagnant} & chaine de caractère définissant le nom de gagnant \\
+\hline
+{\em nb\+\_\+candidats} & entier definissant le nb de candidats \\
+\hline
+{\em nb\+\_\+votants} & entier definissant le nb de votants \\
+\hline
+{\em score} & flotant definissant le score si uninominal \\
+\hline
+{\em logfp} & le flux de sortie \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00182}{182}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00182                                                                                                                          \{}
+\DoxyCodeLine{00183     \textcolor{keywordflow}{if} (strcmp(mode\_scrutin, \textcolor{stringliteral}{"{}uninominal à deux tours, tour 1"{}})==0 || strcmp(mode\_scrutin, \textcolor{stringliteral}{"{}uninominal à deux tours, tour 2"{}})==0   || strcmp(mode\_scrutin, \textcolor{stringliteral}{"{}uninominal à un tour"{}})==0 ) \{}
+\DoxyCodeLine{00184         \textcolor{keywordflow}{if} (logfp!=stdout) \{}
+\DoxyCodeLine{00185             fprintf(logfp, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s, score = \%.2f\%c\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant, score, 37);}
+\DoxyCodeLine{00186             fprintf(stdout, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s, score = \%.2f\%c\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant, score, 37);}
+\DoxyCodeLine{00187         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00188             fprintf(logfp, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s, score = \%.2f\%c\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant, score, 37);}
+\DoxyCodeLine{00189 }
+\DoxyCodeLine{00190         \}}
+\DoxyCodeLine{00191         \}}
+\DoxyCodeLine{00192     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00193         \textcolor{keywordflow}{if} (logfp!=stdout) \{}
+\DoxyCodeLine{00194             fprintf(logfp, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant);}
+\DoxyCodeLine{00195             fprintf(stdout, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant);}
+\DoxyCodeLine{00196 }
+\DoxyCodeLine{00197         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00198             fprintf(logfp, \textcolor{stringliteral}{"{}Mode de scrutin : \%s, \%d candidats, \%d votants, vainqueur = \%s\(\backslash\)n"{}}, mode\_scrutin, nb\_candidats, nb\_votants, gagnant);}
+\DoxyCodeLine{00199         \}}
+\DoxyCodeLine{00200         \}}
+\DoxyCodeLine{00201     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_a56b1a5ca6aaa5b5d2fe031afb61fb885}\label{utils__sd_8c_a56b1a5ca6aaa5b5d2fe031afb61fb885}} 
+\index{utils\_sd.c@{utils\_sd.c}!creer\_matrice\_char@{creer\_matrice\_char}}
+\index{creer\_matrice\_char@{creer\_matrice\_char}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{creer\_matrice\_char()}{creer\_matrice\_char()}}
+{\footnotesize\ttfamily void creer\+\_\+matrice\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv }\end{DoxyParamCaption})}
+
+creer\+\_\+matrice\+\_\+char initialisation de la matrice contenant les infos du csv 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em matrice\+\_\+csv} & pointeur vers la structure de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant la matrice à initialiser \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00009}{9}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00009                                                            \{}
+\DoxyCodeLine{00010     matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}} = malloc(1*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} **));}
+\DoxyCodeLine{00011     \textcolor{keywordflow}{if} (matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}  == NULL) \{}
+\DoxyCodeLine{00012         fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00013         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00014     \}}
+\DoxyCodeLine{00015     matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0]= malloc(1*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}*));}
+\DoxyCodeLine{00016     \textcolor{keywordflow}{if} (matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0] == NULL) \{}
+\DoxyCodeLine{00017         fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00018         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00019     \}}
+\DoxyCodeLine{00020 \textcolor{comment}{/*    matrice\_csv-\/>tab[0][0] = malloc(sizeof(char) * 256 );}}
+\DoxyCodeLine{00021 \textcolor{comment}{    if (matrice\_csv-\/>tab[0][0] == NULL) \{}}
+\DoxyCodeLine{00022 \textcolor{comment}{        fprintf(stderr, "{}erreur d'allocation\(\backslash\)n"{});}}
+\DoxyCodeLine{00023 \textcolor{comment}{        exit(EXIT\_FAILURE);}}
+\DoxyCodeLine{00024 \textcolor{comment}{    \}*/}}
+\DoxyCodeLine{00025     matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} = 1;}
+\DoxyCodeLine{00026     matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} = 1;}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}\label{utils__sd_8c_ae3993186d0164a707dc57abc35e04abd}} 
+\index{utils\_sd.c@{utils\_sd.c}!creer\_matrice\_int@{creer\_matrice\_int}}
+\index{creer\_matrice\_int@{creer\_matrice\_int}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{creer\_matrice\_int()}{creer\_matrice\_int()}}
+{\footnotesize\ttfamily void creer\+\_\+matrice\+\_\+int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+duel,  }\item[{int}]{nb\+Ligne,  }\item[{int}]{nb\+Col }\end{DoxyParamCaption})}
+
+creer\+\_\+matrice\+\_\+int initialisation de la matrice contenant les duels ou les arcs 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em matrice\+\_\+duel} & pointeur vers la structure de type t\+\_\+mat\+\_\+int\+\_\+dyn contenant la matrice à initialiser \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+Ligne} & entier spécifiant le nombre de lignes de la matrice à initialiser \\
+\hline
+\mbox{\texttt{ in}}  & {\em nb\+Col} & nb\+Ligne entier spécifiant le nombre de colonnes de la matrice à initialiser \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00045}{45}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045                                                                              \{}
+\DoxyCodeLine{00046     matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}} = malloc(nbLigne*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int} *));}
+\DoxyCodeLine{00047     \textcolor{keywordflow}{if} (matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}  == NULL) \{}
+\DoxyCodeLine{00048         fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00049         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00050     \}}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<nbLigne; i++) \{}
+\DoxyCodeLine{00052         matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i]= malloc(nbCol*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00053         \textcolor{keywordflow}{if} (matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i] == NULL) \{}
+\DoxyCodeLine{00054             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00055             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00056         \}}
+\DoxyCodeLine{00057     \}}
+\DoxyCodeLine{00058     matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}} = nbLigne;}
+\DoxyCodeLine{00059     matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}} = nbCol;}
+\DoxyCodeLine{00060 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_ae69aa4e7f236852ec0930346e1371ca3}\label{utils__sd_8c_ae69aa4e7f236852ec0930346e1371ca3}} 
+\index{utils\_sd.c@{utils\_sd.c}!creer\_tab\_int@{creer\_tab\_int}}
+\index{creer\_tab\_int@{creer\_tab\_int}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{creer\_tab\_int()}{creer\_tab\_int()}}
+{\footnotesize\ttfamily void creer\+\_\+tab\+\_\+int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$}]{tableau,  }\item[{int}]{nb\+Col }\end{DoxyParamCaption})}
+
+creer\+\_\+tab\+\_\+int initialisation du tableau contenant les scores des méthodes uninominales 
+\begin{DoxyParams}{Parameters}
+{\em tableau} & de type t\+\_\+tab\+\_\+int\+\_\+dyn à initialiser \\
+\hline
+{\em nb\+Col} & entier définissant le nombre de colonnes avec lequel initialiser le tableau \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00074}{74}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074                                                        \{}
+\DoxyCodeLine{00075     tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}} = malloc(nbCol*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00076     \textcolor{keywordflow}{if} (tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}}  == NULL) \{}
+\DoxyCodeLine{00077         fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00078         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00079     \}}
+\DoxyCodeLine{00080     tableau-\/>\mbox{\hyperlink{structs__tab__dyn_aec37643e88098f3c1466cc3e64ef303b}{dim}} = nbCol;}
+\DoxyCodeLine{00081 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_abae07c010199f6cc8a0e6c2609fb41a8}\label{utils__sd_8c_abae07c010199f6cc8a0e6c2609fb41a8}} 
+\index{utils\_sd.c@{utils\_sd.c}!liberer\_matrice\_char@{liberer\_matrice\_char}}
+\index{liberer\_matrice\_char@{liberer\_matrice\_char}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{liberer\_matrice\_char()}{liberer\_matrice\_char()}}
+{\footnotesize\ttfamily void liberer\+\_\+matrice\+\_\+char (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv }\end{DoxyParamCaption})}
+
+libération de la mémoire allouée à la matrice 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrice\+\_\+csv} & la matrice de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn à libérer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00031}{31}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031                                                              \{}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; i++) \{}
+\DoxyCodeLine{00033         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}; j++) \{}
+\DoxyCodeLine{00034             free(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i][j]);}
+\DoxyCodeLine{00035         \}}
+\DoxyCodeLine{00036             free(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i]);}
+\DoxyCodeLine{00037     \}}
+\DoxyCodeLine{00038     free(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}});}
+\DoxyCodeLine{00039 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}\label{utils__sd_8c_aec47b4c6a72590c6aa28eb12db1630ee}} 
+\index{utils\_sd.c@{utils\_sd.c}!liberer\_matrice\_int@{liberer\_matrice\_int}}
+\index{liberer\_matrice\_int@{liberer\_matrice\_int}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{liberer\_matrice\_int()}{liberer\_matrice\_int()}}
+{\footnotesize\ttfamily void liberer\+\_\+matrice\+\_\+int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+duel }\end{DoxyParamCaption})}
+
+libération de la mémoire allouée à la matrice 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em matrice\+\_\+duel} & la matrice de type t\+\_\+mat\+\_\+int\+\_\+dyn à libérer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00064}{64}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064                                                        \{}
+\DoxyCodeLine{00065     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00066         free(matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i]);}
+\DoxyCodeLine{00067     \}}
+\DoxyCodeLine{00068     free(matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}});}
+\DoxyCodeLine{00069 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{utils__sd_8c_aff10f11ecc2a1821ab3de4237cb5e984}\label{utils__sd_8c_aff10f11ecc2a1821ab3de4237cb5e984}} 
+\index{utils\_sd.c@{utils\_sd.c}!liberer\_tab\_int@{liberer\_tab\_int}}
+\index{liberer\_tab\_int@{liberer\_tab\_int}!utils\_sd.c@{utils\_sd.c}}
+\doxysubsubsection{\texorpdfstring{liberer\_tab\_int()}{liberer\_tab\_int()}}
+{\footnotesize\ttfamily void liberer\+\_\+tab\+\_\+int (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a768f3ad182b734e6f00c2d1db83759c9}{t\+\_\+tab\+\_\+int\+\_\+dyn}} $\ast$}]{tableau }\end{DoxyParamCaption})}
+
+libération de la mémoire allouée à la matrice 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em tableau} & le tableau à libérer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{utils__sd_8c_source_l00085}{85}} of file \mbox{\hyperlink{utils__sd_8c_source}{utils\+\_\+sd.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085                                               \{}
+\DoxyCodeLine{00086     free(tableau-\/>\mbox{\hyperlink{structs__tab__dyn_a2063f1b11458b095684438e790ad6127}{tab}});}
+\DoxyCodeLine{00087 \}}
+
+\end{DoxyCode}

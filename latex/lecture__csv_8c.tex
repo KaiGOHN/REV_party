@@ -1,0 +1,153 @@
+\hypertarget{lecture__csv_8c}{}\doxysection{src/lecture\+\_\+csv.c File Reference}
+\label{lecture__csv_8c}\index{src/lecture\_csv.c@{src/lecture\_csv.c}}
+{\ttfamily \#include \char`\"{}lecture\+\_\+csv.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lecture__csv_8c_ae277326ecbe62e58fb2cd67318c5ccba}{lecture\+\_\+csv}} (char $\ast$filename, char $\ast$delimiteur, \mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice, int $\ast$type\+\_\+csv)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{lecture__csv_8c_ae277326ecbe62e58fb2cd67318c5ccba}\label{lecture__csv_8c_ae277326ecbe62e58fb2cd67318c5ccba}} 
+\index{lecture\_csv.c@{lecture\_csv.c}!lecture\_csv@{lecture\_csv}}
+\index{lecture\_csv@{lecture\_csv}!lecture\_csv.c@{lecture\_csv.c}}
+\doxysubsubsection{\texorpdfstring{lecture\_csv()}{lecture\_csv()}}
+{\footnotesize\ttfamily void lecture\+\_\+csv (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{delimiteur,  }\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice,  }\item[{int $\ast$}]{type\+\_\+csv }\end{DoxyParamCaption})}
+
+lecture\+\_\+csv 
+\begin{DoxyParams}{Parameters}
+{\em filename} & pointeur vers une chaine de caractères désignant le nom du fichier csv \\
+\hline
+{\em delimiteur} & pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv \\
+\hline
+{\em matrice} & pointeur vers la structure de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant la matrice à remplir \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{lecture__csv_8c_source_l00011}{11}} of file \mbox{\hyperlink{lecture__csv_8c_source}{lecture\+\_\+csv.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011                                                                                                   \{}
+\DoxyCodeLine{00012     FILE *fptr;}
+\DoxyCodeLine{00013     \textcolor{keywordflow}{if} ((fptr = fopen(filename,\textcolor{stringliteral}{"{}r"{}})) == NULL)\{}
+\DoxyCodeLine{00014         fprintf(stderr, \textcolor{stringliteral}{"{}Erreur! lors de l'ouverture du fichier csv\(\backslash\)n"{}});}
+\DoxyCodeLine{00015         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00016     \}}
+\DoxyCodeLine{00017     \textcolor{keywordtype}{char} ligne[1024];}
+\DoxyCodeLine{00018     \textcolor{keywordtype}{char} *  pointeur\_delim;}
+\DoxyCodeLine{00019     \textcolor{keywordtype}{char} * debut;}
+\DoxyCodeLine{00020     \textcolor{keywordflow}{if} (fgets(ligne, 1024, fptr)) \{}
+\DoxyCodeLine{00021         debut = ligne;}
+\DoxyCodeLine{00022         \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00023             *pointeur\_delim = 0;}
+\DoxyCodeLine{00024             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0]= realloc(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0], (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{00025             \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0] == NULL) \{}
+\DoxyCodeLine{00026                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00027                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00028             \}}
+\DoxyCodeLine{00029             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00030             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1][0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00031             \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1] == NULL) \{}
+\DoxyCodeLine{00032                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00033                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00034             \}}
+\DoxyCodeLine{00035             strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1], debut);}
+\DoxyCodeLine{00036             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1][strcspn(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00037             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}++;}
+\DoxyCodeLine{00038             debut = pointeur\_delim+1;}
+\DoxyCodeLine{00039         \}}
+\DoxyCodeLine{00040         matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0]= realloc(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0], (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{00041         \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0] == NULL) \{}
+\DoxyCodeLine{00042             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00043             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00044         \}}
+\DoxyCodeLine{00045         matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00046         matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1][0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1] == NULL) \{}
+\DoxyCodeLine{00048             fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00049             exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00050         \}}
+\DoxyCodeLine{00051         strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1], debut);}
+\DoxyCodeLine{00052         matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1][strcspn(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[0][matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054         \textcolor{keywordflow}{while} (fgets(ligne, 1024, fptr)) \{}
+\DoxyCodeLine{00055             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}++;}
+\DoxyCodeLine{00056             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}=realloc(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}, (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} **));}
+\DoxyCodeLine{00057             \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}} == NULL) \{}
+\DoxyCodeLine{00058                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00059                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00060             \}}
+\DoxyCodeLine{00061             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1]= realloc(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1], (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char} *));}
+\DoxyCodeLine{00062             \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1] == NULL) \{}
+\DoxyCodeLine{00063                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00064                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00065             \}}
+\DoxyCodeLine{00066             \textcolor{keywordtype}{int} champ=0;}
+\DoxyCodeLine{00067             debut = ligne;}
+\DoxyCodeLine{00068             \textcolor{keywordflow}{while} ((pointeur\_delim = strpbrk(debut, delimiteur)) != NULL) \{}
+\DoxyCodeLine{00069                 *pointeur\_delim = 0;}
+\DoxyCodeLine{00070                 matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00071                 matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ][0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00072                 \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ] == NULL) \{}
+\DoxyCodeLine{00073                     fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00074                     exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00075                 \}}
+\DoxyCodeLine{00076                 strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ], debut);}
+\DoxyCodeLine{00077                 matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ][strcspn(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00078                 \textcolor{keywordflow}{if} (*type\_csv) \{}
+\DoxyCodeLine{00079                     \textcolor{keywordflow}{if} (champ > 3 \&\& matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1 > 0 \&\& (atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) <= 0 ||}
+\DoxyCodeLine{00080                                                                  atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) >}
+\DoxyCodeLine{00081                                                                  (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4))) \{}
+\DoxyCodeLine{00082                         \textcolor{keywordtype}{char} str[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}];}
+\DoxyCodeLine{00083                         sprintf(str, \textcolor{stringliteral}{"{}\%d"{}}, matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4);}
+\DoxyCodeLine{00084                         strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ], str);}
+\DoxyCodeLine{00085                     \}}
+\DoxyCodeLine{00086                 \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00087                     \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1>0 \&\& matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1 != champ \&\& (atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) <= 0)) \{}
+\DoxyCodeLine{00088                         \textcolor{keywordtype}{char} str[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}];}
+\DoxyCodeLine{00089                         sprintf(str, \textcolor{stringliteral}{"{}\%d"{}}, 0);}
+\DoxyCodeLine{00090                         strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ], str);}
+\DoxyCodeLine{00091                     \}}
+\DoxyCodeLine{00092                 \}}
+\DoxyCodeLine{00093                 champ++;}
+\DoxyCodeLine{00094                 debut = pointeur\_delim+1;}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096             \}}
+\DoxyCodeLine{00097             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ] = malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}) * 256 );}
+\DoxyCodeLine{00098             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ][0]=\textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00099             \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ] == NULL) \{}
+\DoxyCodeLine{00100                 fprintf(stderr, \textcolor{stringliteral}{"{}erreur d'allocation\(\backslash\)n"{}});}
+\DoxyCodeLine{00101                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00102             \}}
+\DoxyCodeLine{00103             strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ], debut);}
+\DoxyCodeLine{00104             matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ][strcspn(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1][champ], \textcolor{stringliteral}{"{}\(\backslash\)n"{}})] = 0;}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{if} (*type\_csv) \{}
+\DoxyCodeLine{00106                 \textcolor{keywordflow}{if} (champ > 3 \&\& matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1 > 0 \&\& (atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) <= 0 ||}
+\DoxyCodeLine{00107                                                            atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) >}
+\DoxyCodeLine{00108                                                            (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4))) \{}
+\DoxyCodeLine{00109                     \textcolor{keywordtype}{char} * str = malloc((matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00110                     sprintf(str, \textcolor{stringliteral}{"{}\%d"{}}, matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}} -\/ 4);}
+\DoxyCodeLine{00111                     strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ], str);}
+\DoxyCodeLine{00112                     free(str);}
+\DoxyCodeLine{00113                 \}}
+\DoxyCodeLine{00114             \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00115                 \textcolor{keywordflow}{if} (matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1>0 \&\& matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}-\/1 != champ \&\& (atoi(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ]) <= 0)) \{}
+\DoxyCodeLine{00116                     \textcolor{keywordtype}{char} * str = malloc((matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}})*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}));}
+\DoxyCodeLine{00117                     sprintf(str, \textcolor{stringliteral}{"{}\%d"{}}, 0);}
+\DoxyCodeLine{00118                     strcpy(matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}} -\/ 1][champ], str);}
+\DoxyCodeLine{00119                     free(str);}
+\DoxyCodeLine{00120                 \}}
+\DoxyCodeLine{00121             \}}
+\DoxyCodeLine{00122             \textcolor{keywordflow}{if} (champ != matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_a26a5e3dc22413338e62bcdf9c6de1c87}{nbCol}}-\/1) \{}
+\DoxyCodeLine{00123                 fprintf(stderr, \textcolor{stringliteral}{"{}fichier CSV mal formé (ligne \%d)\(\backslash\)n "{}}, matrice-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}});}
+\DoxyCodeLine{00124                 exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00125             \}}
+\DoxyCodeLine{00126         \}}
+\DoxyCodeLine{00127     \}}
+\DoxyCodeLine{00128     fclose(fptr);}
+\DoxyCodeLine{00129 \}}
+
+\end{DoxyCode}

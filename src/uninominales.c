@@ -3,8 +3,12 @@
 //
 
 #include "uninominales.h"
-
+///  fonction trouvant un gagnant en 1 tour et appelant la procédure afficher_resultat() pour l'afficher
+/// \param[in, out] tableau de type t_tab_int_dyn contenant les scores des candidats
+/// \param[in,out] matrice_csv matrice de type t_mat_char_star_dyn contenant les informations du csv
+/// \param[in,out] logfp flux de sortie
 void trouver_gagnant_un_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * matrice_csv, FILE *logfp) {
+
     for (int i=0; i<tableau->dim; i++) {
         tableau->tab[i]=0;
     }
@@ -45,7 +49,10 @@ void trouver_gagnant_un_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * matr
     fprintf(logfp, "Nb votes nuls : %d\n", nb_votes_nuls);
     //printf("gagnant = %s\n", matrice_csv->tab[0][max_id+4]);
 }
-
+///  fonction trouvant un gagnant en 2 tours et appelant la procédure afficher_resultat() pour l'afficher
+/// \param[in, out] tableau de type t_tab_int_dyn contenant les scores des candidats
+/// \param[in,out] matrice_csv matrice de type t_mat_char_star_dyn contenant les informations du csv
+/// \param[in,out] logfp flux de sortie
 void trouver_gagnant_deux_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * matrice_csv, FILE *logfp) {
     for (int i=0; i<tableau->dim; i++) {
         tableau->tab[i]=0;

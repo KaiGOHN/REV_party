@@ -1,0 +1,285 @@
+\hypertarget{sha256_8c}{}\doxysection{src/sha256.c File Reference}
+\label{sha256_8c}\index{src/sha256.c@{src/sha256.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$memory.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}sha256.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{sha256_8c_aa554f63b1bff923e477da72974a8ca9a}{ROTLEFT}}(a,  b)~(((a) $<$$<$ (b)) $\vert$ ((a) $>$$>$ (32-\/(b))))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(a,  b)~(((a) $>$$>$ (b)) $\vert$ ((a) $<$$<$ (32-\/(b))))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a0ed6c9c714485592a8c317a8ad91c83b}{CH}}(x,  y,  z)~(((x) \& (y)) $^\wedge$ ($\sim$(x) \& (z)))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_ae2f6c7a0b4fdb15387259356b16854c9}{MAJ}}(x,  y,  z)~(((x) \& (y)) $^\wedge$ ((x) \& (z)) $^\wedge$ ((y) \& (z)))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_ac0ae633634f25ba56304236388a04290}{EP0}}(x)~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,2) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,13) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,22))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a0438f3b09eae5f53b75f5d76f9724880}{EP1}}(x)~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,6) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,11) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,25))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a2f0da11cf6577ba2dd4aea7685d0268e}{SIG0}}(x)~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,7) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,18) $^\wedge$ ((x) $>$$>$ 3))
+\item 
+\#define \mbox{\hyperlink{sha256_8c_a865de5131d1e990ca62d66220a527d2c}{SIG1}}(x)~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,17) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,19) $^\wedge$ ((x) $>$$>$ 10))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}{sha256\+\_\+transform}} (\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$ctx, const \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} data\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{sha256_8c_ade6fde6ef9ea137449d72891931c77ef}{sha256\+\_\+init}} (\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$ctx)
+\item 
+void \mbox{\hyperlink{sha256_8c_ac98a25de627f4cded12b7312dee1ffa0}{sha256\+\_\+update}} (\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$ctx, const \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} data\mbox{[}$\,$\mbox{]}, size\+\_\+t len)
+\item 
+void \mbox{\hyperlink{sha256_8c_a8f4b55bd1e49af6e4620bc9ba9549397}{sha256\+\_\+final}} (\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$ctx, \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}} hash\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sha256_8c_a0ed6c9c714485592a8c317a8ad91c83b}\label{sha256_8c_a0ed6c9c714485592a8c317a8ad91c83b}} 
+\index{sha256.c@{sha256.c}!CH@{CH}}
+\index{CH@{CH}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{CH}{CH}}
+{\footnotesize\ttfamily \#define CH(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (y)) $^\wedge$ ($\sim$(x) \& (z)))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00024}{24}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_ac0ae633634f25ba56304236388a04290}\label{sha256_8c_ac0ae633634f25ba56304236388a04290}} 
+\index{sha256.c@{sha256.c}!EP0@{EP0}}
+\index{EP0@{EP0}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{EP0}{EP0}}
+{\footnotesize\ttfamily \#define EP0(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,2) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,13) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,22))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00026}{26}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_a0438f3b09eae5f53b75f5d76f9724880}\label{sha256_8c_a0438f3b09eae5f53b75f5d76f9724880}} 
+\index{sha256.c@{sha256.c}!EP1@{EP1}}
+\index{EP1@{EP1}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{EP1}{EP1}}
+{\footnotesize\ttfamily \#define EP1(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,6) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,11) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,25))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00027}{27}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_ae2f6c7a0b4fdb15387259356b16854c9}\label{sha256_8c_ae2f6c7a0b4fdb15387259356b16854c9}} 
+\index{sha256.c@{sha256.c}!MAJ@{MAJ}}
+\index{MAJ@{MAJ}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{MAJ}{MAJ}}
+{\footnotesize\ttfamily \#define MAJ(\begin{DoxyParamCaption}\item[{}]{x,  }\item[{}]{y,  }\item[{}]{z }\end{DoxyParamCaption})~(((x) \& (y)) $^\wedge$ ((x) \& (z)) $^\wedge$ ((y) \& (z)))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00025}{25}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_aa554f63b1bff923e477da72974a8ca9a}\label{sha256_8c_aa554f63b1bff923e477da72974a8ca9a}} 
+\index{sha256.c@{sha256.c}!ROTLEFT@{ROTLEFT}}
+\index{ROTLEFT@{ROTLEFT}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{ROTLEFT}{ROTLEFT}}
+{\footnotesize\ttfamily \#define ROTLEFT(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $<$$<$ (b)) $\vert$ ((a) $>$$>$ (32-\/(b))))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00021}{21}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}\label{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}} 
+\index{sha256.c@{sha256.c}!ROTRIGHT@{ROTRIGHT}}
+\index{ROTRIGHT@{ROTRIGHT}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{ROTRIGHT}{ROTRIGHT}}
+{\footnotesize\ttfamily \#define ROTRIGHT(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~(((a) $>$$>$ (b)) $\vert$ ((a) $<$$<$ (32-\/(b))))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00022}{22}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_a2f0da11cf6577ba2dd4aea7685d0268e}\label{sha256_8c_a2f0da11cf6577ba2dd4aea7685d0268e}} 
+\index{sha256.c@{sha256.c}!SIG0@{SIG0}}
+\index{SIG0@{SIG0}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{SIG0}{SIG0}}
+{\footnotesize\ttfamily \#define SIG0(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,7) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,18) $^\wedge$ ((x) $>$$>$ 3))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00028}{28}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+\mbox{\Hypertarget{sha256_8c_a865de5131d1e990ca62d66220a527d2c}\label{sha256_8c_a865de5131d1e990ca62d66220a527d2c}} 
+\index{sha256.c@{sha256.c}!SIG1@{SIG1}}
+\index{SIG1@{SIG1}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{SIG1}{SIG1}}
+{\footnotesize\ttfamily \#define SIG1(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(\mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,17) $^\wedge$ \mbox{\hyperlink{sha256_8c_a3f24e956e9863a34a6f07be0b06b093a}{ROTRIGHT}}(x,19) $^\wedge$ ((x) $>$$>$ 10))}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00029}{29}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{sha256_8c_a8f4b55bd1e49af6e4620bc9ba9549397}\label{sha256_8c_a8f4b55bd1e49af6e4620bc9ba9549397}} 
+\index{sha256.c@{sha256.c}!sha256\_final@{sha256\_final}}
+\index{sha256\_final@{sha256\_final}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{sha256\_final()}{sha256\_final()}}
+{\footnotesize\ttfamily void sha256\+\_\+final (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{\mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}}}]{hash\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00114}{114}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00115 \{}
+\DoxyCodeLine{00116     \mbox{\hyperlink{sha256_8h_ad2baa11c897721ff6f14b452b547f9bc}{WORD}} i;}
+\DoxyCodeLine{00117 }
+\DoxyCodeLine{00118     i = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}};}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120     \textcolor{comment}{// Pad whatever data is left in the buffer.}}
+\DoxyCodeLine{00121     \textcolor{keywordflow}{if} (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}} < 56) \{}
+\DoxyCodeLine{00122         ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[i++] = 0x80;}
+\DoxyCodeLine{00123         \textcolor{keywordflow}{while} (i < 56)}
+\DoxyCodeLine{00124             ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[i++] = 0x00;}
+\DoxyCodeLine{00125     \}}
+\DoxyCodeLine{00126     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00127         ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[i++] = 0x80;}
+\DoxyCodeLine{00128         \textcolor{keywordflow}{while} (i < 64)}
+\DoxyCodeLine{00129             ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[i++] = 0x00;}
+\DoxyCodeLine{00130         \mbox{\hyperlink{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}{sha256\_transform}}(ctx, ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}});}
+\DoxyCodeLine{00131         memset(ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}, 0, 56);}
+\DoxyCodeLine{00132     \}}
+\DoxyCodeLine{00133 }
+\DoxyCodeLine{00134     \textcolor{comment}{// Append to the padding the total message's length in bits and transform.}}
+\DoxyCodeLine{00135     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} += ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}} * 8;}
+\DoxyCodeLine{00136     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[63] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}};}
+\DoxyCodeLine{00137     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[62] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 8;}
+\DoxyCodeLine{00138     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[61] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 16;}
+\DoxyCodeLine{00139     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[60] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 24;}
+\DoxyCodeLine{00140     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[59] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 32;}
+\DoxyCodeLine{00141     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[58] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 40;}
+\DoxyCodeLine{00142     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[57] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 48;}
+\DoxyCodeLine{00143     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[56] = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} >> 56;}
+\DoxyCodeLine{00144     \mbox{\hyperlink{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}{sha256\_transform}}(ctx, ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}});}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146     \textcolor{comment}{// Since this implementation uses little endian byte ordering and SHA uses big endian,}}
+\DoxyCodeLine{00147     \textcolor{comment}{// reverse all the bytes when copying the final state to the output hash.}}
+\DoxyCodeLine{00148     \textcolor{keywordflow}{for} (i = 0; i < 4; ++i) \{}
+\DoxyCodeLine{00149         hash[i]      = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[0] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00150         hash[i + 4]  = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[1] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00151         hash[i + 8]  = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[2] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00152         hash[i + 12] = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[3] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00153         hash[i + 16] = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[4] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00154         hash[i + 20] = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[5] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00155         hash[i + 24] = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[6] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00156         hash[i + 28] = (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[7] >> (24 -\/ i * 8)) \& 0x000000ff;}
+\DoxyCodeLine{00157     \}}
+\DoxyCodeLine{00158 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sha256_8c_ade6fde6ef9ea137449d72891931c77ef}\label{sha256_8c_ade6fde6ef9ea137449d72891931c77ef}} 
+\index{sha256.c@{sha256.c}!sha256\_init@{sha256\_init}}
+\index{sha256\_init@{sha256\_init}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{sha256\_init()}{sha256\_init()}}
+{\footnotesize\ttfamily void sha256\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$}]{ctx }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00085}{85}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00086 \{}
+\DoxyCodeLine{00087     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}} = 0;}
+\DoxyCodeLine{00088     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} = 0;}
+\DoxyCodeLine{00089     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[0] = 0x6a09e667;}
+\DoxyCodeLine{00090     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[1] = 0xbb67ae85;}
+\DoxyCodeLine{00091     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[2] = 0x3c6ef372;}
+\DoxyCodeLine{00092     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[3] = 0xa54ff53a;}
+\DoxyCodeLine{00093     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[4] = 0x510e527f;}
+\DoxyCodeLine{00094     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[5] = 0x9b05688c;}
+\DoxyCodeLine{00095     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[6] = 0x1f83d9ab;}
+\DoxyCodeLine{00096     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[7] = 0x5be0cd19;}
+\DoxyCodeLine{00097 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}\label{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}} 
+\index{sha256.c@{sha256.c}!sha256\_transform@{sha256\_transform}}
+\index{sha256\_transform@{sha256\_transform}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{sha256\_transform()}{sha256\_transform()}}
+{\footnotesize\ttfamily void sha256\+\_\+transform (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}}}]{data\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00044}{44}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045 \{}
+\DoxyCodeLine{00046     \mbox{\hyperlink{sha256_8h_ad2baa11c897721ff6f14b452b547f9bc}{WORD}} a, b, c, d, e, f, g, h, i, j, t1, t2, m[64];}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048     \textcolor{keywordflow}{for} (i = 0, j = 0; i < 16; ++i, j += 4)}
+\DoxyCodeLine{00049         m[i] = (data[j] << 24) | (data[j + 1] << 16) | (data[j + 2] << 8) | (data[j + 3]);}
+\DoxyCodeLine{00050     \textcolor{keywordflow}{for} ( ; i < 64; ++i)}
+\DoxyCodeLine{00051         m[i] = \mbox{\hyperlink{sha256_8c_a865de5131d1e990ca62d66220a527d2c}{SIG1}}(m[i -\/ 2]) + m[i -\/ 7] + \mbox{\hyperlink{sha256_8c_a2f0da11cf6577ba2dd4aea7685d0268e}{SIG0}}(m[i -\/ 15]) + m[i -\/ 16];}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     a = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[0];}
+\DoxyCodeLine{00054     b = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[1];}
+\DoxyCodeLine{00055     c = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[2];}
+\DoxyCodeLine{00056     d = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[3];}
+\DoxyCodeLine{00057     e = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[4];}
+\DoxyCodeLine{00058     f = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[5];}
+\DoxyCodeLine{00059     g = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[6];}
+\DoxyCodeLine{00060     h = ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[7];}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062     \textcolor{keywordflow}{for} (i = 0; i < 64; ++i) \{}
+\DoxyCodeLine{00063         t1 = h + \mbox{\hyperlink{sha256_8c_a0438f3b09eae5f53b75f5d76f9724880}{EP1}}(e) + \mbox{\hyperlink{sha256_8c_a0ed6c9c714485592a8c317a8ad91c83b}{CH}}(e,f,g) + k[i] + m[i];}
+\DoxyCodeLine{00064         t2 = \mbox{\hyperlink{sha256_8c_ac0ae633634f25ba56304236388a04290}{EP0}}(a) + \mbox{\hyperlink{sha256_8c_ae2f6c7a0b4fdb15387259356b16854c9}{MAJ}}(a,b,c);}
+\DoxyCodeLine{00065         h = g;}
+\DoxyCodeLine{00066         g = f;}
+\DoxyCodeLine{00067         f = e;}
+\DoxyCodeLine{00068         e = d + t1;}
+\DoxyCodeLine{00069         d = c;}
+\DoxyCodeLine{00070         c = b;}
+\DoxyCodeLine{00071         b = a;}
+\DoxyCodeLine{00072         a = t1 + t2;}
+\DoxyCodeLine{00073     \}}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[0] += a;}
+\DoxyCodeLine{00076     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[1] += b;}
+\DoxyCodeLine{00077     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[2] += c;}
+\DoxyCodeLine{00078     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[3] += d;}
+\DoxyCodeLine{00079     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[4] += e;}
+\DoxyCodeLine{00080     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[5] += f;}
+\DoxyCodeLine{00081     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[6] += g;}
+\DoxyCodeLine{00082     ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a09c4eef8a0dc02bc9860e2a02c3f2638}{state}}[7] += h;}
+\DoxyCodeLine{00083 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{sha256_8c_ac98a25de627f4cded12b7312dee1ffa0}\label{sha256_8c_ac98a25de627f4cded12b7312dee1ffa0}} 
+\index{sha256.c@{sha256.c}!sha256\_update@{sha256\_update}}
+\index{sha256\_update@{sha256\_update}!sha256.c@{sha256.c}}
+\doxysubsubsection{\texorpdfstring{sha256\_update()}{sha256\_update()}}
+{\footnotesize\ttfamily void sha256\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSHA256__CTX}{SHA256\+\_\+\+CTX}} $\ast$}]{ctx,  }\item[{const \mbox{\hyperlink{sha256_8h_a4ae1dab0fb4b072a66584546209e7d58}{BYTE}}}]{data\mbox{[}$\,$\mbox{]},  }\item[{size\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{sha256_8c_source_l00099}{99}} of file \mbox{\hyperlink{sha256_8c_source}{sha256.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00100 \{}
+\DoxyCodeLine{00101     \mbox{\hyperlink{sha256_8h_ad2baa11c897721ff6f14b452b547f9bc}{WORD}} i;}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103     \textcolor{keywordflow}{for} (i = 0; i < len; ++i) \{}
+\DoxyCodeLine{00104         ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}}[ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}}] = data[i];}
+\DoxyCodeLine{00105         ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}}++;}
+\DoxyCodeLine{00106         \textcolor{keywordflow}{if} (ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}} == 64) \{}
+\DoxyCodeLine{00107             \mbox{\hyperlink{sha256_8c_af0b9aa0b4a0569dadbce029bb4c534b0}{sha256\_transform}}(ctx, ctx-\/>\mbox{\hyperlink{structSHA256__CTX_ac4cf981ce4100c3af150be3c98b2d03e}{data}});}
+\DoxyCodeLine{00108             ctx-\/>\mbox{\hyperlink{structSHA256__CTX_a7971befc0fa37b07350552d3a949634a}{bitlen}} += 512;}
+\DoxyCodeLine{00109             ctx-\/>\mbox{\hyperlink{structSHA256__CTX_acff27dfecde1d6e42f7c8474a3175529}{datalen}} = 0;}
+\DoxyCodeLine{00110         \}}
+\DoxyCodeLine{00111     \}}
+\DoxyCodeLine{00112 \}}
+
+\end{DoxyCode}

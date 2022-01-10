@@ -1,0 +1,125 @@
+\hypertarget{elementliste_8c}{}\doxysection{src/elementliste.c File Reference}
+\label{elementliste_8c}\index{src/elementliste.c@{src/elementliste.c}}
+
+
+liste statique \+: module de définition des éléments de la liste  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}elementliste.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{elementliste_8c_af863bb116d9bad450f6fe9118bd443c9}{afficher\+\_\+element}} (\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e, FILE $\ast$fp)
+\item 
+void \mbox{\hyperlink{elementliste_8c_a5654b1c44f989f6223edfc1ef6606a35}{saisie\+\_\+element}} (\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$e)
+\item 
+void \mbox{\hyperlink{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}{copie\+\_\+element}} (\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$cible, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} source)
+\item 
+bool \mbox{\hyperlink{elementliste_8c_a6f7f28a6f0f78e390083aa53555dc0a5}{cmp\+\_\+elements}} (\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e1, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+liste statique \+: module de définition des éléments de la liste 
+
+\begin{DoxyAuthor}{Author}
+Vincent Dugat 
+\end{DoxyAuthor}
+
+
+Definition in file \mbox{\hyperlink{elementliste_8c_source}{elementliste.\+c}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{elementliste_8c_af863bb116d9bad450f6fe9118bd443c9}\label{elementliste_8c_af863bb116d9bad450f6fe9118bd443c9}} 
+\index{elementliste.c@{elementliste.c}!afficher\_element@{afficher\_element}}
+\index{afficher\_element@{afficher\_element}!elementliste.c@{elementliste.c}}
+\doxysubsubsection{\texorpdfstring{afficher\_element()}{afficher\_element()}}
+{\footnotesize\ttfamily void afficher\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e,  }\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{elementliste_8c_source_l00010}{10}} of file \mbox{\hyperlink{elementliste_8c_source}{elementliste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                               \{}
+\DoxyCodeLine{00011   fprintf(fp,\textcolor{stringliteral}{"{}(\%d, \%d, \%d)\(\backslash\)n"{}}, e.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}},e.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}},e.\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}});}
+\DoxyCodeLine{00012 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{elementliste_8c_a6f7f28a6f0f78e390083aa53555dc0a5}\label{elementliste_8c_a6f7f28a6f0f78e390083aa53555dc0a5}} 
+\index{elementliste.c@{elementliste.c}!cmp\_elements@{cmp\_elements}}
+\index{cmp\_elements@{cmp\_elements}!elementliste.c@{elementliste.c}}
+\doxysubsubsection{\texorpdfstring{cmp\_elements()}{cmp\_elements()}}
+{\footnotesize\ttfamily bool cmp\+\_\+elements (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e1,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e2 }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em e1} & et e2 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si e1 ==e2, false sinon
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{elementliste_8c_source_l00029}{29}} of file \mbox{\hyperlink{elementliste_8c_source}{elementliste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029                                                   \{}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{return} (e1.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}}==e2.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}})\&\&(e1.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}==e2.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}})\&\&(e1.\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}}==e2.\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}});}
+\DoxyCodeLine{00033 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}\label{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}} 
+\index{elementliste.c@{elementliste.c}!copie\_element@{copie\_element}}
+\index{copie\_element@{copie\_element}!elementliste.c@{elementliste.c}}
+\doxysubsubsection{\texorpdfstring{copie\_element()}{copie\_element()}}
+{\footnotesize\ttfamily void copie\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{cible,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{source }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em $\ast$cible} & (référence) reçoit l"{}élémént \\
+\hline
+\mbox{\texttt{ in}}  & {\em source} & élément à copier\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{elementliste_8c_source_l00021}{21}} of file \mbox{\hyperlink{elementliste_8c_source}{elementliste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021                                                             \{}
+\DoxyCodeLine{00024     cible-\/>\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}}=source.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}};}
+\DoxyCodeLine{00025     cible-\/>\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}=source.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}};}
+\DoxyCodeLine{00026     cible-\/>\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}}=source.\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}};}
+\DoxyCodeLine{00027 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{elementliste_8c_a5654b1c44f989f6223edfc1ef6606a35}\label{elementliste_8c_a5654b1c44f989f6223edfc1ef6606a35}} 
+\index{elementliste.c@{elementliste.c}!saisie\_element@{saisie\_element}}
+\index{saisie\_element@{saisie\_element}!elementliste.c@{elementliste.c}}
+\doxysubsubsection{\texorpdfstring{saisie\_element()}{saisie\_element()}}
+{\footnotesize\ttfamily void saisie\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{elementliste_8c_source_l00014}{14}} of file \mbox{\hyperlink{elementliste_8c_source}{elementliste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014                                     \{}
+\DoxyCodeLine{00015     printf(\textcolor{stringliteral}{"{}Arc ? (trois entiers séparés par des espaces)"{}});}
+\DoxyCodeLine{00016     scanf(\textcolor{stringliteral}{"{}\%d"{}}, \&(e-\/>\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}}));}
+\DoxyCodeLine{00017     scanf(\textcolor{stringliteral}{"{}\%d"{}}, \&(e-\/>\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}));}
+\DoxyCodeLine{00018     scanf(\textcolor{stringliteral}{"{}\%d"{}}, \&(e-\/>\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}}));}
+\DoxyCodeLine{00019 \}}
+
+\end{DoxyCode}

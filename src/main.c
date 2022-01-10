@@ -16,7 +16,7 @@
 #include "condorcet_minimax.h"
 #include "condorcet_schulze.h"
 
-/// \fn getargs
+///  récupération des arguments de la ligne de commande
 /// \param[in] argc le nombre de parmamètres passés au programme
 /// \param[in] argv la liste des paramètresp passés au programme
 /// \param[in,out] nom_fichier_csv pointeur de pointeur de char pour récuperer le nom du fichier csv
@@ -36,24 +36,24 @@ int getargs(int argc, char **argv, char **nom_fichier_csv,  char **nom_fichier_l
         switch (c) {
             case 'i':
                 ballots=1;
-                *nom_fichier_csv = optarg;
+                strcpy(*nom_fichier_csv, optarg);
                 if (strcmp(*nom_fichier_csv, "-d") == 0) {
                     duels=1;
                 }
                 break;
             case 'd':
                 duels=1;
-                *nom_fichier_csv = optarg;
+                strcpy(*nom_fichier_csv, optarg);
                 if (strcmp(*nom_fichier_csv, "-i") == 0) {
                     ballots=1;
                 }
                 break;
             case 'o':
                 *type_log=1;
-                *nom_fichier_log = optarg;
+                strcpy(*nom_fichier_log, optarg);
                 break;
             case 'm':
-                *methode = optarg;
+                strcpy(*methode, optarg);
                 if (strcmp(*methode, "uni1") == 0) {
                     methode_valide=1;
                 } else {
@@ -119,6 +119,9 @@ int main(int argc, char **argv)
     char * nom_fichier_csv = malloc(256*sizeof (char));
     char  * nom_fichier_log = malloc(256*sizeof (char));
     char * methode = malloc(256*sizeof (char));
+    nom_fichier_log[0]='\0';
+    nom_fichier_csv[0]='\0';
+    methode[0]='\0';
     int type_csv = 0;
     int type_log = 0;
     FILE *logfp;

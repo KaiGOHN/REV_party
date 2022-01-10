@@ -1,0 +1,427 @@
+\hypertarget{liste_8h}{}\doxysection{src/liste.h File Reference}
+\label{liste_8h}\index{src/liste.h@{src/liste.h}}
+{\ttfamily \#include \char`\"{}elementliste.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structliste}{liste}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}~100
+\item 
+\#define \mbox{\hyperlink{liste_8h_a3ee479371002a0a258e5c4111cc6e54f}{VIDE}}~-\/1
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structliste}{liste}} \mbox{\hyperlink{liste_8h_a1fc5bcb36d07aad251e3d65c3fecf01c}{liste}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{liste_8h_aa06cfcafd95438aeebfd731dbbffd9a0}{nb\+Elt\+List}} (\mbox{\hyperlink{structliste}{liste}} lst)
+\item 
+void \mbox{\hyperlink{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}{create\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p)
+\item 
+void \mbox{\hyperlink{liste_8h_ab362f8b1c683c374542de1c37d5a3748}{add\+Front\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e)
+\item 
+void \mbox{\hyperlink{liste_8h_ae44fac1e392193e620781404f18d119e}{add\+Tail\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e)
+\item 
+void \mbox{\hyperlink{liste_8h_aedd2f92afd4787bee1b7898be436c0f7}{del\+Tail\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p)
+\item 
+void \mbox{\hyperlink{liste_8h_a36245e8afb6334fcbbc3fc0254356a5f}{del\+Front\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p)
+\item 
+void \mbox{\hyperlink{liste_8h_a654f9e13ded641af8eabeca39fe88513}{head\+List}} (\mbox{\hyperlink{structliste}{liste}} p, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$e)
+\item 
+void \mbox{\hyperlink{liste_8h_a952b7b53e6a0bf83ed77b30f56039cd3}{tail\+List}} (\mbox{\hyperlink{structliste}{liste}} p, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$e)
+\item 
+bool \mbox{\hyperlink{liste_8h_aca4cf493ed4e3277629db742a21d4d98}{empty\+List}} (\mbox{\hyperlink{structliste}{liste}} p)
+\item 
+bool \mbox{\hyperlink{liste_8h_a3e9debc4df97b3cea0ee38e37a1f9c62}{full\+List}} (\mbox{\hyperlink{structliste}{liste}} p)
+\item 
+void \mbox{\hyperlink{liste_8h_a1efa21bcdfc9f7008f5055d45660ec0a}{dump\+List}} (\mbox{\hyperlink{structliste}{liste}} p, FILE $\ast$fp)
+\item 
+void \mbox{\hyperlink{liste_8h_aab2683342bb0aca5e45f6990a33301ac}{swap\+Elt\+List}} (\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$a, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$b)
+\begin{DoxyCompactList}\small\item\em swap \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{liste_8h_a24de5e6ed5544ca17f1c9036852dad5a}{bubble\+Sort\+List}} (\mbox{\hyperlink{structliste}{liste}} $\ast$p)
+\item 
+void \mbox{\hyperlink{liste_8h_ab925256fc1775b71a5986418101f09f3}{pick\+Elt\+List}} (\mbox{\hyperlink{structliste}{liste}} l, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$e, int index)
+\item 
+bool \mbox{\hyperlink{liste_8h_a2d730599f1058e59d270c4acb0a90e43}{belong\+Elt\+List}} (\mbox{\hyperlink{structliste}{liste}} p, \mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} e)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{liste_8h_a5a724e718ea66e676efba2647aa56414}\label{liste_8h_a5a724e718ea66e676efba2647aa56414}} 
+\index{liste.h@{liste.h}!DIMMAX@{DIMMAX}}
+\index{DIMMAX@{DIMMAX}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{DIMMAX}{DIMMAX}}
+{\footnotesize\ttfamily \#define DIMMAX~100}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8h_source_l00008}{8}} of file \mbox{\hyperlink{liste_8h_source}{liste.\+h}}.
+
+\mbox{\Hypertarget{liste_8h_a3ee479371002a0a258e5c4111cc6e54f}\label{liste_8h_a3ee479371002a0a258e5c4111cc6e54f}} 
+\index{liste.h@{liste.h}!VIDE@{VIDE}}
+\index{VIDE@{VIDE}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{VIDE}{VIDE}}
+{\footnotesize\ttfamily \#define VIDE~-\/1}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8h_source_l00009}{9}} of file \mbox{\hyperlink{liste_8h_source}{liste.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{liste_8h_a1fc5bcb36d07aad251e3d65c3fecf01c}\label{liste_8h_a1fc5bcb36d07aad251e3d65c3fecf01c}} 
+\index{liste.h@{liste.h}!liste@{liste}}
+\index{liste@{liste}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{liste}{liste}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structliste}{liste}} \mbox{\hyperlink{structliste}{liste}}}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8h_source_l00021}{21}} of file \mbox{\hyperlink{liste_8h_source}{liste.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{liste_8h_ab362f8b1c683c374542de1c37d5a3748}\label{liste_8h_ab362f8b1c683c374542de1c37d5a3748}} 
+\index{liste.h@{liste.h}!addFrontList@{addFrontList}}
+\index{addFrontList@{addFrontList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{addFrontList()}{addFrontList()}}
+{\footnotesize\ttfamily void add\+Front\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e }\end{DoxyParamCaption})}
+
+ajoute e en début de liste
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00026}{26}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026                                            \{}
+\DoxyCodeLine{00028   \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{fullList}}(*p)) \{}
+\DoxyCodeLine{00029       fprintf(stderr,\textcolor{stringliteral}{"{}addFront : liste pleine !\(\backslash\)n"{}});}
+\DoxyCodeLine{00030       exit(1);}
+\DoxyCodeLine{00031   \}}
+\DoxyCodeLine{00032   p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} = (p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}-\/1) \%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};}
+\DoxyCodeLine{00033   \textcolor{keywordflow}{if} (p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}<0)}
+\DoxyCodeLine{00034       p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} = \mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}+p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}} ;}
+\DoxyCodeLine{00035   \mbox{\hyperlink{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}{copie\_element}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}]),e);}
+\DoxyCodeLine{00036   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}++;}
+\DoxyCodeLine{00037 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_ae44fac1e392193e620781404f18d119e}\label{liste_8h_ae44fac1e392193e620781404f18d119e}} 
+\index{liste.h@{liste.h}!addTailList@{addTailList}}
+\index{addTailList@{addTailList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{addTailList()}{addTailList()}}
+{\footnotesize\ttfamily void add\+Tail\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e }\end{DoxyParamCaption})}
+
+ajoute e en fin de liste
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00039}{39}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039                                           \{}
+\DoxyCodeLine{00041   \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_a3e9debc4df97b3cea0ee38e37a1f9c62}{fullList}}(*p)) \{}
+\DoxyCodeLine{00042       fprintf(stderr,\textcolor{stringliteral}{"{}addTailList : liste pleine !\(\backslash\)n"{}});}
+\DoxyCodeLine{00043       exit(1);}
+\DoxyCodeLine{00044   \}}
+\DoxyCodeLine{00045   \mbox{\hyperlink{elementliste_8c_ad77a6dd79141fea485ac46f4be78018a}{copie\_element}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[(p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}})\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}]),e);}
+\DoxyCodeLine{00046   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}++;}
+\DoxyCodeLine{00047 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a2d730599f1058e59d270c4acb0a90e43}\label{liste_8h_a2d730599f1058e59d270c4acb0a90e43}} 
+\index{liste.h@{liste.h}!belongEltList@{belongEltList}}
+\index{belongEltList@{belongEltList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{belongEltList()}{belongEltList()}}
+{\footnotesize\ttfamily bool belong\+Elt\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}}}]{e }\end{DoxyParamCaption})}
+
+appartenance l\textquotesingle{}un elt à une liste. \begin{DoxyReturn}{Returns}
+\+: true si e appartient à la liste, false sinon
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00149}{149}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149                                           \{}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} ind=p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};ind<p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};ind++)\{}
+\DoxyCodeLine{00153         \textcolor{keywordflow}{if} (\mbox{\hyperlink{elementliste_8c_a6f7f28a6f0f78e390083aa53555dc0a5}{cmp\_elements}}(p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[ind],e))}
+\DoxyCodeLine{00154             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00155     \}}
+\DoxyCodeLine{00156     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00157 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a24de5e6ed5544ca17f1c9036852dad5a}\label{liste_8h_a24de5e6ed5544ca17f1c9036852dad5a}} 
+\index{liste.h@{liste.h}!bubbleSortList@{bubbleSortList}}
+\index{bubbleSortList@{bubbleSortList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{bubbleSortList()}{bubbleSortList()}}
+{\footnotesize\ttfamily void bubble\+Sort\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+tri à bulle par ordre décroissant d\textquotesingle{}une liste 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em une} & liste. \\
+\hline
+\mbox{\texttt{ out}}  & {\em la} & même liste triée\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00126}{126}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00126                              \{}
+\DoxyCodeLine{00130     \textcolor{keywordtype}{int} i,j;}
+\DoxyCodeLine{00131     \textcolor{keywordflow}{for} (i=p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};i<p-\/>Tete+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};i++)}
+\DoxyCodeLine{00132         \textcolor{keywordflow}{for}(j=i+1;j<p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};j++)}
+\DoxyCodeLine{00133             \textcolor{keywordflow}{if} ((p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[i]).poids<(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[j]).poids)}
+\DoxyCodeLine{00134             \mbox{\hyperlink{liste_8c_aab2683342bb0aca5e45f6990a33301ac}{swapEltList}}(\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[i]),\&(p-\/>\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[j]));}
+\DoxyCodeLine{00135 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}\label{liste_8h_a5c4d14a21c2e305ed6c4110d63561e76}} 
+\index{liste.h@{liste.h}!createList@{createList}}
+\index{createList@{createList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{createList()}{createList()}}
+{\footnotesize\ttfamily void create\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+Création d\textquotesingle{}une liste
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00017}{17}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+\mbox{\Hypertarget{liste_8h_a36245e8afb6334fcbbc3fc0254356a5f}\label{liste_8h_a36245e8afb6334fcbbc3fc0254356a5f}} 
+\index{liste.h@{liste.h}!delFrontList@{delFrontList}}
+\index{delFrontList@{delFrontList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{delFrontList()}{delFrontList()}}
+{\footnotesize\ttfamily void del\+Front\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00062}{62}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062                            \{}
+\DoxyCodeLine{00063     \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*p)) \{}
+\DoxyCodeLine{00064         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{00065         fprintf(stderr,\textcolor{stringliteral}{"{}depiler : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{00066         exit(1);}
+\DoxyCodeLine{00067     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00068         \textcolor{comment}{/* la liste n'est pas vide */}}
+\DoxyCodeLine{00069   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}-\/-\/;}
+\DoxyCodeLine{00070    \}}
+\DoxyCodeLine{00071 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_aedd2f92afd4787bee1b7898be436c0f7}\label{liste_8h_aedd2f92afd4787bee1b7898be436c0f7}} 
+\index{liste.h@{liste.h}!delTailList@{delTailList}}
+\index{delTailList@{delTailList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{delTailList()}{delTailList()}}
+{\footnotesize\ttfamily void del\+Tail\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{p }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00050}{50}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050                           \{}
+\DoxyCodeLine{00051     \textcolor{keywordflow}{if} (\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*p)) \{}
+\DoxyCodeLine{00052         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{00053         fprintf(stderr,\textcolor{stringliteral}{"{}delTail : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{00054         exit(1);}
+\DoxyCodeLine{00055     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00056         \textcolor{comment}{/* la liste n'est pas vide */}}
+\DoxyCodeLine{00057     p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}=p-\/>\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+1 \% \mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}; \textcolor{comment}{// modulo pour circulaire}}
+\DoxyCodeLine{00058   p-\/>\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}-\/-\/;}
+\DoxyCodeLine{00059    \}}
+\DoxyCodeLine{00060 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a1efa21bcdfc9f7008f5055d45660ec0a}\label{liste_8h_a1efa21bcdfc9f7008f5055d45660ec0a}} 
+\index{liste.h@{liste.h}!dumpList@{dumpList}}
+\index{dumpList@{dumpList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{dumpList()}{dumpList()}}
+{\footnotesize\ttfamily void dump\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p,  }\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00109}{109}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00109                                \{}
+\DoxyCodeLine{00110   fprintf(fp,\textcolor{stringliteral}{"{}\(\backslash\)n(orig, dest, pds)\(\backslash\)n"{}});}
+\DoxyCodeLine{00111     \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int} ind=p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}};ind<p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};ind++)\{}
+\DoxyCodeLine{00112     fprintf(fp,\textcolor{stringliteral}{"{}elt \%d="{}},ind\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}});}
+\DoxyCodeLine{00113     \mbox{\hyperlink{elementliste_8c_af863bb116d9bad450f6fe9118bd443c9}{afficher\_element}}(p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[ind\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}],fp);}
+\DoxyCodeLine{00114     \}}
+\DoxyCodeLine{00115 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_aca4cf493ed4e3277629db742a21d4d98}\label{liste_8h_aca4cf493ed4e3277629db742a21d4d98}} 
+\index{liste.h@{liste.h}!emptyList@{emptyList}}
+\index{emptyList@{emptyList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{emptyList()}{emptyList()}}
+{\footnotesize\ttfamily bool empty\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p }\end{DoxyParamCaption})}
+
+La liste est-\/elle vide ? \begin{DoxyReturn}{Returns}
+true (si vide), false (sinon)
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00095}{95}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00095                         \{}
+\DoxyCodeLine{00098   \textcolor{keywordflow}{return} (p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}==0);}
+\DoxyCodeLine{00099  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a3e9debc4df97b3cea0ee38e37a1f9c62}\label{liste_8h_a3e9debc4df97b3cea0ee38e37a1f9c62}} 
+\index{liste.h@{liste.h}!fullList@{fullList}}
+\index{fullList@{fullList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{fullList()}{fullList()}}
+{\footnotesize\ttfamily bool full\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p }\end{DoxyParamCaption})}
+
+La liste est-\/elle pleine ? \begin{DoxyReturn}{Returns}
+true (si pleine), false (sinon)
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00101}{101}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00101                        \{}
+\DoxyCodeLine{00104     \textcolor{keywordflow}{return} (p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}==\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}});}
+\DoxyCodeLine{00105 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a654f9e13ded641af8eabeca39fe88513}\label{liste_8h_a654f9e13ded641af8eabeca39fe88513}} 
+\index{liste.h@{liste.h}!headList@{headList}}
+\index{headList@{headList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{headList()}{headList()}}
+{\footnotesize\ttfamily void head\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+Récupère le premer élément sans le supprimer (permet de tester)
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00073}{73}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073                                        \{}
+\DoxyCodeLine{00075     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(p))}
+\DoxyCodeLine{00076         *e= p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}];}
+\DoxyCodeLine{00077     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00078         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{00079         fprintf(stderr,\textcolor{stringliteral}{"{}sommet : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{00080         exit(1);}
+\DoxyCodeLine{00081     \}}
+\DoxyCodeLine{00082 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_aa06cfcafd95438aeebfd731dbbffd9a0}\label{liste_8h_aa06cfcafd95438aeebfd731dbbffd9a0}} 
+\index{liste.h@{liste.h}!nbEltList@{nbEltList}}
+\index{nbEltList@{nbEltList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{nbEltList()}{nbEltList()}}
+{\footnotesize\ttfamily int nb\+Elt\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{lst }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+\+: le nombre d\textquotesingle{}éléments de la liste (int)
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00021}{21}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021                         \{}
+\DoxyCodeLine{00023     \textcolor{keywordflow}{return} lst.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}};}
+\DoxyCodeLine{00024 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_ab925256fc1775b71a5986418101f09f3}\label{liste_8h_ab925256fc1775b71a5986418101f09f3}} 
+\index{liste.h@{liste.h}!pickEltList@{pickEltList}}
+\index{pickEltList@{pickEltList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{pickEltList()}{pickEltList()}}
+{\footnotesize\ttfamily void pick\+Elt\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{l,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{e,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+renvoie l\textquotesingle{}élément numéro index \begin{DoxyReturn}{Returns}
+\+: l\textquotesingle{}élément numéro index
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00137}{137}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00137                                                    \{}
+\DoxyCodeLine{00140     \textcolor{keywordtype}{int} nbElt = l.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}};}
+\DoxyCodeLine{00141     \textcolor{keywordtype}{int} indice = l.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+index\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}};}
+\DoxyCodeLine{00142     \textcolor{keywordflow}{if} (index<0 || index >nbElt)\{}
+\DoxyCodeLine{00143         printf(\textcolor{stringliteral}{"{}erreur d'indice dans la liste\(\backslash\)n"{}});}
+\DoxyCodeLine{00144         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00145     \}}
+\DoxyCodeLine{00146     *e = l.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[indice];}
+\DoxyCodeLine{00147 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_aab2683342bb0aca5e45f6990a33301ac}\label{liste_8h_aab2683342bb0aca5e45f6990a33301ac}} 
+\index{liste.h@{liste.h}!swapEltList@{swapEltList}}
+\index{swapEltList@{swapEltList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{swapEltList()}{swapEltList()}}
+{\footnotesize\ttfamily void swap\+Elt\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{a,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{b }\end{DoxyParamCaption})}
+
+
+
+swap 
+
+
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00117}{117}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00119 \{}
+\DoxyCodeLine{00120     \mbox{\hyperlink{structs__arc__p}{Elementliste}} aux;}
+\DoxyCodeLine{00121     aux=*a;}
+\DoxyCodeLine{00122     *a=*b;}
+\DoxyCodeLine{00123     *b=aux;}
+\DoxyCodeLine{00124 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{liste_8h_a952b7b53e6a0bf83ed77b30f56039cd3}\label{liste_8h_a952b7b53e6a0bf83ed77b30f56039cd3}} 
+\index{liste.h@{liste.h}!tailList@{tailList}}
+\index{tailList@{tailList}!liste.h@{liste.h}}
+\doxysubsubsection{\texorpdfstring{tailList()}{tailList()}}
+{\footnotesize\ttfamily void tail\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structliste}{liste}}}]{p,  }\item[{\mbox{\hyperlink{elementliste_8h_ad1cbc6cf883405e3e7ab3cd6e1451dbb}{Elementliste}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+Récupère le premer élément sans le supprimer (permet de tester)
+
+Definition at line \mbox{\hyperlink{liste_8c_source_l00084}{84}} of file \mbox{\hyperlink{liste_8c_source}{liste.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084                                        \{}
+\DoxyCodeLine{00086     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(p))}
+\DoxyCodeLine{00087         *e= p.\mbox{\hyperlink{structliste_a78ae07a2a790f7cde605fdf5419cf67b}{Tabliste}}[p.\mbox{\hyperlink{structliste_a5aa222084b1384a391d80f0d88bf15c2}{Tete}}+p.\mbox{\hyperlink{structliste_a9d7c35e9a7e1c88555a21254d33a7246}{nbElt}}\%\mbox{\hyperlink{liste_8h_a5a724e718ea66e676efba2647aa56414}{DIMMAX}}];}
+\DoxyCodeLine{00088     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00089         \textcolor{comment}{/* la liste est vide : erreur */}}
+\DoxyCodeLine{00090         fprintf(stderr,\textcolor{stringliteral}{"{}sommet : liste vide !\(\backslash\)n"{}});}
+\DoxyCodeLine{00091         exit(1);}
+\DoxyCodeLine{00092     \}}
+\DoxyCodeLine{00093 \}}
+
+\end{DoxyCode}

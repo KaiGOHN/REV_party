@@ -1,0 +1,112 @@
+\hypertarget{matrice__duel__arc_8c}{}\doxysection{src/matrice\+\_\+duel\+\_\+arc.c File Reference}
+\label{matrice__duel__arc_8c}\index{src/matrice\_duel\_arc.c@{src/matrice\_duel\_arc.c}}
+{\ttfamily \#include \char`\"{}matrice\+\_\+duel\+\_\+arc.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}{remplir\+\_\+matrice\+\_\+duel}} (\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$matrice\+\_\+csv, \mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+duel, int $\ast$type\+\_\+csv)
+\item 
+void \mbox{\hyperlink{matrice__duel__arc_8c_a5175997e7f4948a7706c88e64c0c9bb7}{remplir\+\_\+matrice\+\_\+arc}} (\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+duel, \mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$matrice\+\_\+arc, \mbox{\hyperlink{structliste}{liste}} $\ast$liste\+\_\+arcs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{matrice__duel__arc_8c_a5175997e7f4948a7706c88e64c0c9bb7}\label{matrice__duel__arc_8c_a5175997e7f4948a7706c88e64c0c9bb7}} 
+\index{matrice\_duel\_arc.c@{matrice\_duel\_arc.c}!remplir\_matrice\_arc@{remplir\_matrice\_arc}}
+\index{remplir\_matrice\_arc@{remplir\_matrice\_arc}!matrice\_duel\_arc.c@{matrice\_duel\_arc.c}}
+\doxysubsubsection{\texorpdfstring{remplir\_matrice\_arc()}{remplir\_matrice\_arc()}}
+{\footnotesize\ttfamily void remplir\+\_\+matrice\+\_\+arc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+duel,  }\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+arc,  }\item[{\mbox{\hyperlink{structliste}{liste}} $\ast$}]{liste\+\_\+arcs }\end{DoxyParamCaption})}
+
+remplir\+\_\+matrice\+\_\+arc fonction de remplissage de la matrice des arcs 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in,out}}  & {\em matrice\+\_\+duel} & un pointeur vers une structure de type t\+\_\+mat\+\_\+int\+\_\+dyn qui va contenir la matrice de duel \\
+\hline
+ & {\em matrice\+\_\+arc} & un pointeur vers une structure de type t\+\_\+mat\+\_\+int\+\_\+dyn qui va contenir la matrice des arcs \\
+\hline
+ & {\em liste\+\_\+arcs} & un pointeur vers une liste qui va contenir la liste des arcs \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{matrice__duel__arc_8c_source_l00046}{46}} of file \mbox{\hyperlink{matrice__duel__arc_8c_source}{matrice\+\_\+duel\+\_\+arc.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046                                                                                                         \{}
+\DoxyCodeLine{00047     \textcolor{keywordtype}{int} poids\_arc;}
+\DoxyCodeLine{00048     \mbox{\hyperlink{structs__arc__p}{Elementliste}} elem;}
+\DoxyCodeLine{00049     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{liste_8c_aca4cf493ed4e3277629db742a21d4d98}{emptyList}}(*liste\_arcs)) \{}
+\DoxyCodeLine{00050         fprintf(stderr, \textcolor{stringliteral}{"{}Probleme lors de la création de la liste des arcs\(\backslash\)n"{}});}
+\DoxyCodeLine{00051         exit(EXIT\_FAILURE);}
+\DoxyCodeLine{00052     \}}
+\DoxyCodeLine{00053     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00054         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}}; j++) \{}
+\DoxyCodeLine{00055             poids\_arc = (matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j]>matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[j][i]) ? matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j] -\/ matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[j][i] : 0;}
+\DoxyCodeLine{00056             matrice\_arc-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j] = poids\_arc;}
+\DoxyCodeLine{00057             if (poids\_arc != 0) \{}
+\DoxyCodeLine{00058                 elem.\mbox{\hyperlink{structs__arc__p_a7e29f3e22b1f325c3f34750c98b6f3a4}{orig}}=i;}
+\DoxyCodeLine{00059                 elem.\mbox{\hyperlink{structs__arc__p_ad5ac3f6e18353eae50ec9d72bd3d4224}{dest}}=j;}
+\DoxyCodeLine{00060                 elem.\mbox{\hyperlink{structs__arc__p_abc56609c28f29ed0742e8790d38e4b0f}{poids}}=poids\_arc;}
+\DoxyCodeLine{00061                 \mbox{\hyperlink{liste_8c_ae44fac1e392193e620781404f18d119e}{addTailList}}(liste\_arcs,elem);}
+\DoxyCodeLine{00062             \}}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064         \}}
+\DoxyCodeLine{00065     \}}
+\DoxyCodeLine{00066     \mbox{\hyperlink{liste_8c_a24de5e6ed5544ca17f1c9036852dad5a}{bubbleSortList}}(liste\_arcs);}
+\DoxyCodeLine{00067     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}\label{matrice__duel__arc_8c_aa678472063cb1eb69d846e3c8c53a81b}} 
+\index{matrice\_duel\_arc.c@{matrice\_duel\_arc.c}!remplir\_matrice\_duel@{remplir\_matrice\_duel}}
+\index{remplir\_matrice\_duel@{remplir\_matrice\_duel}!matrice\_duel\_arc.c@{matrice\_duel\_arc.c}}
+\doxysubsubsection{\texorpdfstring{remplir\_matrice\_duel()}{remplir\_matrice\_duel()}}
+{\footnotesize\ttfamily void remplir\+\_\+matrice\+\_\+duel (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{global_8h_ac6452b4c3f7e12cf9926bb678cd473ff}{t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn}} $\ast$}]{matrice\+\_\+csv,  }\item[{\mbox{\hyperlink{global_8h_a41daebea4b910e8bcd44ae3bd52e8f9f}{t\+\_\+mat\+\_\+int\+\_\+dyn}} $\ast$}]{matrice\+\_\+duel,  }\item[{int $\ast$}]{type\+\_\+csv }\end{DoxyParamCaption})}
+
+remplir\+\_\+matrice\+\_\+duel fonction de remplissage de la matrice des duels 
+\begin{DoxyParams}{Parameters}
+{\em matrice\+\_\+csv\mbox{[}in,out\mbox{]}} & un pointeur vers une structure de type t\+\_\+mat\+\_\+char\+\_\+star\+\_\+dyn contenant les éléments extraits du fichier csv \\
+\hline
+{\em matrice\+\_\+duel\mbox{[}in,out\mbox{]}} & un pointeur vers une structure de type t\+\_\+mat\+\_\+int\+\_\+dyn qui va contenir la matrice de duel \\
+\hline
+{\em type\+\_\+csv\mbox{[}in,out\mbox{]}} & un pointeur vers un entier spécifiant le type de fichier csv (0 duels, 1 ballots) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{matrice__duel__arc_8c_source_l00010}{10}} of file \mbox{\hyperlink{matrice__duel__arc_8c_source}{matrice\+\_\+duel\+\_\+arc.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010                                                                                                            \{}
+\DoxyCodeLine{00011     \textcolor{keywordflow}{if} (!*type\_csv) \{}
+\DoxyCodeLine{00012         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i< matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00013             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j=0; j<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}}; j++) \{}
+\DoxyCodeLine{00014                matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j]=atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[i+1][j]);}
+\DoxyCodeLine{00015             \}}
+\DoxyCodeLine{00016         \}}
+\DoxyCodeLine{00017     \}}
+\DoxyCodeLine{00018     \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00019         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_af225cb03880f5b6d7cfe1ca1bc941988}{nbRows}}; i++) \{}
+\DoxyCodeLine{00020             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_a5c548888f0972f9ff71d2963b3657411}{nbCol}}; j++) \{}
+\DoxyCodeLine{00021                 \textcolor{keywordflow}{if} (i==j) \{}
+\DoxyCodeLine{00022                     matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][i]=0;}
+\DoxyCodeLine{00023                 \}}
+\DoxyCodeLine{00024                 \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{00025                     \textcolor{keywordtype}{int} win=0;}
+\DoxyCodeLine{00026                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k=1; k<matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_ad9f0887072dd695f4c38db51d29fe877}{nbRows}}; k++) \{}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028                         \textcolor{keywordflow}{if} (atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[k][i+4])<atoi(matrice\_csv-\/>\mbox{\hyperlink{structs__mat__char__dyn_abd4d6f6e0cb1c98d13d723e9f98ce3f8}{tab}}[k][j+4])) \{}
+\DoxyCodeLine{00029                             win++;}
+\DoxyCodeLine{00030                         \}}
+\DoxyCodeLine{00031                     \}}
+\DoxyCodeLine{00032                     matrice\_duel-\/>\mbox{\hyperlink{structs__mat__dyn_aab23f1bd88935bb206db29f64a1a2fbd}{tab}}[i][j] = win;}
+\DoxyCodeLine{00033                 \}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035             \}}
+\DoxyCodeLine{00036         \}}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039     \}}
+\DoxyCodeLine{00040     \}}
+
+\end{DoxyCode}
