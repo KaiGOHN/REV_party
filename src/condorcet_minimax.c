@@ -24,7 +24,7 @@ int trouver_gagnant_condorcet_minmax(liste * liste_arc) {
         i++;
     }
     if (candidats<=nb_el) {
-        return origine;
+        return -origine-1;
     } else {
         pickEltList(*liste_arc,&element,nb_el-1);
         int destination=element.dest;
@@ -37,7 +37,6 @@ int trouver_gagnant_condorcet_minmax(liste * liste_arc) {
                 pickEltList(*liste_arc,&element,nbEltList(*liste_arc)-1);
                 destination=element.dest;
                 candidats++;
-                printf("candidats : %d \n", candidats);
             }
             i--;
         }

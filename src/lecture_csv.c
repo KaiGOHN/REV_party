@@ -10,7 +10,6 @@
 /// \param matrice pointeur vers la structure de type t_mat_char_star_dyn contenant la matrice à remplir
 void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice, int * type_csv) {
     FILE *fptr;
-    printf("type csv : %d\n", *type_csv);
     if ((fptr = fopen(filename,"r")) == NULL){
         fprintf(stderr, "Erreur! lors de l'ouverture du fichier csv\n");
         exit(EXIT_FAILURE);

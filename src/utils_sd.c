@@ -117,17 +117,29 @@ void afficher_infos_csv(t_mat_char_star_dyn * matrice_csv, int * type_csv, FILE 
         fprintf(outfp, "\nINFOS CSV : \n");
         fprintf(outfp, "LIGNES : %d\n", matrice_csv->nbRows);
         fprintf(outfp, "COLONNES : %d\n", matrice_csv->nbCol);
-        fprintf(outfp, "NB CANDIDATS : %d\n", matrice_csv->nbRows);
-        fprintf(outfp, "NB VOTANTS (au minimum) : %d\n", atoi(matrice_csv->tab[1][0])+atoi(matrice_csv->tab[0][1]));
+        fprintf(outfp, "NB CANDIDATS : %d\n", matrice_csv->nbCol);
+        fprintf(outfp, "NB VOTANTS (au minimum) : %d\n",atoi(matrice_csv->tab[matrice_csv->nbRows-1][0]) + atoi(matrice_csv->tab[1][matrice_csv->nbCol-1]));
     }
 
 }
 
 void afficher_resultat(char * mode_scrutin, char * gagnant, int nb_candidats, int nb_votants, int score, FILE * logfp) {
     if (strcmp(mode_scrutin, "uninominal à deux tours, tour 1")==0 || strcmp(mode_scrutin, "uninominal à deux tours, tour 2")==0   || strcmp(mode_scrutin, "uninominal à un tour")==0 ) {
-        fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s, score = %d%c\n", mode_scrutin, nb_candidats, nb_votants, gagnant, score, 37);
-    }
+        if (logfp!=stdout) {
+            fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s, score = %d%c\n", mode_scrutin, nb_candidats, nb_votants, gagnant, score, 37);
+            fprintf(stdout, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s, score = %d%c\n", mode_scrutin, nb_candidats, nb_votants, gagnant, score, 37);
+        } else {
+            fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s, score = %d%c\n", mode_scrutin, nb_candidats, nb_votants, gagnant, score, 37);
+
+        }
+        }
     else {
-        fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s\n", mode_scrutin, nb_candidats, nb_votants, gagnant);
-    }
+        if (logfp!=stdout) {
+            fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s\n", mode_scrutin, nb_candidats, nb_votants, gagnant);
+            fprintf(stdout, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s\n", mode_scrutin, nb_candidats, nb_votants, gagnant);
+
+        } else {
+            fprintf(logfp, "Mode de scrutin : %s, %d candidats, %d votants, vainqueur = %s\n", mode_scrutin, nb_candidats, nb_votants, gagnant);
+        }
+        }
     }

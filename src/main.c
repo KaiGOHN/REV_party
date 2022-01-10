@@ -133,6 +133,7 @@ int main(int argc, char **argv)
             exit(EXIT_FAILURE);
         } else {
             logfp=fptr;
+            fprintf(stdout, "Fichier de sortie : %s\n", nom_fichier_log);
         }
     } else {
         logfp=stdout;
@@ -163,29 +164,58 @@ int main(int argc, char **argv)
     fprintf(logfp, "\nLISTE DES ARCS");
     dumpList(liste_arcs,logfp);
     if (type_csv) {
+        int nb_votants=matrice_csv.nbRows - 1;
         if (strcmp(methode, "all")==0) {
             t_tab_int_dyn tableau;
             creer_tab_int(&tableau, matrice_csv.nbCol - 4);
             trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
             trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
-            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
-                              matrice_csv.nbRows - 1, 0, logfp);
+
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1) + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            } else {
+                afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            }
+
             id = trouver_gagnant_condorcet_schulze(&liste_arcs);
-            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
-                              matrice_csv.nbRows - 1, 0, logfp);
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1) + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            }
+            else {
+                afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            }
         }
         else if (strcmp(methode, "cm")==0) {
             t_tab_int_dyn tableau;
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
-            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id+4], matrice_csv.nbCol-4, matrice_csv.nbRows-1, 0, logfp);
+
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1) + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            } else {
+                afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                                  nb_votants , 0, logfp);
+
+            }
         } else if (strcmp(methode, "cs")==0) {
             t_tab_int_dyn tableau;
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
             int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
-            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id+4], matrice_csv.nbCol-4, matrice_csv.nbRows-1, 0, logfp);
 
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1) + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            }
+            else {
+                afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                                  nb_votants, 0, logfp);
+            }
         } else if (strcmp(methode, "uni1")==0) {
             t_tab_int_dyn tableau;
             creer_tab_int(&tableau,matrice_csv.nbCol-4);
@@ -197,23 +227,47 @@ int main(int argc, char **argv)
         }
         }
     else {
-
+        //int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
+        int nb = matrice_duel.nbCol ;
         if (strcmp(methode, "all")==0) {
-            int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
+
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
-            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1)], matrice_csv.nbCol, nb, 0, logfp);
+            } else {
+                afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbCol, nb, 0, logfp);
+            }
+
             id = trouver_gagnant_condorcet_schulze(&liste_arcs);
-            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1)], matrice_csv.nbCol, nb, 0, logfp);
+
+            }
+            else {
+                afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbCol, nb, 0, logfp);
+
+            }
             }
         else if (strcmp(methode, "cm")==0) {
-            int nb= matrice_duel.tab[0][matrice_duel.nbRows-1]+matrice_duel.tab[matrice_duel.nbRows-1][0];
+
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
-            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1)], matrice_csv.nbCol, nb, 0, logfp);
+            } else {
+                afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbCol, nb, 0, logfp);
+            }
+
                     }
         else  {
-            int nb= matrice_duel.tab[0][matrice_duel.nbRows-1]+matrice_duel.tab[matrice_duel.nbRows-1][0];
+
             int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
-            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            if (id<0) {
+                afficher_resultat("Vainqueur de Condorcet", matrice_csv.tab[0][-(id+1)], matrice_csv.nbCol, nb, 0, logfp);
+            }
+            else {
+                afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbCol, nb, 0, logfp);
+
+            }
         }
 
         }

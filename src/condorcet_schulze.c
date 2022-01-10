@@ -22,7 +22,7 @@ int trouver_gagnant_condorcet_schulze(liste * liste_arc) {
         i++;
     }
     if (candidats<=nb_el) {
-        return origine;
+        return -origine-1;
     } else {
         int trouve=0;
         while (!trouve && !emptyList(*liste_arc)) {
