@@ -8,10 +8,11 @@
 /// \param filename pointeur vers une chaine de caractères désignant le nom du fichier csv
 /// \param delimiteur pointeur vers une chaine de caractères désignant le délimiteur utilisé dans le csv
 /// \param matrice pointeur vers la structure de type t_mat_char_star_dyn contenant la matrice à remplir
-void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice) {
+void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice, int * type_csv) {
     FILE *fptr;
+    printf("type csv : %d\n", *type_csv);
     if ((fptr = fopen(filename,"r")) == NULL){
-        printf("Error! opening file\n");
+        fprintf(stderr, "Erreur! lors de l'ouverture du fichier csv\n");
         exit(EXIT_FAILURE);
     }
     char ligne[1024];
@@ -60,12 +61,43 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
                 matrice->tab[matrice->nbRows-1][champ] = (char *) malloc(256);
                 strcpy(matrice->tab[matrice->nbRows-1][champ], debut);
                 matrice->tab[matrice->nbRows-1][champ][strcspn(matrice->tab[matrice->nbRows-1][champ], "\n")] = 0;
+                if (*type_csv) {
+                    if (champ > 3 && matrice->nbRows-1 > 0 && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0 ||
+                                                                 atoi(matrice->tab[matrice->nbRows - 1][champ]) >
+                                                                 (matrice->nbCol - 4))) {
+                        char str[matrice->nbRows];
+                        sprintf(str, "%d", matrice->nbCol - 4);
+                        strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                    }
+                } else {
+                    if (matrice->nbRows-1>0 && matrice->nbRows-1 != champ && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0)) {
+                        char str[matrice->nbRows];
+                        sprintf(str, "%d", 0);
+                        strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                    }
+                }
                 champ++;
                 debut = pointeur_delim+1;
+
             }
             matrice->tab[matrice->nbRows-1][champ] = (char *) malloc(256);
             strcpy(matrice->tab[matrice->nbRows-1][champ], debut);
             matrice->tab[matrice->nbRows-1][champ][strcspn(matrice->tab[matrice->nbRows-1][champ], "\n")] = 0;
+            if (*type_csv) {
+                if (champ > 3 && matrice->nbRows-1 > 0 && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0 ||
+                                                           atoi(matrice->tab[matrice->nbRows - 1][champ]) >
+                                                           (matrice->nbCol - 4))) {
+                    char str[matrice->nbRows];
+                    sprintf(str, "%d", matrice->nbCol - 4);
+                    strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                }
+            } else {
+                if (matrice->nbRows-1>0 && matrice->nbRows-1 != champ && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0)) {
+                    char str[matrice->nbRows];
+                    sprintf(str, "%d", 0);
+                    strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                }
+            }
             if (champ != matrice->nbCol-1) {
                 fprintf(stderr, "fichier CSV mal formé (ligne %d)\n ", matrice->nbRows);
                 exit(EXIT_FAILURE);
@@ -73,5 +105,4 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
         }
     }
     fclose(fptr);
-    printf("li : %d et col : %d\n", matrice->nbRows, matrice->nbCol);
 }

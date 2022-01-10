@@ -9,9 +9,12 @@
 #include <getopt.h>
 #include <string.h>
 #include "lecture_csv.h"
-#include "matrice_duel.h"
+#include "matrice_duel_arc.h"
 #include "global.h"
 #include "utils_sd.h"
+#include "uninominales.h"
+#include "condorcet_minimax.h"
+#include "condorcet_schulze.h"
 
 /// \fn getargs
 /// \param[in] argc le nombre de parmamètres passés au programme
@@ -118,16 +121,29 @@ int main(int argc, char **argv)
     char * methode = NULL;
     int type_csv = 0;
     int type_log = 0;
+    FILE *logfp;
     int err_arg = getargs(argc, argv, &nom_fichier_csv,  &nom_fichier_log, &methode, &type_csv, &type_log);
     if (err_arg) {
         exit(EXIT_FAILURE);
     }
-    printf("nom_fichier_csv = %s, nom_fichier_log = %s, methode = %s, type_csv = %d, type_log = %d \n", nom_fichier_csv,  nom_fichier_log, methode, type_csv, type_log);
+    if (type_log) {
+        FILE *fptr;
+        if ((fptr = fopen(nom_fichier_log,"w")) == NULL){
+            fprintf(stderr, "Erreur! lors de l'ouverture du fichier de log\n");
+            exit(EXIT_FAILURE);
+        } else {
+            logfp=fptr;
+        }
+    } else {
+        logfp=stdout;
+    }
+    fprintf(logfp, "INFOS LIGNE COMMANDE : \nnom_fichier_csv = %s, nom_fichier_log = %s, methode = %s, type_csv = %d, type_log = %d \n", nom_fichier_csv,  nom_fichier_log, methode, type_csv, type_log);
     char delimiteur=',';
     t_mat_char_star_dyn matrice_csv;
     creer_matrice_char(&matrice_csv);
-    lecture_csv(nom_fichier_csv, &delimiteur, &matrice_csv);
-
+    lecture_csv(nom_fichier_csv, &delimiteur, &matrice_csv, &type_csv);
+    afficher_infos_csv(&matrice_csv, &type_csv, logfp);
+    afficher_matrice_csv(&matrice_csv, logfp);
     t_mat_int_dyn matrice_duel;
     if (!type_csv) {
         creer_matrice_int(&matrice_duel, matrice_csv.nbRows-1, matrice_csv.nbCol);
@@ -137,13 +153,70 @@ int main(int argc, char **argv)
         creer_matrice_int(&matrice_duel, matrice_csv.nbCol-4, matrice_csv.nbCol-4);
         remplir_matrice_duel(&matrice_csv, &matrice_duel, &type_csv);
     }
-
-/*    for (int i=0; i<matrice_duel.nbRows; i++) {
-        for (int j=0; j<matrice_duel.nbCol; j++) {
-            printf("%d ", matrice_duel.tab[i][j]);
+    afficher_matrice_duel(&matrice_duel, logfp);
+    t_mat_int_dyn matrice_arc;
+    creer_matrice_int(&matrice_arc, matrice_duel.nbRows, matrice_duel.nbCol);
+    liste liste_arcs;
+    createList(&liste_arcs);
+    remplir_matrice_arc(&matrice_duel, &matrice_arc, &liste_arcs);
+    afficher_matrice_arc(&matrice_arc, logfp);
+    fprintf(logfp, "\nLISTE DES ARCS");
+    dumpList(liste_arcs,logfp);
+    if (type_csv) {
+        if (strcmp(methode, "all")==0) {
+            t_tab_int_dyn tableau;
+            creer_tab_int(&tableau, matrice_csv.nbCol - 4);
+            trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
+            trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
+            int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
+            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                              matrice_csv.nbRows - 1, 0, logfp);
+            id = trouver_gagnant_condorcet_schulze(&liste_arcs);
+            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id + 4], matrice_csv.nbCol - 4,
+                              matrice_csv.nbRows - 1, 0, logfp);
         }
-        printf("\n");
-    }*/
+        else if (strcmp(methode, "cm")==0) {
+            t_tab_int_dyn tableau;
+            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+            int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
+            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id+4], matrice_csv.nbCol-4, matrice_csv.nbRows-1, 0, logfp);
+        } else if (strcmp(methode, "cs")==0) {
+            t_tab_int_dyn tableau;
+            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+            int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
+            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id+4], matrice_csv.nbCol-4, matrice_csv.nbRows-1, 0, logfp);
+
+        } else if (strcmp(methode, "uni1")==0) {
+            t_tab_int_dyn tableau;
+            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+            trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
+        } else {
+            t_tab_int_dyn tableau;
+            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+            trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
+        }
+        }
+    else {
+
+        if (strcmp(methode, "all")==0) {
+            int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
+            int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
+            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            id = trouver_gagnant_condorcet_schulze(&liste_arcs);
+            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+            }
+        else if (strcmp(methode, "cm")==0) {
+            int nb= matrice_duel.tab[0][matrice_duel.nbRows-1]+matrice_duel.tab[matrice_duel.nbRows-1][0];
+            int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
+            afficher_resultat("Condorcet minimax", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+                    }
+        else  {
+            int nb= matrice_duel.tab[0][matrice_duel.nbRows-1]+matrice_duel.tab[matrice_duel.nbRows-1][0];
+            int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
+            afficher_resultat("Condorcet Schulze", matrice_csv.tab[0][id], matrice_csv.nbRows, nb, 0, logfp);
+        }
+
+        }
 
 
     return 0;
