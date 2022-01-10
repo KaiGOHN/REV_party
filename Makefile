@@ -1,7 +1,7 @@
 .PHONY: all clean
 CC = gcc
-CFLAGS = -Wall -std=c99
-#LDFLAGS = -lm -lgmp
+CFLAGS = -Wall -std=c99 -g -O0
+LDFLAGS = -lm -lgmp
 TARGET = scrutin # nom de l'exécutable
 OBJFILES = build/main.o build/lecture_csv.o build/utils_sd.o build/matrice_duel_arc.o build/elementliste.o build/liste.o build/uninominales.o build/condorcet_minimax.o build/condorcet_schulze.o
 TARGET2 = verify_my_vote

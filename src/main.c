@@ -116,9 +116,9 @@ int getargs(int argc, char **argv, char **nom_fichier_csv,  char **nom_fichier_l
 
 int main(int argc, char **argv)
 {
-    char * nom_fichier_csv = NULL;
-    char  * nom_fichier_log = NULL;
-    char * methode = NULL;
+    char * nom_fichier_csv = malloc(256*sizeof (char));
+    char  * nom_fichier_log = malloc(256*sizeof (char));
+    char * methode = malloc(256*sizeof (char));
     int type_csv = 0;
     int type_log = 0;
     FILE *logfp;
@@ -163,12 +163,14 @@ int main(int argc, char **argv)
     afficher_matrice_arc(&matrice_arc, logfp);
     fprintf(logfp, "\nLISTE DES ARCS");
     dumpList(liste_arcs,logfp);
-    t_tab_int_dyn tableau;
+
     if (type_csv) {
+        t_tab_int_dyn tableau;
+        creer_tab_int(&tableau, matrice_csv.nbCol - 4);
         int nb_votants=matrice_csv.nbRows - 1;
         if (strcmp(methode, "all")==0) {
 
-            creer_tab_int(&tableau, matrice_csv.nbCol - 4);
+
             trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
             trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
@@ -193,7 +195,7 @@ int main(int argc, char **argv)
         }
         else if (strcmp(methode, "cm")==0) {
 
-            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
 
             if (id<0) {
@@ -206,7 +208,7 @@ int main(int argc, char **argv)
             }
         } else if (strcmp(methode, "cs")==0) {
 
-            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+
             int id = trouver_gagnant_condorcet_schulze(&liste_arcs);
 
             if (id<0) {
@@ -219,11 +221,11 @@ int main(int argc, char **argv)
             }
         } else if (strcmp(methode, "uni1")==0) {
 
-            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+
             trouver_gagnant_un_tour(&tableau, &matrice_csv, logfp);
         } else {
 
-            creer_tab_int(&tableau,matrice_csv.nbCol-4);
+
             trouver_gagnant_deux_tour(&tableau, &matrice_csv, logfp);
         }
 
@@ -231,8 +233,8 @@ int main(int argc, char **argv)
 
         }
     else {
-        //int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
-        int nb = matrice_duel.nbCol ;
+        int nb = matrice_duel.tab[0][matrice_duel.nbRows - 1] + matrice_duel.tab[matrice_duel.nbRows - 1][0];
+        // int nb = matrice_duel.nbCol ;
         if (strcmp(methode, "all")==0) {
 
             int id = trouver_gagnant_condorcet_minmax(&liste_arcs);
@@ -278,7 +280,10 @@ int main(int argc, char **argv)
     liberer_matrice_char(&matrice_csv);
     liberer_matrice_int(&matrice_duel);
     liberer_matrice_int(&matrice_arc);
-
+    if (type_log) fclose(logfp);
+    free(nom_fichier_log);
+    free(nom_fichier_csv);
+    free(methode);
 
     return 0;
 }

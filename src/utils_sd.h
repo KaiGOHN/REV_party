@@ -26,5 +26,5 @@ void afficher_matrice_duel(t_mat_int_dyn * t_tab, FILE *outfp);
 void afficher_matrice_arc(t_mat_int_dyn * t_tab, FILE *outfp);
 void afficher_infos_csv(t_mat_char_star_dyn * matrice_csv, int * type_csv, FILE *outfp);
 void afficher_matrice_csv(t_mat_char_star_dyn * matrice_csv, FILE *outfp);
-void afficher_resultat(char * mode_scrutin, char * gagnant, int nb_candidats, int nb_votants, int score, FILE * logfp);
+void afficher_resultat(char * mode_scrutin, char * gagnant, int nb_candidats, int nb_votants, float score, FILE * logfp);
 #endif //REV_PARTY_UTILS_SD_H

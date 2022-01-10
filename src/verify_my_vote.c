@@ -80,16 +80,16 @@ unsigned char hexa_char_to_binary(char * chaine) {
     return myuchar;
 }
 int main(void) {
-    printf("Nom complet de l'électeur: ");
-    char nom_elect[];
-    scanf("%s", &nom);
-    printf("Nom du fichier de ballot: ");
-    char nom_ballot[];
-    scanf("%s", &nom);
-    printf("clef secrete: ");
-    char cle[];
-    scanf("%s", &cle);
-    unsigned char uchar;
-    uchar = hexa_char_to_binary(cle);
+//    printf("Nom complet de l'électeur: ");
+//    char nom_elect[];
+//    scanf("%s", &nom);
+//    printf("Nom du fichier de ballot: ");
+//    char nom_ballot[];
+//    scanf("%s", &nom);
+//    printf("clef secrete: ");
+//    char cle[];
+//    scanf("%s", &cle);
+//    unsigned char uchar;
+//    uchar = hexa_char_to_binary(cle);
 
 }

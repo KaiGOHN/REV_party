@@ -26,7 +26,11 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
                 fprintf(stderr, "erreur d'allocation\n");
                 exit(EXIT_FAILURE);
             }
-            matrice->tab[0][matrice->nbCol-1] = (char *) malloc(256);
+            matrice->tab[0][matrice->nbCol-1] = malloc(sizeof(char) * 256 );
+            if (matrice->tab[0][matrice->nbCol-1] == NULL) {
+                fprintf(stderr, "erreur d'allocation\n");
+                exit(EXIT_FAILURE);
+            }
             strcpy(matrice->tab[0][matrice->nbCol-1], debut);
             matrice->tab[0][matrice->nbCol-1][strcspn(matrice->tab[0][matrice->nbCol-1], "\n")] = 0;
             matrice->nbCol++;
@@ -37,7 +41,11 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
             fprintf(stderr, "erreur d'allocation\n");
             exit(EXIT_FAILURE);
         }
-        matrice->tab[0][matrice->nbCol-1] = (char *) malloc(256);
+        matrice->tab[0][matrice->nbCol-1] = malloc(sizeof(char) * 256 );
+        if (matrice->tab[0][matrice->nbCol-1] == NULL) {
+            fprintf(stderr, "erreur d'allocation\n");
+            exit(EXIT_FAILURE);
+        }
         strcpy(matrice->tab[0][matrice->nbCol-1], debut);
         matrice->tab[0][matrice->nbCol-1][strcspn(matrice->tab[0][matrice->nbCol-1], "\n")] = 0;
 
@@ -57,7 +65,11 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
             debut = ligne;
             while ((pointeur_delim = strpbrk(debut, delimiteur)) != NULL) {
                 *pointeur_delim = 0;
-                matrice->tab[matrice->nbRows-1][champ] = (char *) malloc(256);
+                matrice->tab[matrice->nbRows-1][champ] = malloc(sizeof(char) * 256 );
+                if (matrice->tab[matrice->nbRows-1][champ] == NULL) {
+                    fprintf(stderr, "erreur d'allocation\n");
+                    exit(EXIT_FAILURE);
+                }
                 strcpy(matrice->tab[matrice->nbRows-1][champ], debut);
                 matrice->tab[matrice->nbRows-1][champ][strcspn(matrice->tab[matrice->nbRows-1][champ], "\n")] = 0;
                 if (*type_csv) {
@@ -79,22 +91,28 @@ void lecture_csv(char *filename, char *delimiteur, t_mat_char_star_dyn * matrice
                 debut = pointeur_delim+1;
 
             }
-            matrice->tab[matrice->nbRows-1][champ] = (char *) malloc(256);
+            matrice->tab[matrice->nbRows-1][champ] = malloc(sizeof(char) * 256 );
+            if (matrice->tab[matrice->nbRows-1][champ] == NULL) {
+                fprintf(stderr, "erreur d'allocation\n");
+                exit(EXIT_FAILURE);
+            }
             strcpy(matrice->tab[matrice->nbRows-1][champ], debut);
             matrice->tab[matrice->nbRows-1][champ][strcspn(matrice->tab[matrice->nbRows-1][champ], "\n")] = 0;
             if (*type_csv) {
                 if (champ > 3 && matrice->nbRows-1 > 0 && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0 ||
                                                            atoi(matrice->tab[matrice->nbRows - 1][champ]) >
                                                            (matrice->nbCol - 4))) {
-                    char str[matrice->nbRows];
+                    char * str = malloc((matrice->nbRows)*sizeof(char));
                     sprintf(str, "%d", matrice->nbCol - 4);
                     strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                    free(str);
                 }
             } else {
                 if (matrice->nbRows-1>0 && matrice->nbRows-1 != champ && (atoi(matrice->tab[matrice->nbRows - 1][champ]) <= 0)) {
-                    char str[matrice->nbRows];
+                    char * str = malloc((matrice->nbRows)*sizeof(char));
                     sprintf(str, "%d", 0);
                     strcpy(matrice->tab[matrice->nbRows - 1][champ], str);
+                    free(str);
                 }
             }
             if (champ != matrice->nbCol-1) {

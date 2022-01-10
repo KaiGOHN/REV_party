@@ -40,8 +40,8 @@ void trouver_gagnant_un_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * matr
         somme_val=somme_val+tableau->tab[i];
     }
     int nb_votes_nuls=matrice_csv->nbRows-1-somme_val;
-
-    afficher_resultat("uninominal à un tour", matrice_csv->tab[0][max_id+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, 100*max_val/somme_val, logfp);
+    float score=100*max_val/somme_val;
+    afficher_resultat("uninominal à un tour", matrice_csv->tab[0][max_id+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, score, logfp);
     fprintf(logfp, "Nb votes nuls : %d\n", nb_votes_nuls);
     //printf("gagnant = %s\n", matrice_csv->tab[0][max_id+4]);
 }
@@ -86,7 +86,8 @@ void trouver_gagnant_deux_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * ma
     int nb_votes_nuls_t1=matrice_csv->nbRows-1-somme_val;
     if (2*max_val>somme_val) {
         //printf("gagnant = %s\n", matrice_csv->tab[0][max_id+4]);
-        afficher_resultat("uninominal deux un tour, tour 1", matrice_csv->tab[0][max_id+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, 100*max_val/somme_val, logfp);
+        float score = 100.0*max_val/somme_val;
+        afficher_resultat("uninominal deux un tour, tour 1", matrice_csv->tab[0][max_id+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, score, logfp);
 
     } else {
         int gagnant_1= max_id;
@@ -102,9 +103,11 @@ void trouver_gagnant_deux_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * ma
         }
         int gagnant_2= max_id;
         int gagnant_2_score=max_val;
+        float score1=100.0*gagnant_1_score/somme_val;
+        float score2=100.0*gagnant_2_score/somme_val;
         //printf("gagnant 1 = %s avec %d%c, gagnant 2= %s avec %d%c pour un total de %d voix \n", matrice_csv->tab[0][gagnant_1+4], 100*gagnant_1_score/somme_val, 37, matrice_csv->tab[0][gagnant_2+4], 100*gagnant_2_score/somme_val, 37, somme_val);
-        afficher_resultat("uninominal à deux tours, tour 1", matrice_csv->tab[0][gagnant_1+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, 100*gagnant_1_score/somme_val, logfp);
-        afficher_resultat("uninominal à deux tours, tour 1", matrice_csv->tab[0][gagnant_2+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, 100*gagnant_2_score/somme_val, logfp);
+        afficher_resultat("uninominal à deux tours, tour 1", matrice_csv->tab[0][gagnant_1+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, score1, logfp);
+        afficher_resultat("uninominal à deux tours, tour 1", matrice_csv->tab[0][gagnant_2+4], matrice_csv->nbCol-4, matrice_csv->nbRows-1, score2, logfp);
         fprintf(logfp, "Nb votes nuls au tour 1 : %d\n", nb_votes_nuls_t1);
         int tab_second_tour[2];
         tab_second_tour[0]=0;
@@ -120,18 +123,21 @@ void trouver_gagnant_deux_tour(t_tab_int_dyn * tableau, t_mat_char_star_dyn * ma
 
         if (tab_second_tour[0]>tab_second_tour[1]) {
             //printf("gagnant = %s\n", matrice_csv->tab[0][gagnant_1+4]);
-            afficher_resultat("uninominal à deux tours, tour 2", matrice_csv->tab[0][gagnant_1+4], 2, matrice_csv->nbRows-1, 100*tab_second_tour[0]/(tab_second_tour[0]+tab_second_tour[1]), logfp);
+            float score=100.0*tab_second_tour[0]/(tab_second_tour[0]+tab_second_tour[1]);
+            afficher_resultat("uninominal à deux tours, tour 2", matrice_csv->tab[0][gagnant_1+4], 2, matrice_csv->nbRows-1, score, logfp);
 
         } else if (tab_second_tour[0]<tab_second_tour[1]) {
             //printf("gagnant = %s\n", matrice_csv->tab[0][gagnant_2+4]);
-            afficher_resultat("uninominal à deux tours, tour 2", matrice_csv->tab[0][gagnant_2+4], 2, matrice_csv->nbRows-1, 100*tab_second_tour[1]/(tab_second_tour[0]+tab_second_tour[1]), logfp);
+            float score=100.0*tab_second_tour[1]/(tab_second_tour[0]+tab_second_tour[1]);
+            afficher_resultat("uninominal à deux tours, tour 2", matrice_csv->tab[0][gagnant_2+4], 2, matrice_csv->nbRows-1, score, logfp);
         } else {
             //printf("egalité entre %s et %s \n", matrice_csv->tab[0][gagnant_1+4], matrice_csv->tab[0][gagnant_2+4]);
             char egalite[strlen(matrice_csv->tab[0][gagnant_2+4])+ strlen(matrice_csv->tab[0][gagnant_1+4])+5];
             strcat(egalite, matrice_csv->tab[0][gagnant_1+4]);
             strcat(egalite, " et ");
             strcat(egalite, matrice_csv->tab[0][gagnant_2+4]);
-            afficher_resultat("uninominal à deux tours, tour 2", egalite, 2, matrice_csv->nbRows-1, 100*tab_second_tour[1]/(tab_second_tour[0]+tab_second_tour[1]), logfp);
+            float score= 100.0*tab_second_tour[1]/(tab_second_tour[0]+tab_second_tour[1]);
+            afficher_resultat("uninominal à deux tours, tour 2", egalite, 2, matrice_csv->nbRows-1, score, logfp);
 
         }
         fprintf(logfp, "Nb votes nuls au tour 2 : %d \n", nb_votes_nuls_t2);
